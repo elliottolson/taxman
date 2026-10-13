@@ -1,0 +1,1329 @@
+{
+  "$schema": "../schemas/claim-ledger.schema.json",
+  "contract_version": "0.1.0",
+  "status": "research_not_approved",
+  "production_enabled": false,
+  "limitations": [
+    "Operational IRS evidence; controlling-law research and independent review are pending.",
+    "Reference values are authored independently of candidate execution, not yet independently reviewed.",
+    "No evaluator or release compiler exists; the release gate is a necessary preflight only."
+  ],
+  "reviewers": [],
+  "sources": [
+    {
+      "id": "p501-2025-snapshot",
+      "registry_id": "irs-p501-2025",
+      "title": "Publication 501 (2025)",
+      "authority_class": "publication",
+      "publication_revision": "2025; issued 2026-02-04",
+      "published_on": "2026-02-04",
+      "tax_years": [
+        2025
+      ],
+      "url": "https://www.irs.gov/pub/irs-prior/p501--2025.pdf",
+      "path": "evidence/irs/2025/p501.pdf",
+      "pdf_pages": 31,
+      "retrieved_at": "2026-10-13T22:57:59Z",
+      "content_sha256": "288b62a4917f3bc3df0bade7a22c23a8ae648ba9eb5086df5b8b50e881148ff6",
+      "author_id": "research-draft",
+      "sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44"
+    },
+    {
+      "id": "schedule-b-2025-snapshot",
+      "registry_id": "irs-schedule-b-2025",
+      "title": "Instructions for Schedule B (2025)",
+      "authority_class": "form_instructions",
+      "publication_revision": "2025; issued 2025-04-23",
+      "published_on": "2025-04-23",
+      "tax_years": [
+        2025
+      ],
+      "url": "https://www.irs.gov/pub/irs-prior/i1040sb--2025.pdf",
+      "path": "evidence/irs/2025/i1040sb.pdf",
+      "pdf_pages": 3,
+      "retrieved_at": "2026-10-13T22:57:59Z",
+      "content_sha256": "b92f31ece57a82ea576ac96507fe5df637dbda7489a80eb28aaab88e7c87b287",
+      "author_id": "research-draft",
+      "sha256": "14289826c23edde2772fb5208b86912efb20176fddbc0f1a3c3dc2281ffca1c0"
+    }
+  ],
+  "claims": [
+    {
+      "id": "standard.base.2025.v1",
+      "logical_id": "standard.base.2025",
+      "version": 1,
+      "previous_id": null,
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "jurisdiction": "US-FED",
+      "applicability": {
+        "start": 2025,
+        "end_exclusive": 2026
+      },
+      "statement": "Table 6 lists $15,750 for single/MFS, $31,500 for MFJ/QSS, and $23,625 for HOH.",
+      "scope": [
+        "Eligible full-year taxpayer; Table 6 conditions satisfied."
+      ],
+      "exclusions": [
+        "Age/blindness additions, dependent limits, and standard-deduction eligibility are separate."
+      ],
+      "open_questions": [
+        "Independent interpretation and fixture review remains pending.",
+        "Check controlling authority and subsequent corrections before acceptance."
+      ],
+      "consumers": [
+        {
+          "target": "parameter:standard.base",
+          "target_sha256": "ec1687a34fe2c0385f7d8a72b6db89d122692a8c9c4c4db1741ba0fb6ebf8d02",
+          "facet": "annual base amounts"
+        },
+        {
+          "target": "rule:deduction.standard_base",
+          "target_sha256": "91d152802a4a86208ee3462609056f4225cb8a090c84e956ae2601b35d9ae2e5",
+          "facet": "base amount only"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 6, amounts and footnote",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Examples, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "sha256": "0cd4b4c15b14e8274542193786fb8786dc15aebd312cbae7a4e40d449467f7b5"
+    },
+    {
+      "id": "standard.dependent.2025.v1",
+      "logical_id": "standard.dependent.2025",
+      "version": 1,
+      "previous_id": null,
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "jurisdiction": "US-FED",
+      "applicability": {
+        "start": 2025,
+        "end_exclusive": 2026
+      },
+      "statement": "Table 8 line 7a uses min(regular base, max($1,350, earned income + $450)).",
+      "scope": [
+        "Claimable dependent; standard deduction allowed; no age/blindness additions."
+      ],
+      "exclusions": [
+        "Earned-income classification and deduction eligibility require separate rules."
+      ],
+      "open_questions": [
+        "Independent interpretation and fixture review remains pending.",
+        "Check controlling authority and subsequent corrections before acceptance."
+      ],
+      "consumers": [
+        {
+          "target": "rule:deduction.dependent",
+          "target_sha256": "931e16ebb537e3ff9e468b1790f67ace73c8ddc349c1c8e36fa55a2a678a5d87",
+          "facet": "limited base only"
+        },
+        {
+          "target": "module:standard.dependent_worksheet",
+          "target_sha256": "9dca8ef60a2f9e566da5fd60c9526c00f7387b49db9853b6b3428741f325b065",
+          "facet": "worksheet lines 1\u20137a only"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137a",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "sha256": "3ad525900c6e32d39ffb2e5feaa4e239a417b8cdb7dc96af0a10692f97e7c872"
+    },
+    {
+      "id": "schedule-b.threshold.2025.v1",
+      "logical_id": "schedule-b.threshold.2025",
+      "version": 1,
+      "previous_id": null,
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "jurisdiction": "US-FED",
+      "applicability": {
+        "start": 2025,
+        "end_exclusive": 2026
+      },
+      "statement": "Taxable interest or ordinary dividends over $1,500 is a sufficient Schedule B trigger.",
+      "scope": [
+        "2025 Form 1040; threshold trigger only."
+      ],
+      "exclusions": [
+        "Other Schedule B triggers remain separate; a non-trigger is not a filing exemption."
+      ],
+      "open_questions": [
+        "Independent interpretation and fixture review remains pending.",
+        "Check controlling authority and subsequent corrections before acceptance."
+      ],
+      "consumers": [
+        {
+          "target": "rule:reporting.schedule_b",
+          "target_sha256": "7e400499535dde3a3cc01b343a3d4b9e8e9b76222ede64c5af81a7d0ebc89cc8",
+          "facet": "one reporting trigger only"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "schedule-b-2025-snapshot",
+          "source_sha256": "14289826c23edde2772fb5208b86912efb20176fddbc0f1a3c3dc2281ffca1c0",
+          "pdf_page": 1,
+          "locator": "General Instructions, first bullet",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "schedule-b-2025-snapshot",
+          "source_sha256": "14289826c23edde2772fb5208b86912efb20176fddbc0f1a3c3dc2281ffca1c0",
+          "pdf_page": 1,
+          "locator": "General Instructions, remaining bullets",
+          "relationship": "limits"
+        }
+      ],
+      "sha256": "6ccbe1e5f0a0b2073025a2aa39eb1cb19108128cc4d0446d6db91868581542d4"
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "base.published.mfj",
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "claim_id": "standard.base.2025.v1",
+      "claim_sha256": "0cd4b4c15b14e8274542193786fb8786dc15aebd312cbae7a4e40d449467f7b5",
+      "tax_year": 2025,
+      "kind": "published_example",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "data": {
+            "type": "Enum",
+            "value": "married_joint"
+          }
+        },
+        "age_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "blindness_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "claimable": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "standard_allowed": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        }
+      },
+      "expected": {
+        "status": "value",
+        "data": {
+          "type": "Money",
+          "value": "31500.00"
+        }
+      },
+      "oracle": {
+        "method": "irs_published_example",
+        "derivation": "Publication example supplies the expected amount.",
+        "independent_of_candidate_execution": true,
+        "review_required": true
+      },
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Examples, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "sha256": "9e98175b683416e65a4ca2c2402e8f6db47c6b8d130b84ae5318d2f00aa244d2"
+    },
+    {
+      "id": "base.single",
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "claim_id": "standard.base.2025.v1",
+      "claim_sha256": "0cd4b4c15b14e8274542193786fb8786dc15aebd312cbae7a4e40d449467f7b5",
+      "tax_year": 2025,
+      "kind": "manual_boundary",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "data": {
+            "type": "Enum",
+            "value": "single"
+          }
+        },
+        "age_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "blindness_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "claimable": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "standard_allowed": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        }
+      },
+      "expected": {
+        "status": "value",
+        "data": {
+          "type": "Money",
+          "value": "15750.00"
+        }
+      },
+      "oracle": {
+        "method": "manual_source_derivation",
+        "derivation": "Read the single row; do not run the candidate lookup.",
+        "independent_of_candidate_execution": true,
+        "review_required": true
+      },
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 6, amounts and footnote",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Examples, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "sha256": "fb5f1949ee9cae3cf378f53d81644bbcb993bba7dbf0936d6fc88c351aa9c0ee"
+    },
+    {
+      "id": "base.dependent-excluded",
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "claim_id": "standard.base.2025.v1",
+      "claim_sha256": "0cd4b4c15b14e8274542193786fb8786dc15aebd312cbae7a4e40d449467f7b5",
+      "tax_year": 2025,
+      "kind": "scope_case",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "data": {
+            "type": "Enum",
+            "value": "married_joint"
+          }
+        },
+        "age_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "blindness_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "claimable": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        },
+        "standard_allowed": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        }
+      },
+      "expected": {
+        "status": "undetermined",
+        "reason": "Dependent method required."
+      },
+      "oracle": {
+        "method": "manual_source_derivation",
+        "derivation": "The Table 6 footnote excludes dependents.",
+        "independent_of_candidate_execution": true,
+        "review_required": true
+      },
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 6, amounts and footnote",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Examples, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "sha256": "e90cec56d2e5483c7adb00436a3037d00f9b7cd4633bb599388d5f3c54b83ce0"
+    },
+    {
+      "id": "dependent.published.floor",
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "claim_id": "standard.dependent.2025.v1",
+      "claim_sha256": "3ad525900c6e32d39ffb2e5feaa4e239a417b8cdb7dc96af0a10692f97e7c872",
+      "tax_year": 2025,
+      "kind": "published_example",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "data": {
+            "type": "Enum",
+            "value": "single"
+          }
+        },
+        "claimable": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        },
+        "standard_allowed": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        },
+        "age_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "blindness_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "data": {
+            "type": "Money",
+            "value": "150.00"
+          }
+        },
+        "interest": {
+          "state": "confirmed",
+          "data": {
+            "type": "Money",
+            "value": "780.00"
+          }
+        }
+      },
+      "expected": {
+        "status": "value",
+        "data": {
+          "type": "Money",
+          "value": "1350.00"
+        }
+      },
+      "oracle": {
+        "method": "irs_published_example",
+        "derivation": "Use the published worked result.",
+        "independent_of_candidate_execution": true,
+        "review_required": true
+      },
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "sha256": "c9f677da5f513329039b59b02179cb3d5ed7adbaf43691df05cfc99f69d9cb83"
+    },
+    {
+      "id": "dependent.floor-below",
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "claim_id": "standard.dependent.2025.v1",
+      "claim_sha256": "3ad525900c6e32d39ffb2e5feaa4e239a417b8cdb7dc96af0a10692f97e7c872",
+      "tax_year": 2025,
+      "kind": "manual_boundary",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "data": {
+            "type": "Enum",
+            "value": "single"
+          }
+        },
+        "claimable": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        },
+        "standard_allowed": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        },
+        "age_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "blindness_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "data": {
+            "type": "Money",
+            "value": "899.00"
+          }
+        }
+      },
+      "expected": {
+        "status": "value",
+        "data": {
+          "type": "Money",
+          "value": "1350.00"
+        }
+      },
+      "oracle": {
+        "method": "manual_source_derivation",
+        "derivation": "Apply worksheet lines 3, 5, then 7a to the recorded inputs.",
+        "independent_of_candidate_execution": true,
+        "review_required": true
+      },
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137a",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "sha256": "9e292fb2f8c6a9777ddbddfca0bfc14fac85173a162a3a9787ab101acc83eccf"
+    },
+    {
+      "id": "dependent.floor-equal",
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "claim_id": "standard.dependent.2025.v1",
+      "claim_sha256": "3ad525900c6e32d39ffb2e5feaa4e239a417b8cdb7dc96af0a10692f97e7c872",
+      "tax_year": 2025,
+      "kind": "manual_boundary",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "data": {
+            "type": "Enum",
+            "value": "single"
+          }
+        },
+        "claimable": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        },
+        "standard_allowed": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        },
+        "age_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "blindness_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "data": {
+            "type": "Money",
+            "value": "900.00"
+          }
+        }
+      },
+      "expected": {
+        "status": "value",
+        "data": {
+          "type": "Money",
+          "value": "1350.00"
+        }
+      },
+      "oracle": {
+        "method": "manual_source_derivation",
+        "derivation": "Apply worksheet lines 3, 5, then 7a to the recorded inputs.",
+        "independent_of_candidate_execution": true,
+        "review_required": true
+      },
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137a",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "sha256": "d769b0d4b5ee976ff3ef68d0a63eefa1504d7bf1784dcd7770df258b6e8eec45"
+    },
+    {
+      "id": "dependent.floor-above",
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "claim_id": "standard.dependent.2025.v1",
+      "claim_sha256": "3ad525900c6e32d39ffb2e5feaa4e239a417b8cdb7dc96af0a10692f97e7c872",
+      "tax_year": 2025,
+      "kind": "manual_boundary",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "data": {
+            "type": "Enum",
+            "value": "single"
+          }
+        },
+        "claimable": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        },
+        "standard_allowed": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        },
+        "age_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "blindness_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "data": {
+            "type": "Money",
+            "value": "901.00"
+          }
+        }
+      },
+      "expected": {
+        "status": "value",
+        "data": {
+          "type": "Money",
+          "value": "1351.00"
+        }
+      },
+      "oracle": {
+        "method": "manual_source_derivation",
+        "derivation": "Apply worksheet lines 3, 5, then 7a to the recorded inputs.",
+        "independent_of_candidate_execution": true,
+        "review_required": true
+      },
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137a",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "sha256": "3f76c39714b4357877fccd68d9a0c45d68b32261a39bc710266e26413abcc5a9"
+    },
+    {
+      "id": "dependent.cap-below",
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "claim_id": "standard.dependent.2025.v1",
+      "claim_sha256": "3ad525900c6e32d39ffb2e5feaa4e239a417b8cdb7dc96af0a10692f97e7c872",
+      "tax_year": 2025,
+      "kind": "manual_boundary",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "data": {
+            "type": "Enum",
+            "value": "single"
+          }
+        },
+        "claimable": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        },
+        "standard_allowed": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        },
+        "age_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "blindness_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "data": {
+            "type": "Money",
+            "value": "15299.00"
+          }
+        }
+      },
+      "expected": {
+        "status": "value",
+        "data": {
+          "type": "Money",
+          "value": "15749.00"
+        }
+      },
+      "oracle": {
+        "method": "manual_source_derivation",
+        "derivation": "Apply worksheet lines 3, 5, then 7a to the recorded inputs.",
+        "independent_of_candidate_execution": true,
+        "review_required": true
+      },
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137a",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "sha256": "322def769b5778283878afef403fa0ce59c573b711f4ca25374bd2bdbf80de09"
+    },
+    {
+      "id": "dependent.cap-equal",
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "claim_id": "standard.dependent.2025.v1",
+      "claim_sha256": "3ad525900c6e32d39ffb2e5feaa4e239a417b8cdb7dc96af0a10692f97e7c872",
+      "tax_year": 2025,
+      "kind": "manual_boundary",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "data": {
+            "type": "Enum",
+            "value": "single"
+          }
+        },
+        "claimable": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        },
+        "standard_allowed": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        },
+        "age_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "blindness_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "data": {
+            "type": "Money",
+            "value": "15300.00"
+          }
+        }
+      },
+      "expected": {
+        "status": "value",
+        "data": {
+          "type": "Money",
+          "value": "15750.00"
+        }
+      },
+      "oracle": {
+        "method": "manual_source_derivation",
+        "derivation": "Apply worksheet lines 3, 5, then 7a to the recorded inputs.",
+        "independent_of_candidate_execution": true,
+        "review_required": true
+      },
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137a",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "sha256": "baa0bda65da9cbb8cd0ebe71bf059bdddeef5c551c61378ce1d2052c77b20b7d"
+    },
+    {
+      "id": "dependent.cap-above",
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "claim_id": "standard.dependent.2025.v1",
+      "claim_sha256": "3ad525900c6e32d39ffb2e5feaa4e239a417b8cdb7dc96af0a10692f97e7c872",
+      "tax_year": 2025,
+      "kind": "manual_boundary",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "data": {
+            "type": "Enum",
+            "value": "single"
+          }
+        },
+        "claimable": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        },
+        "standard_allowed": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        },
+        "age_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "blindness_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "data": {
+            "type": "Money",
+            "value": "15301.00"
+          }
+        }
+      },
+      "expected": {
+        "status": "value",
+        "data": {
+          "type": "Money",
+          "value": "15750.00"
+        }
+      },
+      "oracle": {
+        "method": "manual_source_derivation",
+        "derivation": "Apply worksheet lines 3, 5, then 7a to the recorded inputs.",
+        "independent_of_candidate_execution": true,
+        "review_required": true
+      },
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137a",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "sha256": "11ca878dcfe4132f2c2cee508d76b156c2ccf6df9282cb5952531c5065a7b695"
+    },
+    {
+      "id": "dependent.missing-earned",
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "claim_id": "standard.dependent.2025.v1",
+      "claim_sha256": "3ad525900c6e32d39ffb2e5feaa4e239a417b8cdb7dc96af0a10692f97e7c872",
+      "tax_year": 2025,
+      "kind": "missing_information",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "data": {
+            "type": "Enum",
+            "value": "single"
+          }
+        },
+        "claimable": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        },
+        "standard_allowed": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": true
+          }
+        },
+        "age_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "blindness_additions": {
+          "state": "confirmed",
+          "data": {
+            "type": "Boolean",
+            "value": false
+          }
+        },
+        "earned_income": {
+          "state": "missing",
+          "data": null
+        }
+      },
+      "expected": {
+        "status": "blocked",
+        "reason": "Earned income is unresolved."
+      },
+      "oracle": {
+        "method": "product_unknown_policy",
+        "derivation": "Unknown inputs block; this is product policy rather than an IRS conclusion.",
+        "independent_of_candidate_execution": true,
+        "review_required": true
+      },
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137a",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "sha256": "de4eb16f2f1366637a13e253ad87e4dac2bd273fc2d6a505538687c400396152"
+    },
+    {
+      "id": "schedule-b.interest-equal",
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "claim_id": "schedule-b.threshold.2025.v1",
+      "claim_sha256": "6ccbe1e5f0a0b2073025a2aa39eb1cb19108128cc4d0446d6db91868581542d4",
+      "tax_year": 2025,
+      "kind": "manual_boundary",
+      "inputs": {
+        "taxable_interest": {
+          "state": "confirmed",
+          "data": {
+            "type": "Money",
+            "value": "1500.00"
+          }
+        },
+        "ordinary_dividends": {
+          "state": "confirmed",
+          "data": {
+            "type": "Money",
+            "value": "0.00"
+          }
+        }
+      },
+      "expected": {
+        "status": "undetermined",
+        "reason": "Threshold not triggered; inspect other Schedule B conditions."
+      },
+      "oracle": {
+        "method": "manual_source_derivation",
+        "derivation": "Compare each amount separately with the stated threshold.",
+        "independent_of_candidate_execution": true,
+        "review_required": true
+      },
+      "evidence": [
+        {
+          "source_id": "schedule-b-2025-snapshot",
+          "source_sha256": "14289826c23edde2772fb5208b86912efb20176fddbc0f1a3c3dc2281ffca1c0",
+          "pdf_page": 1,
+          "locator": "General Instructions, first bullet",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "schedule-b-2025-snapshot",
+          "source_sha256": "14289826c23edde2772fb5208b86912efb20176fddbc0f1a3c3dc2281ffca1c0",
+          "pdf_page": 1,
+          "locator": "General Instructions, remaining bullets",
+          "relationship": "limits"
+        }
+      ],
+      "sha256": "8ab7337791a74dd7dd36bc9470de31ea54cde747a8642be4100549f9cb109a26"
+    },
+    {
+      "id": "schedule-b.interest-over",
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "claim_id": "schedule-b.threshold.2025.v1",
+      "claim_sha256": "6ccbe1e5f0a0b2073025a2aa39eb1cb19108128cc4d0446d6db91868581542d4",
+      "tax_year": 2025,
+      "kind": "manual_boundary",
+      "inputs": {
+        "taxable_interest": {
+          "state": "confirmed",
+          "data": {
+            "type": "Money",
+            "value": "1501.00"
+          }
+        },
+        "ordinary_dividends": {
+          "state": "confirmed",
+          "data": {
+            "type": "Money",
+            "value": "0.00"
+          }
+        }
+      },
+      "expected": {
+        "status": "value",
+        "data": {
+          "type": "Boolean",
+          "value": true
+        }
+      },
+      "oracle": {
+        "method": "manual_source_derivation",
+        "derivation": "Compare each amount separately with the stated threshold.",
+        "independent_of_candidate_execution": true,
+        "review_required": true
+      },
+      "evidence": [
+        {
+          "source_id": "schedule-b-2025-snapshot",
+          "source_sha256": "14289826c23edde2772fb5208b86912efb20176fddbc0f1a3c3dc2281ffca1c0",
+          "pdf_page": 1,
+          "locator": "General Instructions, first bullet",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "schedule-b-2025-snapshot",
+          "source_sha256": "14289826c23edde2772fb5208b86912efb20176fddbc0f1a3c3dc2281ffca1c0",
+          "pdf_page": 1,
+          "locator": "General Instructions, remaining bullets",
+          "relationship": "limits"
+        }
+      ],
+      "sha256": "a235c0abd16a5820aa5aa564cb86f6c29584a3bffe8362409074a5bbd7bd3e66"
+    },
+    {
+      "id": "schedule-b.dividends-over",
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "claim_id": "schedule-b.threshold.2025.v1",
+      "claim_sha256": "6ccbe1e5f0a0b2073025a2aa39eb1cb19108128cc4d0446d6db91868581542d4",
+      "tax_year": 2025,
+      "kind": "manual_boundary",
+      "inputs": {
+        "taxable_interest": {
+          "state": "confirmed",
+          "data": {
+            "type": "Money",
+            "value": "0.00"
+          }
+        },
+        "ordinary_dividends": {
+          "state": "confirmed",
+          "data": {
+            "type": "Money",
+            "value": "1501.00"
+          }
+        }
+      },
+      "expected": {
+        "status": "value",
+        "data": {
+          "type": "Boolean",
+          "value": true
+        }
+      },
+      "oracle": {
+        "method": "manual_source_derivation",
+        "derivation": "Compare each amount separately with the stated threshold.",
+        "independent_of_candidate_execution": true,
+        "review_required": true
+      },
+      "evidence": [
+        {
+          "source_id": "schedule-b-2025-snapshot",
+          "source_sha256": "14289826c23edde2772fb5208b86912efb20176fddbc0f1a3c3dc2281ffca1c0",
+          "pdf_page": 1,
+          "locator": "General Instructions, first bullet",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "schedule-b-2025-snapshot",
+          "source_sha256": "14289826c23edde2772fb5208b86912efb20176fddbc0f1a3c3dc2281ffca1c0",
+          "pdf_page": 1,
+          "locator": "General Instructions, remaining bullets",
+          "relationship": "limits"
+        }
+      ],
+      "sha256": "63158627f79eb56c0f474f2814c49542dab99fa3caccccb4f1702d25ba3dd25f"
+    },
+    {
+      "id": "schedule-b.combined-not-trigger",
+      "author_id": "research-draft",
+      "recorded_at": "2026-10-13T22:57:59Z",
+      "claim_id": "schedule-b.threshold.2025.v1",
+      "claim_sha256": "6ccbe1e5f0a0b2073025a2aa39eb1cb19108128cc4d0446d6db91868581542d4",
+      "tax_year": 2025,
+      "kind": "manual_boundary",
+      "inputs": {
+        "taxable_interest": {
+          "state": "confirmed",
+          "data": {
+            "type": "Money",
+            "value": "800.00"
+          }
+        },
+        "ordinary_dividends": {
+          "state": "confirmed",
+          "data": {
+            "type": "Money",
+            "value": "800.00"
+          }
+        }
+      },
+      "expected": {
+        "status": "undetermined",
+        "reason": "Threshold not triggered; inspect other Schedule B conditions."
+      },
+      "oracle": {
+        "method": "manual_source_derivation",
+        "derivation": "Compare each amount separately with the stated threshold.",
+        "independent_of_candidate_execution": true,
+        "review_required": true
+      },
+      "evidence": [
+        {
+          "source_id": "schedule-b-2025-snapshot",
+          "source_sha256": "14289826c23edde2772fb5208b86912efb20176fddbc0f1a3c3dc2281ffca1c0",
+          "pdf_page": 1,
+          "locator": "General Instructions, first bullet",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "schedule-b-2025-snapshot",
+          "source_sha256": "14289826c23edde2772fb5208b86912efb20176fddbc0f1a3c3dc2281ffca1c0",
+          "pdf_page": 1,
+          "locator": "General Instructions, remaining bullets",
+          "relationship": "limits"
+        }
+      ],
+      "sha256": "554a7a5ad38f3dcc100de527745be50ff92ee4dae0ee79766b6b1086a22fc817"
+    }
+  ],
+  "reviews": [],
+  "packages": [
+    {
+      "id": "research.2025",
+      "tax_year": 2025,
+      "stage": "draft",
+      "known_at": "2026-10-13T22:57:59Z",
+      "claim_ids": [
+        "standard.base.2025.v1",
+        "standard.dependent.2025.v1",
+        "schedule-b.threshold.2025.v1"
+      ],
+      "fixture_ids": [
+        "base.published.mfj",
+        "base.single",
+        "base.dependent-excluded",
+        "dependent.published.floor",
+        "dependent.floor-below",
+        "dependent.floor-equal",
+        "dependent.floor-above",
+        "dependent.cap-below",
+        "dependent.cap-equal",
+        "dependent.cap-above",
+        "dependent.missing-earned",
+        "schedule-b.interest-equal",
+        "schedule-b.interest-over",
+        "schedule-b.dividends-over",
+        "schedule-b.combined-not-trigger"
+      ]
+    }
+  ]
+}

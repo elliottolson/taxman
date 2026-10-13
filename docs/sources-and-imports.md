@@ -8,7 +8,7 @@ Make research and rule authoring much faster, while keeping acceptance deliberat
 
 Track statute, Treasury regulations, official published guidance, IRS forms/instructions/publications, corrections, and explanatory resources as different authority classes. Higher authority does not eliminate the need for operational worksheets. Material disagreement opens a research issue instead of automatically choosing one source.
 
-Initial planning links are in [the registry](../examples/source-registry.json). Entries were inspected October 13, 2026. “Inspected” is not legal review or permission to ship a rule. Snapshot hashes are intentionally absent because source archives have not yet been downloaded and verified.
+Initial planning links are in [the registry](../examples/source-registry.json). Entries were inspected October 13, 2026. “Inspected” is not legal review or permission to ship a rule. The planning registry retains its original unapproved entries. Two year-specific sources are now preserved with byte and metadata digests in the separate [claim ledger](../model/claim-ledger.json); see [the review workflow](claims-and-review.md). Archiving those documents does not approve their interpretations.
 
 Important version finding: the current W-2 instructions page is for 2026, while the income-tax instructions used for the completed-year baseline are 2025. The registry separately identifies the [2025 W-2 instructions](https://www.irs.gov/pub/irs-prior/iw2w3--2025.pdf). Never silently mix tax years because a URL looks familiar.
 
@@ -58,3 +58,7 @@ Change impact analysis follows rule and evidence consumers: identify affected te
 - Production packages are immutable, reproducible, and reversible.
 
 Long-term defensibility comes from this verified corpus and update process. A large collection of unreviewed extracted rules would increase risk faster than capability.
+
+## Implemented research contracts
+
+The [claim and review milestone](claims-and-review.md) supplies immutable evidence/interpretation records, historical review replay, consumer hash pins, 15 independently authored expected cases, and draft-package blockers. All current claims remain unapproved. Reviewed source/claim/fixture states and compiled execution verification are separate gates; a verified JSON contract is not a released tax rule.

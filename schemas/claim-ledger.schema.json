@@ -1,0 +1,811 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "../schemas/claim-ledger.schema.json"
+    },
+    "contract_version": {
+      "const": "0.1.0"
+    },
+    "status": {
+      "const": "research_not_approved"
+    },
+    "production_enabled": {
+      "const": false
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "reviewers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "qualification": {
+            "type": "string",
+            "minLength": 1
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "qualification",
+          "enabled"
+        ]
+      },
+      "minItems": 0
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "registry_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "authority_class": {
+            "enum": [
+              "publication",
+              "form_instructions",
+              "statute",
+              "regulation",
+              "published_guidance"
+            ]
+          },
+          "publication_revision": {
+            "type": "string",
+            "minLength": 1
+          },
+          "published_on": {
+            "type": "string",
+            "format": "date"
+          },
+          "tax_years": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1900,
+              "maximum": 2200
+            },
+            "minItems": 1
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^evidence/irs/[0-9]{4}/[a-z0-9-]+\\.pdf$"
+          },
+          "pdf_pages": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "retrieved_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "content_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "author_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "id",
+          "registry_id",
+          "title",
+          "authority_class",
+          "publication_revision",
+          "published_on",
+          "tax_years",
+          "url",
+          "path",
+          "pdf_pages",
+          "retrieved_at",
+          "content_sha256",
+          "author_id",
+          "sha256"
+        ]
+      },
+      "minItems": 1
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "logical_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "previous_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "author_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "recorded_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "jurisdiction": {
+            "const": "US-FED"
+          },
+          "applicability": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "start": {
+                "type": "integer",
+                "minimum": 1900,
+                "maximum": 2200
+              },
+              "end_exclusive": {
+                "type": "integer",
+                "minimum": 1900,
+                "maximum": 2200
+              }
+            },
+            "required": [
+              "start",
+              "end_exclusive"
+            ]
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scope": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "exclusions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "open_questions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "consumers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "target": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "target_sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "facet": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "target",
+                "target_sha256",
+                "facet"
+              ]
+            },
+            "minItems": 1
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source_sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "pdf_page": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "relationship": {
+                  "enum": [
+                    "supports",
+                    "limits",
+                    "disagrees"
+                  ]
+                }
+              },
+              "required": [
+                "source_id",
+                "source_sha256",
+                "pdf_page",
+                "locator",
+                "relationship"
+              ]
+            },
+            "minItems": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "id",
+          "logical_id",
+          "version",
+          "previous_id",
+          "author_id",
+          "recorded_at",
+          "jurisdiction",
+          "applicability",
+          "statement",
+          "scope",
+          "exclusions",
+          "open_questions",
+          "consumers",
+          "evidence",
+          "sha256"
+        ]
+      },
+      "minItems": 1
+    },
+    "fixtures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "author_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "recorded_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "claim_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "claim_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "tax_year": {
+            "type": "integer",
+            "minimum": 1900,
+            "maximum": 2200
+          },
+          "kind": {
+            "enum": [
+              "published_example",
+              "manual_boundary",
+              "scope_case",
+              "missing_information"
+            ]
+          },
+          "inputs": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "state": {
+                  "enum": [
+                    "confirmed",
+                    "missing",
+                    "invalid",
+                    "estimated",
+                    "provisional",
+                    "not_applicable"
+                  ]
+                },
+                "data": {
+                  "oneOf": [
+                    {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "type": {
+                              "const": "Money"
+                            },
+                            "value": {
+                              "type": "string",
+                              "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "value"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "type": {
+                              "const": "Boolean"
+                            },
+                            "value": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "value"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "type": {
+                              "const": "Enum"
+                            },
+                            "value": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "value"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "type": {
+                              "const": "Integer"
+                            },
+                            "value": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "value"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "state",
+                "data"
+              ]
+            }
+          },
+          "expected": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "const": "value"
+                  },
+                  "data": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "type": {
+                            "const": "Money"
+                          },
+                          "value": {
+                            "type": "string",
+                            "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "value"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "type": {
+                            "const": "Boolean"
+                          },
+                          "value": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "value"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "type": {
+                            "const": "Enum"
+                          },
+                          "value": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "value"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "type": {
+                            "const": "Integer"
+                          },
+                          "value": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "value"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "status",
+                  "data"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "const": "blocked"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "status",
+                  "reason"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "const": "undetermined"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "status",
+                  "reason"
+                ]
+              }
+            ]
+          },
+          "oracle": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "method": {
+                "enum": [
+                  "irs_published_example",
+                  "manual_source_derivation",
+                  "product_unknown_policy"
+                ]
+              },
+              "derivation": {
+                "type": "string",
+                "minLength": 1
+              },
+              "independent_of_candidate_execution": {
+                "const": true
+              },
+              "review_required": {
+                "const": true
+              }
+            },
+            "required": [
+              "method",
+              "derivation",
+              "independent_of_candidate_execution",
+              "review_required"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "source_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source_sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "pdf_page": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "relationship": {
+                  "enum": [
+                    "supports",
+                    "limits",
+                    "disagrees"
+                  ]
+                }
+              },
+              "required": [
+                "source_id",
+                "source_sha256",
+                "pdf_page",
+                "locator",
+                "relationship"
+              ]
+            },
+            "minItems": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "id",
+          "author_id",
+          "recorded_at",
+          "claim_id",
+          "claim_sha256",
+          "tax_year",
+          "kind",
+          "inputs",
+          "expected",
+          "oracle",
+          "evidence",
+          "sha256"
+        ]
+      },
+      "minItems": 1
+    },
+    "reviews": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "subject_kind": {
+            "enum": [
+              "source",
+              "claim",
+              "fixture"
+            ]
+          },
+          "subject_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "subject_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "action": {
+            "enum": [
+              "submit",
+              "approve",
+              "dispute",
+              "supersede"
+            ]
+          },
+          "actor_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "successor_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "subject_kind",
+          "subject_id",
+          "subject_sha256",
+          "action",
+          "actor_id",
+          "at",
+          "reason",
+          "successor_id"
+        ]
+      },
+      "minItems": 0
+    },
+    "packages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tax_year": {
+            "type": "integer",
+            "minimum": 1900,
+            "maximum": 2200
+          },
+          "stage": {
+            "enum": [
+              "draft",
+              "release_candidate"
+            ]
+          },
+          "known_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "claim_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "fixture_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "id",
+          "tax_year",
+          "stage",
+          "known_at",
+          "claim_ids",
+          "fixture_ids"
+        ]
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "$schema",
+    "contract_version",
+    "status",
+    "production_enabled",
+    "limitations",
+    "reviewers",
+    "sources",
+    "claims",
+    "fixtures",
+    "reviews",
+    "packages"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:taxman:claims:0.1.0",
+  "title": "Source snapshots, interpretation claims, reviews, and independent reference cases"
+}

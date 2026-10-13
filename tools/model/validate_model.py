@@ -277,6 +277,10 @@ def main():
         selection = json.loads((ROOT / 'model/selection-model.json').read_text())
         selection_schema = json.loads((ROOT / 'schemas/selection-model.schema.json').read_text())
         summary['selection'] = validate_selection(selection, selection_schema, model)
+        from validate_claims import read_ledger, previous_ledger, validate_claims
+        ledger_schema = json.loads((ROOT / 'schemas/claim-ledger.schema.json').read_text())
+        prior_ledger = previous_ledger(ROOT, args.baseline_ref) if args.baseline_ref else None
+        summary['claims'] = validate_claims(read_ledger(ROOT), ledger_schema, model, sources, ROOT, prior_ledger)
         print('Model contracts validated: ' + json.dumps(summary, sort_keys=True))
         print('All rules remain drafts; this is not tax-law or calculation verification.')
     except (ModelError, OSError, ValueError, KeyError) as error:

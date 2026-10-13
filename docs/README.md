@@ -37,6 +37,7 @@ The valuable asset is a verified, versioned tax knowledge base with a reliable a
 | [Tax domain model](../model/README.md) | Portable contracts, broad concept catalog, examples, and validation |
 | [Time, limits, and carryovers](time-limits-carryovers.md) | Historical selection, allocations, and cross-year reconciliation |
 | [Selection and elections](selection-and-elections.md) | Exception routing, election confirmation and revocation, and finite table analysis |
+| [Claims and reviews](claims-and-review.md) | Exact evidence, bounded interpretations, independent reference cases, and release preflight |
 | [Sources and imports](sources-and-imports.md) | Grounded evidence, assisted imports, review, and tax-year releases |
 | [Data and security](data-and-security.md) | Saved scenarios, accounts, documents, access, and deletion |
 | [Implementation plan](implementation-plan.md) | Proposed stack, repository layout, APIs, and validation |
