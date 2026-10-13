@@ -11,6 +11,10 @@ This phase models the rule system and its relationships before implementing a ta
 | [Modeling guide](../docs/domain-model.md) | Relationships, semantics, and next modeling steps |
 | [Interaction contracts](interaction-model.json) | Synthetic temporal revisions, allocation cases, and carryover snapshots |
 | [Interaction schema](../schemas/interaction-model.schema.json) | Time, ownership, allocation, and ledger contracts |
+| [Standard deduction worksheet](standard-deduction-package.json) | Draft 2025 annual tables, typed worksheet, saved plan, and IRS-backed comparisons |
+| [Worksheet schema](../schemas/worksheet-package.schema.json) | Exact numeric, indexed-table, worksheet, case, and report contracts |
+| [Worksheet guide](../docs/standard-deduction-worksheet.md) | Executable research scope and verification boundaries |
+| [Reviewer packet](../docs/standard-deduction-review.md) | Source locators, reference outcomes, and pending decisions |
 | [Execution contracts](execution-contract.json) | Synthetic authoring program, rule revisions, annual bindings, fixtures, and compiled plans |
 | [Execution schema](../schemas/execution-contract.schema.json) | Portable plan, verification report, and explanation trace contracts |
 | [Compilation guide](../docs/compilation-and-verification.md) | Deterministic compilation, bounded harness, verification, and limits |
@@ -22,7 +26,7 @@ This phase models the rule system and its relationships before implementing a ta
 | [Selection guide](../docs/selection-and-elections.md) | Precedence, confirmation, conflicts, coverage, and limits |
 | [Interaction guide](../docs/time-limits-carryovers.md) | Selection, conservation, archive preservation, and boundaries |
 
-All tax interpretations in the prototype are drafts. Annual parameter values are intentionally unpopulated. A bounded synthetic harness now exercises compiled packages. There is no production tax evaluator, taxpayer return, or released rule package.
+All tax interpretations in the prototype are drafts. The broad prototype's annual values remain unpopulated; the separate draft worksheet pins sourced 2025 tables. A synthetic harness and a separate source-backed standard-deduction research worksheet now exercise compiled plans. There is no production tax evaluator, taxpayer return, or released rule package.
 
 ## Verification
 
@@ -35,6 +39,6 @@ python3 -m venv .venv
 
 Python is model-validation tooling only. The model is JSON, and the production backend language remains undecided. The Python compiler and bounded synthetic harness are test tooling; no production tax service is introduced.
 
-Checks cover JSON Schema, IDs, references, declared dependencies, expression types, decision structure, relationships, dependency cycles, temporal selection, archive preservation, allocation conservation, carryover reconciliation, explicit exception routing, revision-bound election replay, Boolean/enum decision consistency, source-byte integrity, claim/fixture pins, independent review transitions, release preflight blockers, reproducible compiled plans, year-specific bindings, synthetic calculations, and report/trace integrity. Negative tests demonstrate rejection of malformed models. They do not establish legal correctness, decision-table exhaustiveness for every domain, tax accuracy, or full coverage.
+Checks cover JSON Schema, IDs, references, declared dependencies, expression types, decision structure, relationships, dependency cycles, temporal selection, archive preservation, allocation conservation, carryover reconciliation, explicit exception routing, revision-bound election replay, Boolean/enum decision consistency, source-byte integrity, claim/fixture pins, independent review transitions, release preflight blockers, reproducible compiled plans, year-specific bindings, synthetic calculations, report/trace integrity, exact rational arithmetic, indexed annual-table coverage, and IRS-backed worksheet comparisons. Negative tests demonstrate rejection of malformed models. They do not establish legal correctness, decision-table exhaustiveness for every domain, tax accuracy, or full coverage.
 
-The old [dividend example](../examples/dividend-rules.json) remains a separate illustrative 0.1 contract. The general model is 0.3 and the interaction, selection, claim, and execution contracts are 0.1; do not assume these schemas are interchangeable. CI checks historical archives against HEAD^; local checks may add --baseline-ref HEAD^ explicitly.
+The old [dividend example](../examples/dividend-rules.json) remains a separate illustrative 0.1 contract. The general model is 0.3 and the interaction, selection, execution, and worksheet contracts are 0.1, and the claim contract is 0.2; do not assume these schemas are interchangeable. CI checks historical archives against HEAD^; local checks may add --baseline-ref HEAD^ explicitly.

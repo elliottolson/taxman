@@ -17,7 +17,8 @@ class ClaimContractTests(unittest.TestCase):
         self.data = copy.deepcopy(read_ledger(ROOT))
         self.schema = json.loads((ROOT / 'schemas/claim-ledger.schema.json').read_text())
         self.model, _, _, self.registry = copy.deepcopy(load())
-        self.time = instant(self.data['sources'][0]['retrieved_at'])
+        self.time = max(instant(s['retrieved_at']) for s in self.data['sources'])
+        self.time = max(self.time, *(instant(c['recorded_at']) for c in self.data['claims']))
 
     def check(self, previous=None, root=ROOT):
         return validate_claims(self.data, self.schema, self.model, self.registry, root, previous)
@@ -69,7 +70,7 @@ class ClaimContractTests(unittest.TestCase):
 
     def test_real_drafts_validate_and_cannot_release(self):
         r = self.check()
-        self.assertEqual((r['sources'], r['claims'], r['fixtures']), (2,3,15))
+        self.assertEqual((r['sources'], r['claims'], r['fixtures']), (3,6,61))
         self.assertFalse(r['packages']['research.2025']['release_eligible'])
         self.assertTrue(all(s == 'drafted' for s in r['review_states'].values()))
 

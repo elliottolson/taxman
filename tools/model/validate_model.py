@@ -286,8 +286,13 @@ def main():
         execution_schema = json.loads((ROOT / 'schemas/execution-contract.schema.json').read_text())
         prior_execution = previous_execution(ROOT, args.baseline_ref) if args.baseline_ref else None
         summary['execution'] = validate_execution(execution, execution_schema, schemas, ROOT, prior_execution)
+        from validate_worksheet import previous_worksheet, validate_worksheet
+        worksheet = json.loads((ROOT / 'model/standard-deduction-package.json').read_text())
+        worksheet_schema = json.loads((ROOT / 'schemas/worksheet-package.schema.json').read_text())
+        prior_worksheet = previous_worksheet(ROOT, args.baseline_ref) if args.baseline_ref else None
+        summary['worksheet'] = validate_worksheet(worksheet, worksheet_schema, read_ledger(ROOT), ROOT, prior_worksheet)
         print('Model contracts validated: ' + json.dumps(summary, sort_keys=True))
-        print('All rules remain drafts; this is not tax-law or calculation verification.')
+        print('Tax interpretations remain drafts; worksheet comparisons passed, independent review and production eligibility remain pending.')
     except (ModelError, OSError, ValueError, KeyError) as error:
         print(f'Validation failed: {error}', file=sys.stderr)
         return 1

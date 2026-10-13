@@ -95,3 +95,7 @@ Cost controls: maximum service instances, pooled database connections, bounded d
 ## Synthetic compiler milestone
 
 The [compilation and verification contracts](compilation-and-verification.md) now connect a small portable model to saved execution plans, exact-cent synthetic comparisons, and validated explanations. This is Python test tooling and does not settle the backend language. The real tax package still requires reviewed interpretations, complete module/table support, independent tax comparisons, and coverage acceptance.
+
+## Source-backed worksheet milestone
+
+A [draft 2025 standard-deduction worksheet](standard-deduction-worksheet.md) now exercises exact rational arithmetic, indexed annual tables, intermediate explanations, and IRS-backed reference comparisons. Interpretation and independent reference approval remain pending in [the reviewer packet](standard-deduction-review.md). This offline research implementation does not select a production backend language or clear the broader model's release gates.

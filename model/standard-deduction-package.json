@@ -1,0 +1,6137 @@
+{
+  "$schema": "../schemas/worksheet-package.schema.json",
+  "contract_version": "0.1.0",
+  "status": "draft_research",
+  "production_enabled": false,
+  "program": {
+    "id": "standard-deduction.2025.v1",
+    "status": "draft_research",
+    "production_enabled": false,
+    "tax_years": [
+      2025
+    ],
+    "enum_domains": {
+      "filing_status": [
+        "single",
+        "married_joint",
+        "married_separate",
+        "head_of_household",
+        "qualifying_surviving_spouse"
+      ],
+      "residency": [
+        "full_year_resident",
+        "nonresident",
+        "dual_status"
+      ],
+      "entity_kind": [
+        "individual",
+        "estate_trust",
+        "partnership"
+      ]
+    },
+    "inputs": [
+      {
+        "id": "filing_status",
+        "value_type": "Enum",
+        "enum_domain": "filing_status",
+        "description": "Confirmed filing status; this worksheet does not determine it."
+      },
+      {
+        "id": "residency",
+        "value_type": "Enum",
+        "enum_domain": "residency",
+        "description": "Confirmed residency scope; treaty/election cases excluded."
+      },
+      {
+        "id": "entity_kind",
+        "value_type": "Enum",
+        "enum_domain": "entity_kind",
+        "description": "Individual Form 1040 candidate only."
+      },
+      {
+        "id": "earned_income",
+        "value_type": "Money",
+        "description": "Confirmed aggregate as defined for this worksheet; document/business-loss classification is upstream."
+      },
+      {
+        "id": "short_year_accounting_change",
+        "value_type": "Boolean",
+        "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+      },
+      {
+        "id": "self_claimable",
+        "value_type": "Boolean",
+        "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+      },
+      {
+        "id": "spouse_claimable",
+        "value_type": "Boolean",
+        "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+      },
+      {
+        "id": "self_age_qualified",
+        "value_type": "Boolean",
+        "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+      },
+      {
+        "id": "self_blind_qualified",
+        "value_type": "Boolean",
+        "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+      },
+      {
+        "id": "spouse_age_qualified",
+        "value_type": "Boolean",
+        "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+      },
+      {
+        "id": "spouse_blind_qualified",
+        "value_type": "Boolean",
+        "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+      },
+      {
+        "id": "spouse_itemizes",
+        "value_type": "Boolean",
+        "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+      },
+      {
+        "id": "spouse_gross_income_zero",
+        "value_type": "Boolean",
+        "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+      },
+      {
+        "id": "spouse_files_return",
+        "value_type": "Boolean",
+        "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+      }
+    ],
+    "tables": [
+      {
+        "id": "base",
+        "value_type": "Money",
+        "status": "draft",
+        "axes": {
+          "tax_year": {
+            "value_type": "Integer",
+            "values": [
+              2025
+            ]
+          },
+          "filing_status": {
+            "value_type": "Enum",
+            "enum_domain": "filing_status",
+            "values": [
+              "single",
+              "married_joint",
+              "married_separate",
+              "head_of_household",
+              "qualifying_surviving_spouse"
+            ]
+          }
+        },
+        "rows": [
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "single"
+            },
+            "value": "15750.00"
+          },
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "married_joint"
+            },
+            "value": "31500.00"
+          },
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "married_separate"
+            },
+            "value": "15750.00"
+          },
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "head_of_household"
+            },
+            "value": "23625.00"
+          },
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "qualifying_surviving_spouse"
+            },
+            "value": "31500.00"
+          }
+        ],
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 25,
+            "locator": "Table 6 / Table 8 line 6",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "addition",
+        "value_type": "Money",
+        "status": "draft",
+        "axes": {
+          "tax_year": {
+            "value_type": "Integer",
+            "values": [
+              2025
+            ]
+          },
+          "filing_status": {
+            "value_type": "Enum",
+            "enum_domain": "filing_status",
+            "values": [
+              "single",
+              "married_joint",
+              "married_separate",
+              "head_of_household",
+              "qualifying_surviving_spouse"
+            ]
+          }
+        },
+        "rows": [
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "single"
+            },
+            "value": "2000.00"
+          },
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "married_joint"
+            },
+            "value": "1600.00"
+          },
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "married_separate"
+            },
+            "value": "1600.00"
+          },
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "head_of_household"
+            },
+            "value": "2000.00"
+          },
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "qualifying_surviving_spouse"
+            },
+            "value": "1600.00"
+          }
+        ],
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 25,
+            "locator": "Table 7 / Table 8 line 7b",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "dependent_floor",
+        "value_type": "Money",
+        "status": "draft",
+        "axes": {
+          "tax_year": {
+            "value_type": "Integer",
+            "values": [
+              2025
+            ]
+          }
+        },
+        "rows": [
+          {
+            "keys": {
+              "tax_year": 2025
+            },
+            "value": "1350.00"
+          }
+        ],
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 26,
+            "locator": "Table 8 line 4",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "earned_increment",
+        "value_type": "Money",
+        "status": "draft",
+        "axes": {
+          "tax_year": {
+            "value_type": "Integer",
+            "values": [
+              2025
+            ]
+          }
+        },
+        "rows": [
+          {
+            "keys": {
+              "tax_year": 2025
+            },
+            "value": "450.00"
+          }
+        ],
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 26,
+            "locator": "Table 8 line 2",
+            "relationship": "supports"
+          }
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "id": "dependent",
+        "value_type": "Boolean",
+        "expression": {
+          "kind": "operator",
+          "operator": "or",
+          "arguments": [
+            {
+              "kind": "ref",
+              "target": "input:self_claimable"
+            },
+            {
+              "kind": "choose",
+              "condition": {
+                "kind": "operator",
+                "operator": "equal",
+                "arguments": [
+                  {
+                    "kind": "ref",
+                    "target": "input:filing_status"
+                  },
+                  {
+                    "kind": "literal",
+                    "value_type": "Enum",
+                    "value": "married_joint",
+                    "enum_domain": "filing_status"
+                  }
+                ]
+              },
+              "then": {
+                "kind": "ref",
+                "target": "input:spouse_claimable"
+              },
+              "else": {
+                "kind": "literal",
+                "value_type": "Boolean",
+                "value": false
+              }
+            }
+          ]
+        },
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 26,
+            "locator": "Table 8 applicability",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "self_boxes",
+        "value_type": "Integer",
+        "expression": {
+          "kind": "operator",
+          "operator": "add",
+          "arguments": [
+            {
+              "kind": "operator",
+              "operator": "boolean_to_integer",
+              "arguments": [
+                {
+                  "kind": "ref",
+                  "target": "input:self_age_qualified"
+                }
+              ]
+            },
+            {
+              "kind": "operator",
+              "operator": "boolean_to_integer",
+              "arguments": [
+                {
+                  "kind": "ref",
+                  "target": "input:self_blind_qualified"
+                }
+              ]
+            }
+          ]
+        },
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 25,
+            "locator": "Table 7/8 box count",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "spouse_boxes",
+        "value_type": "Integer",
+        "expression": {
+          "kind": "choose",
+          "condition": {
+            "kind": "operator",
+            "operator": "or",
+            "arguments": [
+              {
+                "kind": "operator",
+                "operator": "equal",
+                "arguments": [
+                  {
+                    "kind": "ref",
+                    "target": "input:filing_status"
+                  },
+                  {
+                    "kind": "literal",
+                    "value_type": "Enum",
+                    "value": "married_joint",
+                    "enum_domain": "filing_status"
+                  }
+                ]
+              },
+              {
+                "kind": "operator",
+                "operator": "and",
+                "arguments": [
+                  {
+                    "kind": "operator",
+                    "operator": "equal",
+                    "arguments": [
+                      {
+                        "kind": "ref",
+                        "target": "input:filing_status"
+                      },
+                      {
+                        "kind": "literal",
+                        "value_type": "Enum",
+                        "value": "married_separate",
+                        "enum_domain": "filing_status"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "ref",
+                    "target": "input:spouse_gross_income_zero"
+                  },
+                  {
+                    "kind": "operator",
+                    "operator": "not",
+                    "arguments": [
+                      {
+                        "kind": "ref",
+                        "target": "input:spouse_files_return"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "operator",
+                    "operator": "not",
+                    "arguments": [
+                      {
+                        "kind": "ref",
+                        "target": "input:spouse_claimable"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "then": {
+            "kind": "operator",
+            "operator": "add",
+            "arguments": [
+              {
+                "kind": "operator",
+                "operator": "boolean_to_integer",
+                "arguments": [
+                  {
+                    "kind": "ref",
+                    "target": "input:spouse_age_qualified"
+                  }
+                ]
+              },
+              {
+                "kind": "operator",
+                "operator": "boolean_to_integer",
+                "arguments": [
+                  {
+                    "kind": "ref",
+                    "target": "input:spouse_blind_qualified"
+                  }
+                ]
+              }
+            ]
+          },
+          "else": {
+            "kind": "literal",
+            "value_type": "Integer",
+            "value": 0
+          }
+        },
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 25,
+            "locator": "Table 7 spouse footnote",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "boxes",
+        "value_type": "Integer",
+        "expression": {
+          "kind": "operator",
+          "operator": "add",
+          "arguments": [
+            {
+              "kind": "ref",
+              "target": "step:self_boxes"
+            },
+            {
+              "kind": "ref",
+              "target": "step:spouse_boxes"
+            }
+          ]
+        },
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 25,
+            "locator": "Table 7/8 box count",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "line1",
+        "value_type": "Money",
+        "expression": {
+          "kind": "ref",
+          "target": "input:earned_income"
+        },
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 26,
+            "locator": "Table 8 line 1",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "line2",
+        "value_type": "Money",
+        "expression": {
+          "kind": "lookup",
+          "table": "earned_increment",
+          "keys": {}
+        },
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 26,
+            "locator": "Table 8 line 2",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "line3",
+        "value_type": "Money",
+        "expression": {
+          "kind": "operator",
+          "operator": "add",
+          "arguments": [
+            {
+              "kind": "ref",
+              "target": "step:line1"
+            },
+            {
+              "kind": "ref",
+              "target": "step:line2"
+            }
+          ]
+        },
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 26,
+            "locator": "Table 8 line 3",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "line4",
+        "value_type": "Money",
+        "expression": {
+          "kind": "lookup",
+          "table": "dependent_floor",
+          "keys": {}
+        },
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 26,
+            "locator": "Table 8 line 4",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "line5",
+        "value_type": "Money",
+        "expression": {
+          "kind": "operator",
+          "operator": "max",
+          "arguments": [
+            {
+              "kind": "ref",
+              "target": "step:line3"
+            },
+            {
+              "kind": "ref",
+              "target": "step:line4"
+            }
+          ]
+        },
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 26,
+            "locator": "Table 8 line 5",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "line6",
+        "value_type": "Money",
+        "expression": {
+          "kind": "lookup",
+          "table": "base",
+          "keys": {
+            "filing_status": {
+              "kind": "ref",
+              "target": "input:filing_status"
+            }
+          }
+        },
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 26,
+            "locator": "Table 8 line 6; Table 6 for nondependent route",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "line7a",
+        "value_type": "Money",
+        "expression": {
+          "kind": "choose",
+          "condition": {
+            "kind": "ref",
+            "target": "step:dependent"
+          },
+          "then": {
+            "kind": "operator",
+            "operator": "min",
+            "arguments": [
+              {
+                "kind": "ref",
+                "target": "step:line5"
+              },
+              {
+                "kind": "ref",
+                "target": "step:line6"
+              }
+            ]
+          },
+          "else": {
+            "kind": "ref",
+            "target": "step:line6"
+          }
+        },
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 26,
+            "locator": "Table 8 line 7a; Table 6 for nondependent route",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "line7b",
+        "value_type": "Money",
+        "expression": {
+          "kind": "operator",
+          "operator": "multiply",
+          "arguments": [
+            {
+              "kind": "lookup",
+              "table": "addition",
+              "keys": {
+                "filing_status": {
+                  "kind": "ref",
+                  "target": "input:filing_status"
+                }
+              }
+            },
+            {
+              "kind": "ref",
+              "target": "step:boxes"
+            }
+          ]
+        },
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 26,
+            "locator": "Table 8 line 7b; Table 7 for nondependent route",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "line7c",
+        "value_type": "Money",
+        "expression": {
+          "kind": "operator",
+          "operator": "add",
+          "arguments": [
+            {
+              "kind": "ref",
+              "target": "step:line7a"
+            },
+            {
+              "kind": "ref",
+              "target": "step:line7b"
+            }
+          ]
+        },
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 26,
+            "locator": "Table 8 line 7c; Table 7 for nondependent route",
+            "relationship": "supports"
+          }
+        ]
+      }
+    ],
+    "outcomes": [
+      {
+        "id": "individual_scope",
+        "condition": {
+          "kind": "operator",
+          "operator": "not",
+          "arguments": [
+            {
+              "kind": "operator",
+              "operator": "equal",
+              "arguments": [
+                {
+                  "kind": "ref",
+                  "target": "input:entity_kind"
+                },
+                {
+                  "kind": "literal",
+                  "value_type": "Enum",
+                  "value": "individual",
+                  "enum_domain": "entity_kind"
+                }
+              ]
+            }
+          ]
+        },
+        "status": "unsupported",
+        "reason": "individual_return_only",
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 23,
+            "locator": "Standard Deduction scope",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "residency_scope",
+        "condition": {
+          "kind": "operator",
+          "operator": "not",
+          "arguments": [
+            {
+              "kind": "operator",
+              "operator": "equal",
+              "arguments": [
+                {
+                  "kind": "ref",
+                  "target": "input:residency"
+                },
+                {
+                  "kind": "literal",
+                  "value_type": "Enum",
+                  "value": "full_year_resident",
+                  "enum_domain": "residency"
+                }
+              ]
+            }
+          ]
+        },
+        "status": "unsupported",
+        "reason": "residency_exceptions_unimplemented",
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 23,
+            "locator": "Persons not eligible; residency exceptions",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "short_year",
+        "condition": {
+          "kind": "ref",
+          "target": "input:short_year_accounting_change"
+        },
+        "status": "ineligible",
+        "reason": "short_year_accounting_change",
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 23,
+            "locator": "Persons not eligible, item 2",
+            "relationship": "supports"
+          }
+        ],
+        "expression": {
+          "kind": "literal",
+          "value_type": "Money",
+          "value": "0.00"
+        }
+      },
+      {
+        "id": "spouse_itemizes",
+        "condition": {
+          "kind": "operator",
+          "operator": "and",
+          "arguments": [
+            {
+              "kind": "operator",
+              "operator": "equal",
+              "arguments": [
+                {
+                  "kind": "ref",
+                  "target": "input:filing_status"
+                },
+                {
+                  "kind": "literal",
+                  "value_type": "Enum",
+                  "value": "married_separate",
+                  "enum_domain": "filing_status"
+                }
+              ]
+            },
+            {
+              "kind": "ref",
+              "target": "input:spouse_itemizes"
+            }
+          ]
+        },
+        "status": "ineligible",
+        "reason": "mfs_spouse_itemizes",
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 23,
+            "locator": "Persons not eligible, item 1",
+            "relationship": "supports"
+          }
+        ],
+        "expression": {
+          "kind": "literal",
+          "value_type": "Money",
+          "value": "0.00"
+        }
+      },
+      {
+        "id": "dependent_qss",
+        "condition": {
+          "kind": "operator",
+          "operator": "and",
+          "arguments": [
+            {
+              "kind": "operator",
+              "operator": "equal",
+              "arguments": [
+                {
+                  "kind": "ref",
+                  "target": "input:filing_status"
+                },
+                {
+                  "kind": "literal",
+                  "value_type": "Enum",
+                  "value": "qualifying_surviving_spouse",
+                  "enum_domain": "filing_status"
+                }
+              ]
+            },
+            {
+              "kind": "ref",
+              "target": "input:self_claimable"
+            }
+          ]
+        },
+        "status": "unsupported",
+        "reason": "dependent_qss_not_in_table8",
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 26,
+            "locator": "Table 8 line 6",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "candidate",
+        "condition": {
+          "kind": "literal",
+          "value_type": "Boolean",
+          "value": true
+        },
+        "status": "value",
+        "reason": "standard_deduction_candidate",
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 26,
+            "locator": "Table 8 line 7c; Tables 6\u20137",
+            "relationship": "supports"
+          }
+        ],
+        "expression": {
+          "kind": "ref",
+          "target": "step:line7c"
+        }
+      }
+    ],
+    "claim_refs": [
+      {
+        "id": "standard.base.2025.v1",
+        "sha256": "0cd4b4c15b14e8274542193786fb8786dc15aebd312cbae7a4e40d449467f7b5"
+      },
+      {
+        "id": "standard.dependent.2025.v1",
+        "sha256": "3ad525900c6e32d39ffb2e5feaa4e239a417b8cdb7dc96af0a10692f97e7c872"
+      },
+      {
+        "id": "standard.additional.2025.v1",
+        "sha256": "bb39c2341a3c29586449a49f7e4409b6fd5b8a61de40b9f388fef338ef28b785"
+      },
+      {
+        "id": "standard.eligibility.2025.v1",
+        "sha256": "228cdb6df917d4254cfb8095edb7203f61c4ec45cbbffc639f3e4168f4dd92d8"
+      },
+      {
+        "id": "numeric.whole-dollar.2025.v1",
+        "sha256": "1ead6d20ffa1b73f982e8300f8d45fa80412523a31d200f0eea0345ca2cfcb33"
+      }
+    ],
+    "limitations": [
+      "Resolved filing status, dependent/age/blindness criteria and earned-income aggregate required.",
+      "Enhanced senior deduction, residency exceptions, deceased eligibility derivation, and filing-wide rounding excluded.",
+      "Research implementation; independent review by Elliott Olson pending."
+    ]
+  },
+  "context": {
+    "id": "standard-deduction.2025.research.v1",
+    "tax_year": 2025,
+    "known_at": "2026-10-13T23:49:50Z"
+  },
+  "plan": {
+    "id": "standard-deduction.2025.research.v1",
+    "contract_version": "0.1.0",
+    "production_enabled": false,
+    "tax_year": 2025,
+    "known_at": "2026-10-13T23:49:50Z",
+    "program_sha256": "2895a240007c3422eed0c56e8879123430e17ce19526080202cd3fba462954d7",
+    "program": {
+      "id": "standard-deduction.2025.v1",
+      "status": "draft_research",
+      "production_enabled": false,
+      "tax_years": [
+        2025
+      ],
+      "enum_domains": {
+        "filing_status": [
+          "single",
+          "married_joint",
+          "married_separate",
+          "head_of_household",
+          "qualifying_surviving_spouse"
+        ],
+        "residency": [
+          "full_year_resident",
+          "nonresident",
+          "dual_status"
+        ],
+        "entity_kind": [
+          "individual",
+          "estate_trust",
+          "partnership"
+        ]
+      },
+      "inputs": [
+        {
+          "id": "filing_status",
+          "value_type": "Enum",
+          "enum_domain": "filing_status",
+          "description": "Confirmed filing status; this worksheet does not determine it."
+        },
+        {
+          "id": "residency",
+          "value_type": "Enum",
+          "enum_domain": "residency",
+          "description": "Confirmed residency scope; treaty/election cases excluded."
+        },
+        {
+          "id": "entity_kind",
+          "value_type": "Enum",
+          "enum_domain": "entity_kind",
+          "description": "Individual Form 1040 candidate only."
+        },
+        {
+          "id": "earned_income",
+          "value_type": "Money",
+          "description": "Confirmed aggregate as defined for this worksheet; document/business-loss classification is upstream."
+        },
+        {
+          "id": "short_year_accounting_change",
+          "value_type": "Boolean",
+          "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+        },
+        {
+          "id": "self_claimable",
+          "value_type": "Boolean",
+          "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+        },
+        {
+          "id": "spouse_claimable",
+          "value_type": "Boolean",
+          "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+        },
+        {
+          "id": "self_age_qualified",
+          "value_type": "Boolean",
+          "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+        },
+        {
+          "id": "self_blind_qualified",
+          "value_type": "Boolean",
+          "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+        },
+        {
+          "id": "spouse_age_qualified",
+          "value_type": "Boolean",
+          "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+        },
+        {
+          "id": "spouse_blind_qualified",
+          "value_type": "Boolean",
+          "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+        },
+        {
+          "id": "spouse_itemizes",
+          "value_type": "Boolean",
+          "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+        },
+        {
+          "id": "spouse_gross_income_zero",
+          "value_type": "Boolean",
+          "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+        },
+        {
+          "id": "spouse_files_return",
+          "value_type": "Boolean",
+          "description": "Confirmed criterion; eligibility/medical evidence/death-date qualification remains upstream."
+        }
+      ],
+      "tables": [
+        {
+          "id": "base",
+          "value_type": "Money",
+          "status": "draft",
+          "axes": {
+            "tax_year": {
+              "value_type": "Integer",
+              "values": [
+                2025
+              ]
+            },
+            "filing_status": {
+              "value_type": "Enum",
+              "enum_domain": "filing_status",
+              "values": [
+                "single",
+                "married_joint",
+                "married_separate",
+                "head_of_household",
+                "qualifying_surviving_spouse"
+              ]
+            }
+          },
+          "rows": [
+            {
+              "keys": {
+                "tax_year": 2025,
+                "filing_status": "single"
+              },
+              "value": "15750.00"
+            },
+            {
+              "keys": {
+                "tax_year": 2025,
+                "filing_status": "married_joint"
+              },
+              "value": "31500.00"
+            },
+            {
+              "keys": {
+                "tax_year": 2025,
+                "filing_status": "married_separate"
+              },
+              "value": "15750.00"
+            },
+            {
+              "keys": {
+                "tax_year": 2025,
+                "filing_status": "head_of_household"
+              },
+              "value": "23625.00"
+            },
+            {
+              "keys": {
+                "tax_year": 2025,
+                "filing_status": "qualifying_surviving_spouse"
+              },
+              "value": "31500.00"
+            }
+          ],
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 25,
+              "locator": "Table 6 / Table 8 line 6",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "addition",
+          "value_type": "Money",
+          "status": "draft",
+          "axes": {
+            "tax_year": {
+              "value_type": "Integer",
+              "values": [
+                2025
+              ]
+            },
+            "filing_status": {
+              "value_type": "Enum",
+              "enum_domain": "filing_status",
+              "values": [
+                "single",
+                "married_joint",
+                "married_separate",
+                "head_of_household",
+                "qualifying_surviving_spouse"
+              ]
+            }
+          },
+          "rows": [
+            {
+              "keys": {
+                "tax_year": 2025,
+                "filing_status": "single"
+              },
+              "value": "2000.00"
+            },
+            {
+              "keys": {
+                "tax_year": 2025,
+                "filing_status": "married_joint"
+              },
+              "value": "1600.00"
+            },
+            {
+              "keys": {
+                "tax_year": 2025,
+                "filing_status": "married_separate"
+              },
+              "value": "1600.00"
+            },
+            {
+              "keys": {
+                "tax_year": 2025,
+                "filing_status": "head_of_household"
+              },
+              "value": "2000.00"
+            },
+            {
+              "keys": {
+                "tax_year": 2025,
+                "filing_status": "qualifying_surviving_spouse"
+              },
+              "value": "1600.00"
+            }
+          ],
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 25,
+              "locator": "Table 7 / Table 8 line 7b",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "dependent_floor",
+          "value_type": "Money",
+          "status": "draft",
+          "axes": {
+            "tax_year": {
+              "value_type": "Integer",
+              "values": [
+                2025
+              ]
+            }
+          },
+          "rows": [
+            {
+              "keys": {
+                "tax_year": 2025
+              },
+              "value": "1350.00"
+            }
+          ],
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 26,
+              "locator": "Table 8 line 4",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "earned_increment",
+          "value_type": "Money",
+          "status": "draft",
+          "axes": {
+            "tax_year": {
+              "value_type": "Integer",
+              "values": [
+                2025
+              ]
+            }
+          },
+          "rows": [
+            {
+              "keys": {
+                "tax_year": 2025
+              },
+              "value": "450.00"
+            }
+          ],
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 26,
+              "locator": "Table 8 line 2",
+              "relationship": "supports"
+            }
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "id": "dependent",
+          "value_type": "Boolean",
+          "expression": {
+            "kind": "operator",
+            "operator": "or",
+            "arguments": [
+              {
+                "kind": "ref",
+                "target": "input:self_claimable"
+              },
+              {
+                "kind": "choose",
+                "condition": {
+                  "kind": "operator",
+                  "operator": "equal",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "target": "input:filing_status"
+                    },
+                    {
+                      "kind": "literal",
+                      "value_type": "Enum",
+                      "value": "married_joint",
+                      "enum_domain": "filing_status"
+                    }
+                  ]
+                },
+                "then": {
+                  "kind": "ref",
+                  "target": "input:spouse_claimable"
+                },
+                "else": {
+                  "kind": "literal",
+                  "value_type": "Boolean",
+                  "value": false
+                }
+              }
+            ]
+          },
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 26,
+              "locator": "Table 8 applicability",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "self_boxes",
+          "value_type": "Integer",
+          "expression": {
+            "kind": "operator",
+            "operator": "add",
+            "arguments": [
+              {
+                "kind": "operator",
+                "operator": "boolean_to_integer",
+                "arguments": [
+                  {
+                    "kind": "ref",
+                    "target": "input:self_age_qualified"
+                  }
+                ]
+              },
+              {
+                "kind": "operator",
+                "operator": "boolean_to_integer",
+                "arguments": [
+                  {
+                    "kind": "ref",
+                    "target": "input:self_blind_qualified"
+                  }
+                ]
+              }
+            ]
+          },
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 25,
+              "locator": "Table 7/8 box count",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "spouse_boxes",
+          "value_type": "Integer",
+          "expression": {
+            "kind": "choose",
+            "condition": {
+              "kind": "operator",
+              "operator": "or",
+              "arguments": [
+                {
+                  "kind": "operator",
+                  "operator": "equal",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "target": "input:filing_status"
+                    },
+                    {
+                      "kind": "literal",
+                      "value_type": "Enum",
+                      "value": "married_joint",
+                      "enum_domain": "filing_status"
+                    }
+                  ]
+                },
+                {
+                  "kind": "operator",
+                  "operator": "and",
+                  "arguments": [
+                    {
+                      "kind": "operator",
+                      "operator": "equal",
+                      "arguments": [
+                        {
+                          "kind": "ref",
+                          "target": "input:filing_status"
+                        },
+                        {
+                          "kind": "literal",
+                          "value_type": "Enum",
+                          "value": "married_separate",
+                          "enum_domain": "filing_status"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "ref",
+                      "target": "input:spouse_gross_income_zero"
+                    },
+                    {
+                      "kind": "operator",
+                      "operator": "not",
+                      "arguments": [
+                        {
+                          "kind": "ref",
+                          "target": "input:spouse_files_return"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "operator",
+                      "operator": "not",
+                      "arguments": [
+                        {
+                          "kind": "ref",
+                          "target": "input:spouse_claimable"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "then": {
+              "kind": "operator",
+              "operator": "add",
+              "arguments": [
+                {
+                  "kind": "operator",
+                  "operator": "boolean_to_integer",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "target": "input:spouse_age_qualified"
+                    }
+                  ]
+                },
+                {
+                  "kind": "operator",
+                  "operator": "boolean_to_integer",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "target": "input:spouse_blind_qualified"
+                    }
+                  ]
+                }
+              ]
+            },
+            "else": {
+              "kind": "literal",
+              "value_type": "Integer",
+              "value": 0
+            }
+          },
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 25,
+              "locator": "Table 7 spouse footnote",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "boxes",
+          "value_type": "Integer",
+          "expression": {
+            "kind": "operator",
+            "operator": "add",
+            "arguments": [
+              {
+                "kind": "ref",
+                "target": "step:self_boxes"
+              },
+              {
+                "kind": "ref",
+                "target": "step:spouse_boxes"
+              }
+            ]
+          },
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 25,
+              "locator": "Table 7/8 box count",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "line1",
+          "value_type": "Money",
+          "expression": {
+            "kind": "ref",
+            "target": "input:earned_income"
+          },
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 26,
+              "locator": "Table 8 line 1",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "line2",
+          "value_type": "Money",
+          "expression": {
+            "kind": "lookup",
+            "table": "earned_increment",
+            "keys": {}
+          },
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 26,
+              "locator": "Table 8 line 2",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "line3",
+          "value_type": "Money",
+          "expression": {
+            "kind": "operator",
+            "operator": "add",
+            "arguments": [
+              {
+                "kind": "ref",
+                "target": "step:line1"
+              },
+              {
+                "kind": "ref",
+                "target": "step:line2"
+              }
+            ]
+          },
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 26,
+              "locator": "Table 8 line 3",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "line4",
+          "value_type": "Money",
+          "expression": {
+            "kind": "lookup",
+            "table": "dependent_floor",
+            "keys": {}
+          },
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 26,
+              "locator": "Table 8 line 4",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "line5",
+          "value_type": "Money",
+          "expression": {
+            "kind": "operator",
+            "operator": "max",
+            "arguments": [
+              {
+                "kind": "ref",
+                "target": "step:line3"
+              },
+              {
+                "kind": "ref",
+                "target": "step:line4"
+              }
+            ]
+          },
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 26,
+              "locator": "Table 8 line 5",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "line6",
+          "value_type": "Money",
+          "expression": {
+            "kind": "lookup",
+            "table": "base",
+            "keys": {
+              "filing_status": {
+                "kind": "ref",
+                "target": "input:filing_status"
+              }
+            }
+          },
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 26,
+              "locator": "Table 8 line 6; Table 6 for nondependent route",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "line7a",
+          "value_type": "Money",
+          "expression": {
+            "kind": "choose",
+            "condition": {
+              "kind": "ref",
+              "target": "step:dependent"
+            },
+            "then": {
+              "kind": "operator",
+              "operator": "min",
+              "arguments": [
+                {
+                  "kind": "ref",
+                  "target": "step:line5"
+                },
+                {
+                  "kind": "ref",
+                  "target": "step:line6"
+                }
+              ]
+            },
+            "else": {
+              "kind": "ref",
+              "target": "step:line6"
+            }
+          },
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 26,
+              "locator": "Table 8 line 7a; Table 6 for nondependent route",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "line7b",
+          "value_type": "Money",
+          "expression": {
+            "kind": "operator",
+            "operator": "multiply",
+            "arguments": [
+              {
+                "kind": "lookup",
+                "table": "addition",
+                "keys": {
+                  "filing_status": {
+                    "kind": "ref",
+                    "target": "input:filing_status"
+                  }
+                }
+              },
+              {
+                "kind": "ref",
+                "target": "step:boxes"
+              }
+            ]
+          },
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 26,
+              "locator": "Table 8 line 7b; Table 7 for nondependent route",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "line7c",
+          "value_type": "Money",
+          "expression": {
+            "kind": "operator",
+            "operator": "add",
+            "arguments": [
+              {
+                "kind": "ref",
+                "target": "step:line7a"
+              },
+              {
+                "kind": "ref",
+                "target": "step:line7b"
+              }
+            ]
+          },
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 26,
+              "locator": "Table 8 line 7c; Table 7 for nondependent route",
+              "relationship": "supports"
+            }
+          ]
+        }
+      ],
+      "outcomes": [
+        {
+          "id": "individual_scope",
+          "condition": {
+            "kind": "operator",
+            "operator": "not",
+            "arguments": [
+              {
+                "kind": "operator",
+                "operator": "equal",
+                "arguments": [
+                  {
+                    "kind": "ref",
+                    "target": "input:entity_kind"
+                  },
+                  {
+                    "kind": "literal",
+                    "value_type": "Enum",
+                    "value": "individual",
+                    "enum_domain": "entity_kind"
+                  }
+                ]
+              }
+            ]
+          },
+          "status": "unsupported",
+          "reason": "individual_return_only",
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 23,
+              "locator": "Standard Deduction scope",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "residency_scope",
+          "condition": {
+            "kind": "operator",
+            "operator": "not",
+            "arguments": [
+              {
+                "kind": "operator",
+                "operator": "equal",
+                "arguments": [
+                  {
+                    "kind": "ref",
+                    "target": "input:residency"
+                  },
+                  {
+                    "kind": "literal",
+                    "value_type": "Enum",
+                    "value": "full_year_resident",
+                    "enum_domain": "residency"
+                  }
+                ]
+              }
+            ]
+          },
+          "status": "unsupported",
+          "reason": "residency_exceptions_unimplemented",
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 23,
+              "locator": "Persons not eligible; residency exceptions",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "short_year",
+          "condition": {
+            "kind": "ref",
+            "target": "input:short_year_accounting_change"
+          },
+          "status": "ineligible",
+          "reason": "short_year_accounting_change",
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 23,
+              "locator": "Persons not eligible, item 2",
+              "relationship": "supports"
+            }
+          ],
+          "expression": {
+            "kind": "literal",
+            "value_type": "Money",
+            "value": "0.00"
+          }
+        },
+        {
+          "id": "spouse_itemizes",
+          "condition": {
+            "kind": "operator",
+            "operator": "and",
+            "arguments": [
+              {
+                "kind": "operator",
+                "operator": "equal",
+                "arguments": [
+                  {
+                    "kind": "ref",
+                    "target": "input:filing_status"
+                  },
+                  {
+                    "kind": "literal",
+                    "value_type": "Enum",
+                    "value": "married_separate",
+                    "enum_domain": "filing_status"
+                  }
+                ]
+              },
+              {
+                "kind": "ref",
+                "target": "input:spouse_itemizes"
+              }
+            ]
+          },
+          "status": "ineligible",
+          "reason": "mfs_spouse_itemizes",
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 23,
+              "locator": "Persons not eligible, item 1",
+              "relationship": "supports"
+            }
+          ],
+          "expression": {
+            "kind": "literal",
+            "value_type": "Money",
+            "value": "0.00"
+          }
+        },
+        {
+          "id": "dependent_qss",
+          "condition": {
+            "kind": "operator",
+            "operator": "and",
+            "arguments": [
+              {
+                "kind": "operator",
+                "operator": "equal",
+                "arguments": [
+                  {
+                    "kind": "ref",
+                    "target": "input:filing_status"
+                  },
+                  {
+                    "kind": "literal",
+                    "value_type": "Enum",
+                    "value": "qualifying_surviving_spouse",
+                    "enum_domain": "filing_status"
+                  }
+                ]
+              },
+              {
+                "kind": "ref",
+                "target": "input:self_claimable"
+              }
+            ]
+          },
+          "status": "unsupported",
+          "reason": "dependent_qss_not_in_table8",
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 26,
+              "locator": "Table 8 line 6",
+              "relationship": "supports"
+            }
+          ]
+        },
+        {
+          "id": "candidate",
+          "condition": {
+            "kind": "literal",
+            "value_type": "Boolean",
+            "value": true
+          },
+          "status": "value",
+          "reason": "standard_deduction_candidate",
+          "evidence": [
+            {
+              "source_id": "p501-2025-snapshot",
+              "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+              "pdf_page": 26,
+              "locator": "Table 8 line 7c; Tables 6\u20137",
+              "relationship": "supports"
+            }
+          ],
+          "expression": {
+            "kind": "ref",
+            "target": "step:line7c"
+          }
+        }
+      ],
+      "claim_refs": [
+        {
+          "id": "standard.base.2025.v1",
+          "sha256": "0cd4b4c15b14e8274542193786fb8786dc15aebd312cbae7a4e40d449467f7b5"
+        },
+        {
+          "id": "standard.dependent.2025.v1",
+          "sha256": "3ad525900c6e32d39ffb2e5feaa4e239a417b8cdb7dc96af0a10692f97e7c872"
+        },
+        {
+          "id": "standard.additional.2025.v1",
+          "sha256": "bb39c2341a3c29586449a49f7e4409b6fd5b8a61de40b9f388fef338ef28b785"
+        },
+        {
+          "id": "standard.eligibility.2025.v1",
+          "sha256": "228cdb6df917d4254cfb8095edb7203f61c4ec45cbbffc639f3e4168f4dd92d8"
+        },
+        {
+          "id": "numeric.whole-dollar.2025.v1",
+          "sha256": "1ead6d20ffa1b73f982e8300f8d45fa80412523a31d200f0eea0345ca2cfcb33"
+        }
+      ],
+      "limitations": [
+        "Resolved filing status, dependent/age/blindness criteria and earned-income aggregate required.",
+        "Enhanced senior deduction, residency exceptions, deceased eligibility derivation, and filing-wide rounding excluded.",
+        "Research implementation; independent review by Elliott Olson pending."
+      ]
+    },
+    "tables": [
+      {
+        "id": "addition",
+        "value_type": "Money",
+        "status": "draft",
+        "axes": {
+          "tax_year": {
+            "value_type": "Integer",
+            "values": [
+              2025
+            ]
+          },
+          "filing_status": {
+            "value_type": "Enum",
+            "enum_domain": "filing_status",
+            "values": [
+              "single",
+              "married_joint",
+              "married_separate",
+              "head_of_household",
+              "qualifying_surviving_spouse"
+            ]
+          }
+        },
+        "rows": [
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "single"
+            },
+            "value": "2000.00"
+          },
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "married_joint"
+            },
+            "value": "1600.00"
+          },
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "married_separate"
+            },
+            "value": "1600.00"
+          },
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "head_of_household"
+            },
+            "value": "2000.00"
+          },
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "qualifying_surviving_spouse"
+            },
+            "value": "1600.00"
+          }
+        ],
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 25,
+            "locator": "Table 7 / Table 8 line 7b",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "base",
+        "value_type": "Money",
+        "status": "draft",
+        "axes": {
+          "tax_year": {
+            "value_type": "Integer",
+            "values": [
+              2025
+            ]
+          },
+          "filing_status": {
+            "value_type": "Enum",
+            "enum_domain": "filing_status",
+            "values": [
+              "single",
+              "married_joint",
+              "married_separate",
+              "head_of_household",
+              "qualifying_surviving_spouse"
+            ]
+          }
+        },
+        "rows": [
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "single"
+            },
+            "value": "15750.00"
+          },
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "married_joint"
+            },
+            "value": "31500.00"
+          },
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "married_separate"
+            },
+            "value": "15750.00"
+          },
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "head_of_household"
+            },
+            "value": "23625.00"
+          },
+          {
+            "keys": {
+              "tax_year": 2025,
+              "filing_status": "qualifying_surviving_spouse"
+            },
+            "value": "31500.00"
+          }
+        ],
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 25,
+            "locator": "Table 6 / Table 8 line 6",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "dependent_floor",
+        "value_type": "Money",
+        "status": "draft",
+        "axes": {
+          "tax_year": {
+            "value_type": "Integer",
+            "values": [
+              2025
+            ]
+          }
+        },
+        "rows": [
+          {
+            "keys": {
+              "tax_year": 2025
+            },
+            "value": "1350.00"
+          }
+        ],
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 26,
+            "locator": "Table 8 line 4",
+            "relationship": "supports"
+          }
+        ]
+      },
+      {
+        "id": "earned_increment",
+        "value_type": "Money",
+        "status": "draft",
+        "axes": {
+          "tax_year": {
+            "value_type": "Integer",
+            "values": [
+              2025
+            ]
+          }
+        },
+        "rows": [
+          {
+            "keys": {
+              "tax_year": 2025
+            },
+            "value": "450.00"
+          }
+        ],
+        "evidence": [
+          {
+            "source_id": "p501-2025-snapshot",
+            "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+            "pdf_page": 26,
+            "locator": "Table 8 line 2",
+            "relationship": "supports"
+          }
+        ]
+      }
+    ],
+    "step_order": [
+      "self_boxes",
+      "spouse_boxes",
+      "boxes",
+      "dependent",
+      "line1",
+      "line2",
+      "line3",
+      "line4",
+      "line5",
+      "line6",
+      "line7a",
+      "line7b",
+      "line7c"
+    ],
+    "step_dependencies": {
+      "boxes": [
+        "self_boxes",
+        "spouse_boxes"
+      ],
+      "dependent": [],
+      "line1": [],
+      "line2": [],
+      "line3": [
+        "line1",
+        "line2"
+      ],
+      "line4": [],
+      "line5": [
+        "line3",
+        "line4"
+      ],
+      "line6": [],
+      "line7a": [
+        "dependent",
+        "line5",
+        "line6"
+      ],
+      "line7b": [
+        "boxes"
+      ],
+      "line7c": [
+        "line7a",
+        "line7b"
+      ],
+      "self_boxes": [],
+      "spouse_boxes": []
+    },
+    "claims": [
+      {
+        "id": "standard.base.2025.v1",
+        "sha256": "0cd4b4c15b14e8274542193786fb8786dc15aebd312cbae7a4e40d449467f7b5",
+        "review_state": "drafted"
+      },
+      {
+        "id": "standard.dependent.2025.v1",
+        "sha256": "3ad525900c6e32d39ffb2e5feaa4e239a417b8cdb7dc96af0a10692f97e7c872",
+        "review_state": "drafted"
+      },
+      {
+        "id": "standard.additional.2025.v1",
+        "sha256": "bb39c2341a3c29586449a49f7e4409b6fd5b8a61de40b9f388fef338ef28b785",
+        "review_state": "drafted"
+      },
+      {
+        "id": "standard.eligibility.2025.v1",
+        "sha256": "228cdb6df917d4254cfb8095edb7203f61c4ec45cbbffc639f3e4168f4dd92d8",
+        "review_state": "drafted"
+      },
+      {
+        "id": "numeric.whole-dollar.2025.v1",
+        "sha256": "1ead6d20ffa1b73f982e8300f8d45fa80412523a31d200f0eea0345ca2cfcb33",
+        "review_state": "drafted"
+      }
+    ],
+    "sources": [
+      {
+        "id": "p501-2025-snapshot",
+        "registry_id": "irs-p501-2025",
+        "title": "Publication 501 (2025)",
+        "authority_class": "publication",
+        "publication_revision": "2025; issued 2026-02-04",
+        "published_on": "2026-02-04",
+        "tax_years": [
+          2025
+        ],
+        "url": "https://www.irs.gov/pub/irs-prior/p501--2025.pdf",
+        "path": "evidence/irs/2025/p501.pdf",
+        "pdf_pages": 31,
+        "retrieved_at": "2026-10-13T22:57:59Z",
+        "content_sha256": "288b62a4917f3bc3df0bade7a22c23a8ae648ba9eb5086df5b8b50e881148ff6",
+        "author_id": "research-draft",
+        "sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44"
+      }
+    ],
+    "interpretation_review": "pending",
+    "scope": "standard_deduction_candidate_only",
+    "sha256": "a8c1eaebd0fb5cc6fd76f18d1b5d99b597f934df43b4addcd3e1183b043f19b4"
+  },
+  "cases": [
+    {
+      "id": "reference.base.published.mfj",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_joint"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "31500.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "irs_published_example",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Examples, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": {
+        "id": "base.published.mfj",
+        "sha256": "9e98175b683416e65a4ca2c2402e8f6db47c6b8d130b84ae5318d2f00aa244d2"
+      },
+      "sha256": "48acca83a5b9bb2c8d5e06fbccb6d50e1caac02e37f25318821e9ad290a8c1eb",
+      "review_fixture": {
+        "id": "worksheet.reference.base.published.mfj",
+        "sha256": "ba949e92aae9263d147ea4fc70d2848e44ae57699d1dfb923b9d1951ceaaf149"
+      }
+    },
+    {
+      "id": "reference.base.single",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "15750.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "manual_source_derivation",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 6, amounts and footnote",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Examples, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": {
+        "id": "base.single",
+        "sha256": "fb5f1949ee9cae3cf378f53d81644bbcb993bba7dbf0936d6fc88c351aa9c0ee"
+      },
+      "sha256": "9271f1c1809fdcf04a802925a6ea1ad2a2b32b5f25a006083a1d8e9e23e40f56",
+      "review_fixture": {
+        "id": "worksheet.reference.base.single",
+        "sha256": "5d4ec14bdf60d28a2670d226b387eec808492212cff5e094c4d1410a5b3be522"
+      }
+    },
+    {
+      "id": "reference.dependent.published.floor",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "value": "150.00"
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "1350.00"
+      },
+      "expected_steps": {
+        "line3": "600.00",
+        "line5": "1350.00",
+        "line6": "15750.00",
+        "line7a": "1350.00"
+      },
+      "oracle_kind": "irs_published_example",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": {
+        "id": "dependent.published.floor",
+        "sha256": "c9f677da5f513329039b59b02179cb3d5ed7adbaf43691df05cfc99f69d9cb83"
+      },
+      "sha256": "b0d2930ec9333ae32cdf5fdcf6ab0c4662631573b8847206468e3714fa960652",
+      "review_fixture": {
+        "id": "worksheet.reference.dependent.published.floor",
+        "sha256": "5786b3baa9be7f38e2641afd5c8f49ee54e91883332318bd29ac38198b1c9dac"
+      }
+    },
+    {
+      "id": "reference.dependent.floor-below",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "value": "899.00"
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "1350.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "manual_source_derivation",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137a",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": {
+        "id": "dependent.floor-below",
+        "sha256": "9e292fb2f8c6a9777ddbddfca0bfc14fac85173a162a3a9787ab101acc83eccf"
+      },
+      "sha256": "03b1889647bc52f9936847959484e9d3aae3b17ab1d57b6e18d7c365f2bb4382",
+      "review_fixture": {
+        "id": "worksheet.reference.dependent.floor-below",
+        "sha256": "41d06f61d5cfc608bd9066e64067355ed4f44a2c562b431b317c1a4bd0796db2"
+      }
+    },
+    {
+      "id": "reference.dependent.floor-equal",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "value": "900.00"
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "1350.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "manual_source_derivation",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137a",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": {
+        "id": "dependent.floor-equal",
+        "sha256": "d769b0d4b5ee976ff3ef68d0a63eefa1504d7bf1784dcd7770df258b6e8eec45"
+      },
+      "sha256": "2e6ad8ab828758e29b7b5288a55f6d08dedd2d00dac09513708ba36b0f72fa5f",
+      "review_fixture": {
+        "id": "worksheet.reference.dependent.floor-equal",
+        "sha256": "7e109329878719d5e652e3f65d92fd5b8083a695ef09f400f95d863ede7d22cb"
+      }
+    },
+    {
+      "id": "reference.dependent.floor-above",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "value": "901.00"
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "1351.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "manual_source_derivation",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137a",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": {
+        "id": "dependent.floor-above",
+        "sha256": "3f76c39714b4357877fccd68d9a0c45d68b32261a39bc710266e26413abcc5a9"
+      },
+      "sha256": "34c1fd96411a02f4587146b4d7c78d203e76fd86ac540fd4b64e7a14498d34ef",
+      "review_fixture": {
+        "id": "worksheet.reference.dependent.floor-above",
+        "sha256": "1faaf5a0db7978029592e97a69469b0d42f850f39e575ef529c7bd67bcdc358f"
+      }
+    },
+    {
+      "id": "reference.dependent.cap-below",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "value": "15299.00"
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "15749.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "manual_source_derivation",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137a",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": {
+        "id": "dependent.cap-below",
+        "sha256": "322def769b5778283878afef403fa0ce59c573b711f4ca25374bd2bdbf80de09"
+      },
+      "sha256": "d75d3daa61cc39ab736ec8ec106d7b946a826a34d2f2558487e10afcead13063",
+      "review_fixture": {
+        "id": "worksheet.reference.dependent.cap-below",
+        "sha256": "263c014af6933fc6c899d1236b697c4c13cc949b1d659d1db817895104e992e8"
+      }
+    },
+    {
+      "id": "reference.dependent.cap-equal",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "value": "15300.00"
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "15750.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "manual_source_derivation",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137a",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": {
+        "id": "dependent.cap-equal",
+        "sha256": "baa0bda65da9cbb8cd0ebe71bf059bdddeef5c551c61378ce1d2052c77b20b7d"
+      },
+      "sha256": "7caa6c71d7aaf63074d80591e22c36a6362d09b684d2b170095a5da8ae7f4b5c",
+      "review_fixture": {
+        "id": "worksheet.reference.dependent.cap-equal",
+        "sha256": "6bee6919e80674e4b46eb1bb041ccaf1b99f4c0111435408faefb0437e92f8c9"
+      }
+    },
+    {
+      "id": "reference.dependent.cap-above",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "value": "15301.00"
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "15750.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "manual_source_derivation",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137a",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": {
+        "id": "dependent.cap-above",
+        "sha256": "11ca878dcfe4132f2c2cee508d76b156c2ccf6df9282cb5952531c5065a7b695"
+      },
+      "sha256": "3d0d880743678bbf85bffcdd2f55c433f28aeceedce3b4eb06a34b946b2977c1",
+      "review_fixture": {
+        "id": "worksheet.reference.dependent.cap-above",
+        "sha256": "ab0384cd96b3942d7d1a75e3e39fb88ce6676022e740488a09ecf7cbff549523"
+      }
+    },
+    {
+      "id": "reference.dependent.missing-earned",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        },
+        "earned_income": {
+          "state": "missing",
+          "value": null
+        }
+      },
+      "expected": {
+        "status": "blocked",
+        "reason": "unresolved_fact:earned_income"
+      },
+      "expected_steps": {},
+      "oracle_kind": "product_scope_policy",
+      "oracle_note": "Missing-information/scope behavior is product policy, not an IRS numeric conclusion. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137a",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 1",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": {
+        "id": "dependent.missing-earned",
+        "sha256": "de4eb16f2f1366637a13e253ad87e4dac2bd273fc2d6a505538687c400396152"
+      },
+      "sha256": "f89319ad45b997f407705e3b27b61fb42152608294370106bdb593e1eb7b56d7",
+      "review_fixture": {
+        "id": "worksheet.reference.dependent.missing-earned",
+        "sha256": "a5ab60ae716372f2d06f250fa2e35256a6e3ad65e92114a3362ab022d10a9505"
+      }
+    },
+    {
+      "id": "published.mfj.blind",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_joint"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "33100.00"
+      },
+      "expected_steps": {
+        "line7a": "31500.00",
+        "line7b": "1600.00"
+      },
+      "oracle_kind": "irs_published_example",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Examples, Example 2",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "e9c2413b578c8993a1166c7ae1e6622ca9690b1931ae7ac3ffaa025e7b128165",
+      "review_fixture": {
+        "id": "worksheet.published.mfj.blind",
+        "sha256": "44db2d9740ea4ca54d410dfd1dd58c66ffa43752d2eb260ca719a72a10acbc03"
+      }
+    },
+    {
+      "id": "published.mfj.two-aged",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_joint"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "34700.00"
+      },
+      "expected_steps": {
+        "line7a": "31500.00",
+        "line7b": "3200.00"
+      },
+      "oracle_kind": "irs_published_example",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Examples, Example 3",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "3540d86887f47065afb7d9b963fbea78a25abdf920d35d0c12b306f7cef19087",
+      "review_fixture": {
+        "id": "worksheet.published.mfj.two-aged",
+        "sha256": "3529b98049126984b7097de523846fcc2b4076daf31bc37d69f50e6ccc04a5b6"
+      }
+    },
+    {
+      "id": "published.dependent.mfs",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_separate"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "value": "3800.00"
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "4250.00"
+      },
+      "expected_steps": {
+        "line3": "4250.00",
+        "line5": "4250.00",
+        "line6": "15750.00",
+        "line7a": "4250.00"
+      },
+      "oracle_kind": "irs_published_example",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 2",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "c7a8c1e613471cbb83f36ed826ce02ef86732c8e63b3719bc7932444f2b7a3f2",
+      "review_fixture": {
+        "id": "worksheet.published.dependent.mfs",
+        "sha256": "4c66bd7d7b33c2e70a39d25ee7284816b04d8a3221b09f946a45fe5364befa8c"
+      }
+    },
+    {
+      "id": "published.dependent.blind",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "value": "2900.00"
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "5350.00"
+      },
+      "expected_steps": {
+        "line3": "3350.00",
+        "line5": "3350.00",
+        "line7a": "3350.00",
+        "line7b": "2000.00"
+      },
+      "oracle_kind": "irs_published_example",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 3",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "67cad60098bc0e2fff02a76a4ab720865c3f5859514694af74f6ce9c756a1dda",
+      "review_fixture": {
+        "id": "worksheet.published.dependent.blind",
+        "sha256": "f90667f2a35f2e621a09cc076fb8d4af9ec15e6c207c8ad2e8927e24722c7a1b"
+      }
+    },
+    {
+      "id": "published.dependent.net-earned",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "value": "4000.00"
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "4450.00"
+      },
+      "expected_steps": {
+        "line3": "4450.00",
+        "line7a": "4450.00"
+      },
+      "oracle_kind": "irs_published_example",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 24,
+          "locator": "Standard Deduction for Dependents, Example 4; earned aggregate supplied externally",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "7c689c70f26a8847ee7b30a573971405bff44f3260bf16cef4fbc7e7933f2211",
+      "review_fixture": {
+        "id": "worksheet.published.dependent.net-earned",
+        "sha256": "f9dd3bbb1eb2f5ec7038077e48e41fc1b54f0e066565d0ad837627e702ded009"
+      }
+    },
+    {
+      "id": "table6.single",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "15750.00"
+      },
+      "expected_steps": {
+        "line6": "15750.00"
+      },
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 6, single row",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "dff7fb35777d1ed9eba3dc35c1ea3d89a6ede72f625b8043f85abedb0e5a0064",
+      "review_fixture": {
+        "id": "worksheet.table6.single",
+        "sha256": "b8456ada38c16fa779e8b725f6c1bbb24d424b8088a9ad0966f3952745af9f0c"
+      }
+    },
+    {
+      "id": "table6.married_joint",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_joint"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "31500.00"
+      },
+      "expected_steps": {
+        "line6": "31500.00"
+      },
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 6, married_joint row",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "c21a7e7babd8b2b093d566e9b482854d62868ad1d1d4458b5823ff64d67c9e9f",
+      "review_fixture": {
+        "id": "worksheet.table6.married_joint",
+        "sha256": "3ff18810f49906590595b57fff538ac734906ec2ac623bfbfab80dd9a9165106"
+      }
+    },
+    {
+      "id": "table6.married_separate",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_separate"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "15750.00"
+      },
+      "expected_steps": {
+        "line6": "15750.00"
+      },
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 6, married_separate row",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "81625e640ccb04bb369a659a124fb7389573371e44f3b8f90557a7399e766856",
+      "review_fixture": {
+        "id": "worksheet.table6.married_separate",
+        "sha256": "b605b66ea483865f7f76a72b0f59d158596135036ab926fc524612da45d5e153"
+      }
+    },
+    {
+      "id": "table6.head_of_household",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "head_of_household"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "23625.00"
+      },
+      "expected_steps": {
+        "line6": "23625.00"
+      },
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 6, head_of_household row",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "b00830c274832989007ce4673be4448a8e9191adf7e53df54b9c7eaa17bf5317",
+      "review_fixture": {
+        "id": "worksheet.table6.head_of_household",
+        "sha256": "04bf80675dd2a5b5e3f97e03b00d9e9a098f4921de8b9b6f92e92601d0738508"
+      }
+    },
+    {
+      "id": "table6.qualifying_surviving_spouse",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "qualifying_surviving_spouse"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "31500.00"
+      },
+      "expected_steps": {
+        "line6": "31500.00"
+      },
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 6, qualifying_surviving_spouse row",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "ec24a5b195b920b520c7a91f4ff7f7801eed93862503d30e850e2b1bbad3a8a2",
+      "review_fixture": {
+        "id": "worksheet.table6.qualifying_surviving_spouse",
+        "sha256": "e5117c96bedf60fceda9caa7fce9ec8663bc3c9d186df7f9509457d727e06752"
+      }
+    },
+    {
+      "id": "table7.single.1",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "17750.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 7, single row 1",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "ecc8937160137dba913ce5a7bee1e2a825ba77e51cf7764a7fb4c0f80185e61f",
+      "review_fixture": {
+        "id": "worksheet.table7.single.1",
+        "sha256": "40f42c6ee494103f6357ee0ff2e8b51613aa57ecbc806181f4a79029da76af18"
+      }
+    },
+    {
+      "id": "table7.single.2",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "19750.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 7, single row 2",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "c9fd696c5f95265ef948c4cf6608a37f7f124e59691ce197e84c792c2c578588",
+      "review_fixture": {
+        "id": "worksheet.table7.single.2",
+        "sha256": "0815f5244b037410a774491ef4d5aef115180dcb76eb67ab9d1eb3e5e6b91011"
+      }
+    },
+    {
+      "id": "table7.married_joint.1",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_joint"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "33100.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 7, married_joint row 1",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "7c7dc99c211bc2e6e426535c02b9fa83dd3e82b80fb49fd976c7264487ddfbe9",
+      "review_fixture": {
+        "id": "worksheet.table7.married_joint.1",
+        "sha256": "6218ea656e6b28c5349e4c18fe41fdb867f06e57ade9faf411552204b1799898"
+      }
+    },
+    {
+      "id": "table7.married_joint.2",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_joint"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "34700.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 7, married_joint row 2",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "df85ecfc83b97ec2cc37eff4af4aa7f96ee4e2bd35fc12498fc6e7c043e5022c",
+      "review_fixture": {
+        "id": "worksheet.table7.married_joint.2",
+        "sha256": "32e51a1a7ebbf770464e386969f525e13853cda969bb9a9bb1afdd5f4272312b"
+      }
+    },
+    {
+      "id": "table7.married_joint.3",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_joint"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "36300.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 7, married_joint row 3",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "fbcfbc60edf1ac2b911e37f7805dfd83ef2ae4e94f31a368e1bf07078e650d82",
+      "review_fixture": {
+        "id": "worksheet.table7.married_joint.3",
+        "sha256": "116cdc17bb1c4eef6fa53fb15e463e1f7a947b04bc42b97e90d9d37313cf089f"
+      }
+    },
+    {
+      "id": "table7.married_joint.4",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_joint"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "37900.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 7, married_joint row 4",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "5bc769407a7d4b84f0b4dfabec0988ece2988b9b7f399ab098c3364458f1e43c",
+      "review_fixture": {
+        "id": "worksheet.table7.married_joint.4",
+        "sha256": "02773115d125d770c81d3c58f4733d9954d593c75cbb0c777ad92fe7c54ee4ba"
+      }
+    },
+    {
+      "id": "table7.married_separate.1",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_separate"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "17350.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 7, married_separate row 1",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "459f128b5ebcde4bd8c02af6786f86a3ea6f2a38937d556e87978391105082bb",
+      "review_fixture": {
+        "id": "worksheet.table7.married_separate.1",
+        "sha256": "e5a8e9b2893b669f2a43ae7228a2789bc9cdd131da632b8a03763c754500fd9c"
+      }
+    },
+    {
+      "id": "table7.married_separate.2",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_separate"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "18950.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 7, married_separate row 2",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "fd62b681bea5e92d16cd8d60721cbe4e4fc7bbf4eea14b6c7745335adabc16ba",
+      "review_fixture": {
+        "id": "worksheet.table7.married_separate.2",
+        "sha256": "ab9ebb864a2e02d90b5d949d120d602de1f7f07fe1015fab3fd0fa595dc0f1f9"
+      }
+    },
+    {
+      "id": "table7.married_separate.3",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_separate"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "20550.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 7, married_separate row 3",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "a8adca4f1303a8e1e9e6dae5c53194dc9c2a10cf6a679782c5f404e8ccd51c33",
+      "review_fixture": {
+        "id": "worksheet.table7.married_separate.3",
+        "sha256": "bdc3c0f5bddfd70e832335f07255cb78d6872c9955995ff81768f2ca065a54d5"
+      }
+    },
+    {
+      "id": "table7.married_separate.4",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_separate"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "22150.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 7, married_separate row 4",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "a9eaddcfa8d54cd65d5a1ba6dc98d8908ecf331c85fd34ebffb73ea26c03eef2",
+      "review_fixture": {
+        "id": "worksheet.table7.married_separate.4",
+        "sha256": "7dee061e1df8f23c4d4e2a490871a527b7b9f50af39ce3da23c2c2517a376c02"
+      }
+    },
+    {
+      "id": "table7.head_of_household.1",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "head_of_household"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "25625.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 7, head_of_household row 1",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "42a3d6396f2109b98388fadb5b03e65f0bb867d06403240bfa69d3324ca433fa",
+      "review_fixture": {
+        "id": "worksheet.table7.head_of_household.1",
+        "sha256": "3e677bdc59d6decdf803de614452264b9f006a77236027d8d6bf2f609d1baf53"
+      }
+    },
+    {
+      "id": "table7.head_of_household.2",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "head_of_household"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "27625.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 7, head_of_household row 2",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "fed9549274c2c0ff1e2b4b991c8f2c0b0a51a773880fc65f5cf6d3f4ecd78e5e",
+      "review_fixture": {
+        "id": "worksheet.table7.head_of_household.2",
+        "sha256": "92365f4cb71d7c80fe22e48d5e802604bf9e755608f5a6820e1aba19659652e0"
+      }
+    },
+    {
+      "id": "table7.qualifying_surviving_spouse.1",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "qualifying_surviving_spouse"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "33100.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 7, qualifying_surviving_spouse row 1",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "acdafa3c3b8b7b8eae4c4d76fef3120f699a7cbd239f2e0347ce70a749d5611c",
+      "review_fixture": {
+        "id": "worksheet.table7.qualifying_surviving_spouse.1",
+        "sha256": "1d01897c96ed7bbd4c1c21a977ef0d84ca1c46a5361ad60e15eabc3a8ddb24b2"
+      }
+    },
+    {
+      "id": "table7.qualifying_surviving_spouse.2",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "qualifying_surviving_spouse"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "34700.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "irs_published_table",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Table 7, qualifying_surviving_spouse row 2",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "0789ed6402942ee366464ed82a2eb906218a23d9449093c440579ce94d97da66",
+      "review_fixture": {
+        "id": "worksheet.table7.qualifying_surviving_spouse.2",
+        "sha256": "427a4b7006126da2ed3c066a666ab10f57ffa835c011bd96b453d602b06e4611"
+      }
+    },
+    {
+      "id": "mfs.spouse-income",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_separate"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "15750.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "manual_source_derivation",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Tables 6\u20137, applicable status/count row",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "cd0e26203ca0e6815ca034973e307fd5709b151a6fef980ac5868ada90f589fc",
+      "review_fixture": {
+        "id": "worksheet.mfs.spouse-income",
+        "sha256": "3d5a141a120858af0d4f5a3bc9bf0d488833461122f7f4add38e2044be37dbf9"
+      }
+    },
+    {
+      "id": "mfs.spouse-files",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_separate"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": true
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "15750.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "manual_source_derivation",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Tables 6\u20137, applicable status/count row",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "0de94ee86856ff6b544b1af01daf8699b790d6c5e6f936252532225e2971aaeb",
+      "review_fixture": {
+        "id": "worksheet.mfs.spouse-files",
+        "sha256": "07e7acd382fa0a6eec00e581801c8468923a0c2d3211d338c2522acd465d9e74"
+      }
+    },
+    {
+      "id": "mfs.spouse-claimable",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_separate"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "15750.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "manual_source_derivation",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 25,
+          "locator": "Tables 6\u20137, applicable status/count row",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "7509753c67d8ae66ee0436d6821537abc7069ee22156493bef23897b662ea950",
+      "review_fixture": {
+        "id": "worksheet.mfs.spouse-claimable",
+        "sha256": "189901c691d7bd117bc4a13240874e5727553879f68955926d743040305fadf6"
+      }
+    },
+    {
+      "id": "mfj.spouse-dependent",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_joint"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "value": "40000.00"
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "31500.00"
+      },
+      "expected_steps": {
+        "line7a": "31500.00"
+      },
+      "oracle_kind": "manual_source_derivation",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137c",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "192cbaee5c91db74fc527508c4f4e981f7284803c6047308cd569e72de9391a2",
+      "review_fixture": {
+        "id": "worksheet.mfj.spouse-dependent",
+        "sha256": "7a5f19a020e3c0954f4542cd118265bb76ae8b8e099de8d2f6cfcb149909dd7a"
+      }
+    },
+    {
+      "id": "dependent.addition-after-cap",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "value": "20000.00"
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "17750.00"
+      },
+      "expected_steps": {
+        "line7a": "15750.00",
+        "line7b": "2000.00"
+      },
+      "oracle_kind": "manual_source_derivation",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137c",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "ef0d0ec4ed9403a4b55f0126f94b62f504a8774ea42475f98d7244010dea0d44",
+      "review_fixture": {
+        "id": "worksheet.dependent.addition-after-cap",
+        "sha256": "a1f19ea30ed9d65856a8b44d0cf4ef3c5b9a287e756e35752319080bb117a79d"
+      }
+    },
+    {
+      "id": "dependent.cents",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        },
+        "earned_income": {
+          "state": "confirmed",
+          "value": "900.50"
+        }
+      },
+      "expected": {
+        "status": "value",
+        "value": "1350.50"
+      },
+      "expected_steps": {
+        "line3": "1350.50",
+        "line7a": "1350.50"
+      },
+      "oracle_kind": "manual_source_derivation",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8, lines 1\u20137c",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "dff4e98480f70c812e35ea9e7c5f7c70bc0dc0b39290a90c525c031df768afca",
+      "review_fixture": {
+        "id": "worksheet.dependent.cents",
+        "sha256": "14106e5d96d0901820bcff56055747d1192c1542e4b42d2586925dc21cc9fdef"
+      }
+    },
+    {
+      "id": "scope.nonresident",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "nonresident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "unsupported",
+        "reason": "residency_exceptions_unimplemented"
+      },
+      "expected_steps": {},
+      "oracle_kind": "product_scope_policy",
+      "oracle_note": "Missing-information/scope behavior is product policy, not an IRS numeric conclusion. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 23,
+          "locator": "Persons not eligible; residency exceptions",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "0c3e3fd9acdd9deb9e571ddd3faa2541ec676b258015f9244fa8802a574e2807",
+      "review_fixture": {
+        "id": "worksheet.scope.nonresident",
+        "sha256": "6d3fa109ef8e1755033a220f4e95fb66e4948e0caa8d5ae39bf3f56a58544da6"
+      }
+    },
+    {
+      "id": "scope.dual-status",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "dual_status"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "unsupported",
+        "reason": "residency_exceptions_unimplemented"
+      },
+      "expected_steps": {},
+      "oracle_kind": "product_scope_policy",
+      "oracle_note": "Missing-information/scope behavior is product policy, not an IRS numeric conclusion. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 23,
+          "locator": "Persons not eligible; residency exceptions",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "e146592d0dba997e30e76f56f314ac3a9d9528bbf4e9a26ae8f7ccc4d2220a9c",
+      "review_fixture": {
+        "id": "worksheet.scope.dual-status",
+        "sha256": "713d73a343ceb09ae3b9e9676f7ff68c9fd32cf1acd39d2450bade7e1ab46dbc"
+      }
+    },
+    {
+      "id": "excluded.short-year",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": true
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "ineligible",
+        "reason": "short_year_accounting_change",
+        "value": "0.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "manual_source_derivation",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 23,
+          "locator": "Persons not eligible, item 2",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "439b458cc696220b92f54cafe81b78412d08362c84e3f99f65d10aba70b5b760",
+      "review_fixture": {
+        "id": "worksheet.excluded.short-year",
+        "sha256": "1043a95f6ce110668cb654acc39c045538dec3fc844c738d116856da271b04da"
+      }
+    },
+    {
+      "id": "excluded.spouse-itemizes",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "married_separate"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "ineligible",
+        "reason": "mfs_spouse_itemizes",
+        "value": "0.00"
+      },
+      "expected_steps": {},
+      "oracle_kind": "manual_source_derivation",
+      "oracle_note": "Expected result entered from the cited source or separately worked boundary; not generated by the evaluator. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 23,
+          "locator": "Persons not eligible, item 1",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "50aa9d6cbf177cb8fcb3378ae973a05f5cc69e4dcbd89d1185a32035cdb11bb6",
+      "review_fixture": {
+        "id": "worksheet.excluded.spouse-itemizes",
+        "sha256": "2082a5ac2360087aebbed78117d7835f6db5f5e05d8eef8b36327dcfe7a44180"
+      }
+    },
+    {
+      "id": "scope.dependent-qss",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "qualifying_surviving_spouse"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "individual"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "unsupported",
+        "reason": "dependent_qss_not_in_table8"
+      },
+      "expected_steps": {},
+      "oracle_kind": "product_scope_policy",
+      "oracle_note": "Missing-information/scope behavior is product policy, not an IRS numeric conclusion. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 26,
+          "locator": "Table 8 line 6",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "7583b0daef74584c8c09a25ea142349a0d5de69ecf3c683427c93a3b4a5b9b62",
+      "review_fixture": {
+        "id": "worksheet.scope.dependent-qss",
+        "sha256": "a2b2d25e4ba5a6a2d2723f70f5a14117a0661a87b66ce7ac9d48b2b851720060"
+      }
+    },
+    {
+      "id": "scope.estate",
+      "inputs": {
+        "filing_status": {
+          "state": "confirmed",
+          "value": "single"
+        },
+        "entity_kind": {
+          "state": "confirmed",
+          "value": "estate_trust"
+        },
+        "residency": {
+          "state": "confirmed",
+          "value": "full_year_resident"
+        },
+        "short_year_accounting_change": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_claimable": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "self_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_age_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_blind_qualified": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_itemizes": {
+          "state": "confirmed",
+          "value": false
+        },
+        "spouse_gross_income_zero": {
+          "state": "confirmed",
+          "value": true
+        },
+        "spouse_files_return": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "unsupported",
+        "reason": "individual_return_only"
+      },
+      "expected_steps": {},
+      "oracle_kind": "product_scope_policy",
+      "oracle_note": "Missing-information/scope behavior is product policy, not an IRS numeric conclusion. Supplemental scope facts are explicit adapter assumptions.",
+      "evidence": [
+        {
+          "source_id": "p501-2025-snapshot",
+          "source_sha256": "f1a04c8247f31cc94e5aa66a2a9dd1e4a103ed86558df49cc144303952349b44",
+          "pdf_page": 23,
+          "locator": "Standard Deduction scope",
+          "relationship": "supports"
+        }
+      ],
+      "original_fixture": null,
+      "sha256": "8535437356966a4add491a0d330129e172bb0b487a30ef75a2088f68c2359b7d",
+      "review_fixture": {
+        "id": "worksheet.scope.estate",
+        "sha256": "6f5469ce416d87bf4a44e0baf9bc1561df8009c33851f6905486083836c5e3da"
+      }
+    }
+  ]
+}

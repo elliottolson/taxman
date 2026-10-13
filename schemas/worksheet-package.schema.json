@@ -1,0 +1,1339 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "../schemas/worksheet-package.schema.json"
+    },
+    "contract_version": {
+      "const": "0.1.0"
+    },
+    "status": {
+      "const": "draft_research"
+    },
+    "production_enabled": {
+      "const": false
+    },
+    "program": {
+      "$ref": "#/$defs/program"
+    },
+    "context": {
+      "$ref": "#/$defs/context"
+    },
+    "plan": {
+      "$ref": "#/$defs/plan"
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/case"
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "$schema",
+    "contract_version",
+    "status",
+    "production_enabled",
+    "program",
+    "context",
+    "plan",
+    "cases"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:taxman:worksheet:0.1.0",
+  "title": "Research worksheet with exact numeric values and annual indexed tables",
+  "$defs": {
+    "expression": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "ref"
+            },
+            "target": {
+              "type": "string",
+              "pattern": "^(input|step|context):[a-z][a-z0-9_]*$"
+            }
+          },
+          "required": [
+            "kind",
+            "target"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "literal"
+            },
+            "value_type": {
+              "enum": [
+                "Money",
+                "Rate",
+                "Decimal",
+                "Integer",
+                "Boolean",
+                "Enum"
+              ]
+            },
+            "value": {
+              "type": [
+                "string",
+                "integer",
+                "boolean",
+                "null"
+              ]
+            },
+            "enum_domain": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "kind",
+            "value_type",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "lookup"
+            },
+            "table": {
+              "type": "string",
+              "minLength": 1
+            },
+            "keys": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/expression"
+              }
+            }
+          },
+          "required": [
+            "kind",
+            "table",
+            "keys"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "choose"
+            },
+            "condition": {
+              "$ref": "#/$defs/expression"
+            },
+            "then": {
+              "$ref": "#/$defs/expression"
+            },
+            "else": {
+              "$ref": "#/$defs/expression"
+            }
+          },
+          "required": [
+            "kind",
+            "condition",
+            "then",
+            "else"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "operator"
+            },
+            "operator": {
+              "enum": [
+                "add",
+                "subtract",
+                "min",
+                "max",
+                "multiply",
+                "divide",
+                "equal",
+                "less_than",
+                "less_equal",
+                "and",
+                "or",
+                "not",
+                "boolean_to_integer",
+                "round"
+              ]
+            },
+            "arguments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/expression"
+              },
+              "minItems": 1
+            },
+            "scale": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 28
+            },
+            "mode": {
+              "enum": [
+                "exact",
+                "half_up",
+                "half_even",
+                "floor",
+                "ceiling",
+                "truncate"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "operator",
+            "arguments"
+          ],
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "operator": {
+                    "const": "round"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "scale",
+                  "mode"
+                ]
+              },
+              "else": {
+                "not": {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "scale"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "mode"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value_type": {
+          "enum": [
+            "Money",
+            "Rate",
+            "Decimal",
+            "Integer",
+            "Boolean",
+            "Enum"
+          ]
+        },
+        "enum_domain": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "value_type",
+        "description"
+      ]
+    },
+    "table": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value_type": {
+          "enum": [
+            "Money",
+            "Rate",
+            "Decimal",
+            "Integer"
+          ]
+        },
+        "status": {
+          "const": "draft"
+        },
+        "axes": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "value_type": {
+                "enum": [
+                  "Integer",
+                  "Enum"
+                ]
+              },
+              "enum_domain": {
+                "type": "string",
+                "minLength": 1
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": [
+                    "string",
+                    "integer"
+                  ]
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "value_type",
+              "values"
+            ]
+          }
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "keys": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": [
+                    "string",
+                    "integer"
+                  ]
+                }
+              },
+              "value": {
+                "type": [
+                  "string",
+                  "integer"
+                ]
+              }
+            },
+            "required": [
+              "keys",
+              "value"
+            ]
+          },
+          "minItems": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "value_type",
+        "status",
+        "axes",
+        "rows",
+        "evidence"
+      ]
+    },
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value_type": {
+          "enum": [
+            "Money",
+            "Rate",
+            "Decimal",
+            "Integer",
+            "Boolean",
+            "Enum"
+          ]
+        },
+        "enum_domain": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expression": {
+          "$ref": "#/$defs/expression"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "value_type",
+        "expression",
+        "evidence"
+      ]
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "condition": {
+          "$ref": "#/$defs/expression"
+        },
+        "status": {
+          "enum": [
+            "value",
+            "ineligible",
+            "unsupported"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expression": {
+          "$ref": "#/$defs/expression"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "condition",
+        "status",
+        "reason",
+        "evidence"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "value",
+                  "ineligible"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "expression"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "expression"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "pdf_page": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "relationship": {
+          "enum": [
+            "supports",
+            "limits",
+            "disagrees"
+          ]
+        }
+      },
+      "required": [
+        "source_id",
+        "source_sha256",
+        "pdf_page",
+        "locator",
+        "relationship"
+      ]
+    },
+    "program": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "const": "draft_research"
+        },
+        "production_enabled": {
+          "const": false
+        },
+        "tax_years": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1900,
+            "maximum": 2200
+          },
+          "minItems": 1
+        },
+        "enum_domains": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          }
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/input"
+          },
+          "minItems": 1
+        },
+        "tables": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/table"
+          },
+          "minItems": 1
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/step"
+          },
+          "minItems": 1
+        },
+        "outcomes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/outcome"
+          },
+          "minItems": 1
+        },
+        "claim_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "id",
+              "sha256"
+            ]
+          },
+          "minItems": 1
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "status",
+        "production_enabled",
+        "tax_years",
+        "enum_domains",
+        "inputs",
+        "tables",
+        "steps",
+        "outcomes",
+        "claim_refs",
+        "limitations"
+      ]
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tax_year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2200
+        },
+        "known_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$"
+        }
+      },
+      "required": [
+        "id",
+        "tax_year",
+        "known_at"
+      ]
+    },
+    "plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contract_version": {
+          "const": "0.1.0"
+        },
+        "production_enabled": {
+          "const": false
+        },
+        "tax_year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2200
+        },
+        "known_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$"
+        },
+        "program_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "program": {
+          "$ref": "#/$defs/program"
+        },
+        "tables": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/table"
+          },
+          "minItems": 1
+        },
+        "step_order": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "step_dependencies": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          }
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "review_state": {
+                "enum": [
+                  "drafted",
+                  "in_review",
+                  "reviewed",
+                  "disputed",
+                  "superseded"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "sha256",
+              "review_state"
+            ]
+          },
+          "minItems": 1
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "registry_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "authority_class": {
+                "enum": [
+                  "publication",
+                  "form_instructions",
+                  "statute",
+                  "regulation",
+                  "published_guidance"
+                ]
+              },
+              "publication_revision": {
+                "type": "string",
+                "minLength": 1
+              },
+              "published_on": {
+                "type": "string",
+                "format": "date"
+              },
+              "tax_years": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "minimum": 1900,
+                  "maximum": 2200
+                },
+                "minItems": 1
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "path": {
+                "type": "string",
+                "pattern": "^evidence/irs/[0-9]{4}/[a-z0-9-]+\\.pdf$"
+              },
+              "pdf_pages": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "retrieved_at": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$"
+              },
+              "content_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "author_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "id",
+              "registry_id",
+              "title",
+              "authority_class",
+              "publication_revision",
+              "published_on",
+              "tax_years",
+              "url",
+              "path",
+              "pdf_pages",
+              "retrieved_at",
+              "content_sha256",
+              "author_id",
+              "sha256"
+            ]
+          },
+          "minItems": 1
+        },
+        "interpretation_review": {
+          "const": "pending"
+        },
+        "scope": {
+          "const": "standard_deduction_candidate_only"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "contract_version",
+        "production_enabled",
+        "tax_year",
+        "known_at",
+        "program_sha256",
+        "program",
+        "tables",
+        "step_order",
+        "step_dependencies",
+        "claims",
+        "sources",
+        "interpretation_review",
+        "scope",
+        "sha256"
+      ]
+    },
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inputs": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "state": {
+                "enum": [
+                  "confirmed",
+                  "missing",
+                  "invalid",
+                  "estimated",
+                  "provisional",
+                  "not_applicable"
+                ]
+              },
+              "value": {
+                "type": [
+                  "string",
+                  "integer",
+                  "boolean",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "state",
+              "value"
+            ]
+          }
+        },
+        "expected": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "enum": [
+                "value",
+                "blocked",
+                "ineligible",
+                "unsupported"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "value": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+            }
+          },
+          "required": [
+            "status"
+          ]
+        },
+        "expected_steps": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "string",
+              "integer"
+            ]
+          }
+        },
+        "oracle_kind": {
+          "enum": [
+            "irs_published_example",
+            "irs_published_table",
+            "manual_source_derivation",
+            "product_scope_policy"
+          ]
+        },
+        "oracle_note": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          },
+          "minItems": 1
+        },
+        "original_fixture": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              },
+              "required": [
+                "id",
+                "sha256"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "review_fixture": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "sha256"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        }
+      },
+      "required": [
+        "id",
+        "inputs",
+        "expected",
+        "expected_steps",
+        "oracle_kind",
+        "oracle_note",
+        "evidence",
+        "original_fixture",
+        "sha256",
+        "review_fixture"
+      ]
+    },
+    "report": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "contract_version": {
+          "const": "0.1.0"
+        },
+        "plan_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "fixture_set_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "runner_sources": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "worksheet_engine.py": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "exact_numbers.py": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "validate_worksheet.py": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "worksheet_engine.py",
+            "exact_numbers.py",
+            "validate_worksheet.py"
+          ]
+        },
+        "structural_validation": {
+          "const": "passed"
+        },
+        "calculation_comparison": {
+          "enum": [
+            "passed",
+            "failed"
+          ]
+        },
+        "interpretation_review": {
+          "const": "pending"
+        },
+        "reference_review": {
+          "const": "pending"
+        },
+        "designated_reviewer": {
+          "const": "Elliott Olson"
+        },
+        "production_eligible": {
+          "const": false
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "case_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "fixture_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "expected": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "value",
+                      "blocked",
+                      "ineligible",
+                      "unsupported"
+                    ]
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "value": {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "actual": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "plan_sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "input_sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "result": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "value",
+                          "ineligible",
+                          "unsupported",
+                          "blocked"
+                        ]
+                      },
+                      "reason": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "outcome_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "evidence": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/$defs/evidence"
+                        }
+                      }
+                    },
+                    "required": [
+                      "status",
+                      "reason"
+                    ]
+                  },
+                  "steps": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "status": {
+                          "enum": [
+                            "value",
+                            "blocked"
+                          ]
+                        },
+                        "result": {
+                          "oneOf": [
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "properties": {
+                                "value": {
+                                  "type": [
+                                    "boolean",
+                                    "string"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "value"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "properties": {
+                                "value_type": {
+                                  "enum": [
+                                    "Money",
+                                    "Rate",
+                                    "Decimal",
+                                    "Integer"
+                                  ]
+                                },
+                                "numerator": {
+                                  "type": "integer"
+                                },
+                                "denominator": {
+                                  "type": "integer",
+                                  "minimum": 1
+                                },
+                                "value": {
+                                  "type": [
+                                    "string",
+                                    "integer"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "value_type",
+                                "numerator",
+                                "denominator"
+                              ]
+                            }
+                          ]
+                        },
+                        "reason": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "evidence": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/$defs/evidence"
+                          }
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "status",
+                        "evidence"
+                      ],
+                      "allOf": [
+                        {
+                          "if": {
+                            "properties": {
+                              "status": {
+                                "const": "value"
+                              }
+                            }
+                          },
+                          "then": {
+                            "required": [
+                              "result"
+                            ],
+                            "not": {
+                              "required": [
+                                "reason"
+                              ]
+                            }
+                          },
+                          "else": {
+                            "required": [
+                              "reason"
+                            ],
+                            "not": {
+                              "required": [
+                                "result"
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "production_enabled": {
+                    "const": false
+                  },
+                  "interpretation_review": {
+                    "const": "pending"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  }
+                },
+                "required": [
+                  "plan_sha256",
+                  "input_sha256",
+                  "result",
+                  "steps",
+                  "production_enabled",
+                  "interpretation_review",
+                  "sha256"
+                ]
+              },
+              "result_comparison": {
+                "enum": [
+                  "passed",
+                  "failed"
+                ]
+              },
+              "step_comparison": {
+                "enum": [
+                  "passed",
+                  "failed"
+                ]
+              }
+            },
+            "required": [
+              "case_id",
+              "fixture_sha256",
+              "expected",
+              "actual",
+              "result_comparison",
+              "step_comparison"
+            ]
+          }
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "contract_version",
+        "plan_sha256",
+        "fixture_set_sha256",
+        "runner_sources",
+        "structural_validation",
+        "calculation_comparison",
+        "interpretation_review",
+        "reference_review",
+        "designated_reviewer",
+        "production_eligible",
+        "results",
+        "sha256"
+      ]
+    }
+  }
+}
