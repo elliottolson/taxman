@@ -1,17 +1,17 @@
 # Taxman development plan
 
-Free, understandable U.S. federal tax estimates, with securely saved information across devices and an explanation for every result.
+Free U.S. federal tax preparation and filing, with securely saved information across devices and an explanation for every calculation. Estimates are an early implementation milestone.
 
 Status: product and architecture planning. This directory contains no production calculator, verified tax-year package, deployed service, or filing integration. Rule examples are design artifacts, not tax advice or accepted calculation rules.
 
 ## Product commitments
 
-- Free consumer calculations and explanations. Monetization is outside the current scope.
+- Free consumer preparation, explanations, and filing. Monetization is outside the current scope.
 - Start with W-2, 1099-INT, 1099-DIV, filing status, standard deduction, withholding, and estimated payments.
 - Secure accounts and saved scenarios across browsers and computers. Browser-only storage is not a requirement.
 - Show the inputs, reasoning, and grounded sources behind each result.
 - Expand supported situations deliberately; never silently ignore an unsupported fact.
-- Keep estimation, preparation, and electronic filing distinct capabilities.
+- Deliver preparation and electronic filing as the end product. Separate their readiness gates from the early calculation milestone while designing the full return workflow now.
 
 ## Architecture recommendation
 
@@ -37,6 +37,7 @@ The valuable asset is a verified, versioned tax knowledge base with a reliable a
 | [Sources and imports](sources-and-imports.md) | Grounded evidence, assisted imports, review, and tax-year releases |
 | [Data and security](data-and-security.md) | Saved scenarios, accounts, documents, access, and deletion |
 | [Implementation plan](implementation-plan.md) | Proposed stack, repository layout, APIs, and validation |
+| [Preparation and filing](filing-product.md) | Complete return model, filing lifecycle, and transmission approach |
 | [Research backlog](research-backlog.md) | Questions to settle before implementation |
 | [Source registry](../examples/source-registry.json) | Official resources inspected during planning |
 | [Illustrative rules](../examples/dividend-rules.json) | A small example of structured rule authoring |
@@ -45,7 +46,7 @@ The valuable asset is a verified, versioned tax knowledge base with a reliable a
 
 ## First engineering milestone
 
-Build one vertical slice: confirmed synthetic W-2 and dividend facts → one tax-year package → a coverage decision → reproducible calculation → explanation. Prove source traceability, exact arithmetic, unknown handling, and year isolation before growing the rule catalog.
+Build one vertical slice: confirmed synthetic W-2 and dividend facts → one tax-year package → a coverage decision → reproducible calculation → explanation → draft return line mapping. Include a minimal return lifecycle from the start; live filing remains a later milestone. Prove source traceability, exact arithmetic, unknown handling, and year isolation before growing the rule catalog.
 
 Recommended starting sequence: 2025 as the completed-return reference year; add 2026 planning as a separately labeled package. Published annual parameters do not mean every return instruction for a future filing season is final.
 

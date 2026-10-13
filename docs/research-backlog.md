@@ -2,7 +2,7 @@
 
 ## Decisions already grounded in the conversation
 
-- Taxman is free; monetization is not part of this phase.
+- Taxman is a free consumer federal tax preparation and filing product. Competing with paid filing products is the end goal; a calculator is an early milestone. Monetization is not part of this phase.
 - Initial income documents are W-2, 1099-INT, and 1099-DIV, not freelance 1099-NEC.
 - Server-side secure storage and cross-device accounts are wanted.
 - Explanations should show grounded sources.
@@ -11,7 +11,7 @@
 
 ## Proposed defaults to validate through implementation
 
-- Completed 2025 baseline first; separately labeled 2026 planning afterward.
+- Completed 2025 calculation baseline first; separately labeled 2026 planning afterward. Choose the first production filing year separately, based on supported forms, approved integration, and readiness.
 - Hybrid rule system with derived dependency graph.
 - Backend language to be decided; compare Go, Rust, Python, and TypeScript. Exact arithmetic, managed Postgres, and private document storage remain proposed defaults.
 - Manual entry before document extraction; one account owner per household initially.
@@ -30,6 +30,15 @@
 8. Identify when Schedule B or other reporting obligations affect future preparation scope.
 9. Decide which elections and carryovers need prior-year facts; do not infer absent carryovers.
 10. Obtain independent tax-domain review before publicly asserting numerical reliability.
+
+## Filing research to begin now
+
+1. Define the first supported complete return and required forms/schedules.
+2. Compare an authorized transmission partner with implementing our own applicable IRS provider roles; establish responsibilities for each route.
+3. Research schema access, software testing, signatures, identity checks, acknowledgments, and operational requirements using official sources.
+4. Define canonical return revisions, finalized snapshots, idempotent submission, unknown delivery status, rejections, and amendments.
+5. Decide what identity/payment information is necessary at each stage and how retention changes after filing.
+6. Choose the target filing year and a readiness-based launch plan.
 
 ## Architecture experiments
 

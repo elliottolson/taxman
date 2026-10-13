@@ -6,7 +6,8 @@ This repository contains product planning and illustrative tax-rule artifacts. N
 
 ## Product requirements
 
-- Consumer calculations and explanations are free.
+- The end goal is a free consumer federal tax preparation and filing product, competing with paid tax-preparation products. Calculations are an early milestone, not the final scope.
+- Design for guided preparation, review, signatures, submission, acknowledgments, and correction workflows from the start.
 - Initial income documents: W-2, 1099-INT, and 1099-DIV.
 - Secure server-side saving and cross-device access are intended.
 - Results must show grounded evidence and calculation reasoning.

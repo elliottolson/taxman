@@ -2,9 +2,9 @@
 
 ## The product
 
-Taxman helps people understand annual federal tax liability and their balance after payments. The initial audience is people with wages and straightforward bank or investment income. It is not initially a complete return-preparation system.
+Taxman is intended to be a free consumer U.S. federal tax preparation and filing product: a competitor to paid products such as TurboTax. The initial audience is people with wages and straightforward bank or investment income. A calculator is an early milestone toward preparing, reviewing, and submitting supported complete returns.
 
-The home experience should be approachable: choose a year, describe the household, add income, review the estimate, and explore a change. Explain tax concepts where needed. Keep rule IDs and technical execution details out of the normal flow; offer a detailed evidence view for people who want it.
+The home experience should be approachable: choose a year, describe the household, add income, review the calculations and completed return, sign, submit, and see the filing outcome. Scenario exploration remains useful before finalizing a return. Explain tax concepts where needed. Keep rule IDs and technical execution details out of the normal flow; offer a detailed evidence view for people who want it.
 
 Saved scenarios are private by default. A user can resume on another device, duplicate a scenario, compare changes, and download their data. No financial information in public share links.
 
@@ -23,7 +23,7 @@ The system returns separate dimensions:
 - Rule-package maturity: experimental, reviewed, or released.
 - Input quality: confirmed, provisional, estimated, or missing.
 
-A complete estimate is not a promise that the IRS will issue a particular refund. State tax, penalties, offsets, and filing are separate scopes.
+A complete estimate is not a promise that the IRS will issue a particular refund. State tax, penalties, offsets, and filing readiness are distinct scopes. Federal filing is an explicit end goal; state support is a later expansion.
 
 ## Initial capability matrix
 
@@ -57,7 +57,7 @@ New provisions can apply even to standard-deduction households. Keep these in th
 
 ### 0. Research and contracts
 
-Choose one year's supported envelope. Inventory document boxes and additional intake questions. Pin authoritative sources. Define fact types, amount policy, outcomes, rule contracts, evidence, and test expectations.
+Choose one year's supported calculation and filing envelopes. Inventory document boxes, required forms/schedules, and additional intake questions. Pin authoritative sources. Define fact types, a canonical return model, amount policy, outcomes, rule contracts, evidence, and test expectations. Research authorized transmission options early; do not wait until a calculator is finished.
 
 Gate: every candidate support claim maps to an implemented rule, a reviewed exclusion decision, or a named blocker. No unreviewed “everything else is zero” shortcut.
 
@@ -75,7 +75,7 @@ Gate: reviewed numerical references across status, zero-income, withholding, and
 
 ### 3. Free estimator interface
 
-Guided manual entry, accessible explanations, scenario comparison, and clearly marked annual projections. Prompt only for missing facts that matter to the requested result, while completing scope screening before claiming completeness.
+Guided manual entry, accessible explanations, scenario comparison, and clearly marked annual projections. Introduce return-review navigation and draft form previews, keeping hypothetical scenarios separate from confirmed return data. Prompt only for missing facts that matter to the requested result, while completing scope screening before claiming completeness.
 
 Gate: people unfamiliar with taxes understand tax liability versus payments and can explain the reason for a changed result. No account required for an unsaved calculation.
 
@@ -97,9 +97,11 @@ Add situations in coherent groups: household variants; common adjustments and cr
 
 Gate per capability: evidence, reviewed interpretation, independent fixtures, regression set, explanation, screening behavior, and year applicability. No rule is released by an AI import alone.
 
-### 7. Preparation and filing
+### 7. Complete preparation and launch federal filing
 
-Treat completed forms and electronic submission as later products with separate verification, identity, and operational requirements. Review [IRS e-file provider services](https://www.irs.gov/tax-professionals/e-file-provider-services) before choosing a filing integration.
+Complete the guided interview, supported forms/schedules, return-wide validation, taxpayer review, signature flow, authorized transmission, acknowledgment handling, rejection correction, and downloadable records. Estimation readiness is not filing readiness. A successful network request is not IRS acceptance.
+
+Research and model this work from milestone 0; release live filing after the calculation, security, operational, and applicable IRS/provider requirements are met. Choose the first filing tax year and transmission route explicitly. See [Preparation and filing](filing-product.md) for the lifecycle and research plan.
 
 ## What could become valuable
 
