@@ -26,4 +26,14 @@ jobs:
       - name: Check committed whitespace
         run: git show --format= --check HEAD
       - name: Check planning JSON syntax
-        run: jq empty examples/*.json schemas/*.json
+        run: jq empty examples/*.json schemas/*.json model/*.json
+      - name: Set up model-validation tooling
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - name: Install model-validation dependencies
+        run: python -m pip install -r tools/model/requirements.txt
+      - name: Validate domain model
+        run: python tools/model/validate_model.py --baseline-ref HEAD^
+      - name: Check model rejection cases
+        run: python -m unittest discover -s tools/model/tests -v

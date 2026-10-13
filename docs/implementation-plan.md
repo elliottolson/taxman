@@ -8,7 +8,7 @@ Share API contracts through explicit schemas and generated client types; fronten
 
 Initial production deployment candidate: Cloud Run, Postgres, Cloud Storage, Secret Manager, KMS, and GitHub Actions with federated authentication. Decide between Cloud SQL and an external Postgres provider based on actual costs, region, recovery, encryption, and network requirements. The hosting choice is provisional; no cloud resources are created by this plan.
 
-Use a modular monolith with one independently testable engine, not microservices for each tax provision. Extraction can become a separate worker because its isolation and resource needs differ.
+The end product includes preparation and filing. Keep the calculation engine, canonical return model, form mapping, filing orchestration, and transmission adapter as separate modules in a modular monolith. The engine remains independently testable. Extraction can become a separate worker because its isolation and resource needs differ.
 
 ## Proposed future repository
 
@@ -20,6 +20,9 @@ packages/facts/                   typed schemas and normalization contracts
 packages/tax-engine/              compiler, evaluator, exact math, trace
 packages/tax-modules/             reviewed pure worksheet implementations
 packages/tax-content/             explanations and interview definitions
+packages/returns/                 confirmed return revisions and readiness
+packages/form-mappings/           year-specific forms, lines, and artifacts
+packages/filing/                  lifecycle and transmission adapter contracts
 rules/us/federal/2025/            manifest, decision tables, expressions
 rules/us/federal/2026/            distinct planning/release packages
 parameters/us/federal/<year>/     sourced annual constants and lookup tables
@@ -40,7 +43,21 @@ No arbitrary user-supplied expressions or executable modules through these endpo
 
 Public calculation-source references contain no user data. Sensitive calculations require normal account authorization even when a source document itself is public.
 
-## First prototype
+## Preparation and filing contracts
+
+Model prepared returns separately from hypothetical scenarios. A return revision references confirmed facts, the calculation run, form mappings, and validation outcomes. Finalization creates an immutable digest for review and signing.
+
+Proposed endpoints: create/update a prepared return, validate it, finalize a revision, record the supported signature authorization, submit that exact revision, and retrieve its acknowledgment state. Filing requests cannot accept a live mutable scenario in place of a finalized return.
+
+Use a transmission adapter with a fake implementation first. Preserve transport status, provider status, and IRS status separately. Unknown delivery must be reconciled before retrying; retries use idempotency and cannot silently duplicate filing. See [Preparation and filing](filing-product.md).
+
+## Modeling phase first
+
+Before a narrow return, establish the portable model and tax-domain inventory in model/. JSON Schema and semantic reference/type/dependency checks are development tooling, independent of the production backend choice. Python under tools/model/ validates these artifacts only; it does not select Python for the application or tax engine.
+
+The model now includes allocation, shared-limit, carryover, and temporal contracts with synthetic validation cases. Next refine legal methods, source claims, and decision analysis before accepting rules for execution. Then use the following calculation prototype to test the reviewed contracts against real computation.
+
+## Subsequent calculation prototype
 
 1. Build exact numeric types and value/status contracts.
 2. Implement the illustrative dividend package with dependency derivation and trace output.
@@ -48,7 +65,8 @@ Public calculation-source references contain no user data. Sensitive calculation
 4. Add one reviewed ordinary-tax method and one supported preferential-tax worksheet.
 5. Add an applicability table with an exception and a coverage blocker.
 6. Change a parameter version and demonstrate reproducible old/new comparisons.
-7. Only then select UI and account infrastructure.
+7. Map the supported calculated results into a draft return, prove reconciliation, and exercise a fake acknowledgment/rejection flow.
+8. Select UI and account infrastructure around the full preparation and filing lifecycle.
 
 The goal is to test the architecture against real complexity, not spend months building an abstract rules platform. Include a worksheet, a decision, a source correction, and a rejected unsupported case in the prototype.
 

@@ -4,7 +4,7 @@
 
 Users can save their financial information securely without requiring browser-only execution. The server is authorized to process confirmed facts for calculations. Do not promise end-to-end encryption while the service can decrypt them. A separate encrypted user-only document vault could be considered later, with its recovery and processing limitations stated explicitly.
 
-Unsaved calculations need not require an account. Saved scenarios do. Do not require SSNs, complete account numbers, or bank routing details for estimation. Uploaded documents may contain them; minimize retention and redact extracted displays where feasible.
+Unsaved calculations need not require an account. Saved scenarios and prepared returns do. Do not require SSNs, complete account numbers, or bank routing details for estimation. Filing introduces necessary identity/signature information and may require payment or refund details for the selected method. Collect these only at the appropriate stage, isolate them from scenario calculations, and define purpose and retention. Uploaded documents may contain them; minimize retention and redact extracted displays where feasible.
 
 ## Proposed entities
 
@@ -18,6 +18,11 @@ Unsaved calculations need not require an account. Saved scenarios do. Do not req
 | FactRevision | Typed normalized information and provenance |
 | Election | Eligible choices, selection, user confirmation, version |
 | CalculationRun | Immutable input snapshot reference, engine/package version, outcomes |
+| TaxReturnRevision | Confirmed return facts, forms, validation, and filing-readiness status |
+| FilingIdentity | Separately protected taxpayer identity and selected payment/refund instructions |
+| SignatureRecord | Method, authorized signer, time, and exact finalized revision |
+| SubmissionAttempt | Finalized return digest, transport/provider references, idempotency, and state |
+| Acknowledgment | Provider/IRS outcome and structured correction information |
 | Trace | Sensitive step-level explanation and source references |
 | AccessEvent | Minimal security metadata without document contents or amounts |
 | RetentionJob | Deletion requests and confirmation of covered stores |
@@ -57,5 +62,7 @@ The user chooses whether original documents are retained. For temporary processi
 - Private result responses and downloads must not enter public/CDN caches.
 
 Deletion covers active database rows, raw objects, extraction artifacts, traces, result caches, vendor copies where applicable, and future restore handling. Backups may expire on a published schedule rather than instant deletion; restored backups must reapply deletion records. Do not promise instant erasure from every historical backup.
+
+Filing records need retention rules consistent with the selected provider roles and applicable requirements; review [IRS Publication 1345](https://www.irs.gov/pub/irs-pdf/p1345.pdf). User deletion must explain which filed records must be retained and for how long, rather than promising universal immediate erasure.
 
 Define retention durations and incident response before accepting real documents. Security review is part of release readiness, not a claim that this planning document establishes security.

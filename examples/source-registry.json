@@ -9,12 +9,21 @@
       "publisher": "IRS",
       "authority_class": "form_instructions",
       "publication_revision": "2025",
-      "candidate_tax_years": [2025],
+      "candidate_tax_years": [
+        2025
+      ],
       "url": "https://www.irs.gov/instructions/i1040gi",
       "archive_candidate_url": "https://www.irs.gov/pub/irs-prior/i1040gi--2025.pdf",
       "status": "inspected_not_rule_approved",
       "snapshot_sha256": null,
-      "locators": ["Line 1a", "Lines 2a and 2b", "Lines 3a and 3b", "Line 16", "Qualified Dividends and Capital Gain Tax Worksheet", "Instructions for Schedule 1-A"]
+      "locators": [
+        "Line 1a",
+        "Lines 2a and 2b",
+        "Lines 3a and 3b",
+        "Line 16",
+        "Qualified Dividends and Capital Gain Tax Worksheet",
+        "Instructions for Schedule 1-A"
+      ]
     },
     {
       "id": "irs-tax-tables-2025",
@@ -22,11 +31,16 @@
       "publisher": "IRS",
       "authority_class": "publication",
       "publication_revision": "2025",
-      "candidate_tax_years": [2025],
+      "candidate_tax_years": [
+        2025
+      ],
       "url": "https://www.irs.gov/publications/p1040",
       "status": "inspected_not_rule_approved",
       "snapshot_sha256": null,
-      "locators": ["Tax Table", "Tax Computation Worksheet"]
+      "locators": [
+        "Tax Table",
+        "Tax Computation Worksheet"
+      ]
     },
     {
       "id": "irs-1099-div-instructions-2024-01",
@@ -34,11 +48,21 @@
       "publisher": "IRS",
       "authority_class": "form_instructions",
       "publication_revision": "2024-01; continuing-use instructions",
-      "candidate_tax_years": [2025, 2026],
+      "candidate_tax_years": [
+        2025,
+        2026
+      ],
       "url": "https://www.irs.gov/instructions/i1099div",
       "status": "inspected_not_rule_approved",
       "snapshot_sha256": null,
-      "locators": ["Box 1a. Total Ordinary Dividends", "Box 1b. Qualified Dividends", "Qualified Dividends", "Box 2a. Total Capital Gain Distr.", "Boxes 2b through 2f", "Box 5. Section 199A Dividends"]
+      "locators": [
+        "Box 1a. Total Ordinary Dividends",
+        "Box 1b. Qualified Dividends",
+        "Qualified Dividends",
+        "Box 2a. Total Capital Gain Distr.",
+        "Boxes 2b through 2f",
+        "Box 5. Section 199A Dividends"
+      ]
     },
     {
       "id": "irs-1099-int-instructions-2024-01",
@@ -46,11 +70,17 @@
       "publisher": "IRS",
       "authority_class": "form_instructions",
       "publication_revision": "2024-01; continuing-use instructions",
-      "candidate_tax_years": [2025, 2026],
+      "candidate_tax_years": [
+        2025,
+        2026
+      ],
       "url": "https://www.irs.gov/instructions/i1099int",
       "status": "inspected_not_rule_approved",
       "snapshot_sha256": null,
-      "locators": ["Specific Instructions for Form 1099-INT", "Boxes 1 through 13"]
+      "locators": [
+        "Specific Instructions for Form 1099-INT",
+        "Boxes 1 through 13"
+      ]
     },
     {
       "id": "irs-w2-instructions-2025",
@@ -58,11 +88,17 @@
       "publisher": "IRS",
       "authority_class": "form_instructions",
       "publication_revision": "2025",
-      "candidate_tax_years": [2025],
+      "candidate_tax_years": [
+        2025
+      ],
       "url": "https://www.irs.gov/pub/irs-prior/iw2w3--2025.pdf",
       "status": "located_not_rule_approved",
       "snapshot_sha256": null,
-      "locators": ["Box 1", "Box 2", "Boxes 3 through 14"]
+      "locators": [
+        "Box 1",
+        "Box 2",
+        "Boxes 3 through 14"
+      ]
     },
     {
       "id": "irs-w2-instructions-2026",
@@ -70,11 +106,15 @@
       "publisher": "IRS",
       "authority_class": "form_instructions",
       "publication_revision": "2026",
-      "candidate_tax_years": [2026],
+      "candidate_tax_years": [
+        2026
+      ],
       "url": "https://www.irs.gov/instructions/iw2w3",
       "status": "inspected_not_rule_approved",
       "snapshot_sha256": null,
-      "locators": ["Specific Instructions for Form W-2"]
+      "locators": [
+        "Specific Instructions for Form W-2"
+      ]
     },
     {
       "id": "irs-p501-2025",
@@ -82,11 +122,16 @@
       "publisher": "IRS",
       "authority_class": "publication",
       "publication_revision": "2025",
-      "candidate_tax_years": [2025],
+      "candidate_tax_years": [
+        2025
+      ],
       "url": "https://www.irs.gov/publications/p501",
       "status": "inspected_not_rule_approved",
       "snapshot_sha256": null,
-      "locators": ["Filing Status", "Standard Deduction"]
+      "locators": [
+        "Filing Status",
+        "Standard Deduction"
+      ]
     },
     {
       "id": "irs-schedule-b-2025",
@@ -94,11 +139,16 @@
       "publisher": "IRS",
       "authority_class": "form_instructions",
       "publication_revision": "2025",
-      "candidate_tax_years": [2025],
+      "candidate_tax_years": [
+        2025
+      ],
       "url": "https://www.irs.gov/instructions/i1040sb",
       "status": "inspected_not_rule_approved",
       "snapshot_sha256": null,
-      "locators": ["Purpose of Schedule", "Part III. Foreign Accounts and Trusts"]
+      "locators": [
+        "Purpose of Schedule",
+        "Part III. Foreign Accounts and Trusts"
+      ]
     },
     {
       "id": "irs-8960-2025",
@@ -106,11 +156,16 @@
       "publisher": "IRS",
       "authority_class": "form_instructions",
       "publication_revision": "2025",
-      "candidate_tax_years": [2025],
+      "candidate_tax_years": [
+        2025
+      ],
       "url": "https://www.irs.gov/instructions/i8960",
       "status": "inspected_not_rule_approved",
       "snapshot_sha256": null,
-      "locators": ["Who Must File", "Individuals"]
+      "locators": [
+        "Who Must File",
+        "Individuals"
+      ]
     },
     {
       "id": "irs-6251-2025",
@@ -118,11 +173,16 @@
       "publisher": "IRS",
       "authority_class": "form_instructions",
       "publication_revision": "2025",
-      "candidate_tax_years": [2025],
+      "candidate_tax_years": [
+        2025
+      ],
       "url": "https://www.irs.gov/instructions/i6251",
       "status": "inspected_not_rule_approved",
       "snapshot_sha256": null,
-      "locators": ["Who Must File", "Part I. Alternative Minimum Taxable Income"]
+      "locators": [
+        "Who Must File",
+        "Part I. Alternative Minimum Taxable Income"
+      ]
     },
     {
       "id": "irs-8959-2025",
@@ -130,11 +190,16 @@
       "publisher": "IRS",
       "authority_class": "form_instructions",
       "publication_revision": "2025",
-      "candidate_tax_years": [2025],
+      "candidate_tax_years": [
+        2025
+      ],
       "url": "https://www.irs.gov/instructions/i8959",
       "status": "inspected_not_rule_approved",
       "snapshot_sha256": null,
-      "locators": ["Who Must File", "Wages and Tips Subject to Additional Medicare Tax"]
+      "locators": [
+        "Who Must File",
+        "Wages and Tips Subject to Additional Medicare Tax"
+      ]
     },
     {
       "id": "irs-individual-tax-changes",
@@ -142,11 +207,19 @@
       "publisher": "IRS",
       "authority_class": "explanatory_guidance",
       "publication_revision": "live page; archive required",
-      "candidate_tax_years": [2025, 2026],
+      "candidate_tax_years": [
+        2025,
+        2026
+      ],
       "url": "https://www.irs.gov/newsroom/working-families-tax-cuts-individuals-and-workers",
       "status": "inspected_not_rule_approved",
       "snapshot_sha256": null,
-      "locators": ["Standard deduction increases", "No tax on tips", "No tax on overtime", "Enhanced deduction for seniors"]
+      "locators": [
+        "Standard deduction increases",
+        "No tax on tips",
+        "No tax on overtime",
+        "Enhanced deduction for seniors"
+      ]
     },
     {
       "id": "irs-rev-proc-2025-32",
@@ -154,11 +227,16 @@
       "publisher": "IRS",
       "authority_class": "published_guidance",
       "publication_revision": "2025-32",
-      "candidate_tax_years": [2026],
+      "candidate_tax_years": [
+        2026
+      ],
       "url": "https://www.irs.gov/irb/2025-45_IRB",
       "status": "inspected_not_rule_approved",
       "snapshot_sha256": null,
-      "locators": ["Revenue Procedure 2025-32", "SECTION 3. 2026 ADJUSTED ITEMS"]
+      "locators": [
+        "Revenue Procedure 2025-32",
+        "SECTION 3. 2026 ADJUSTED ITEMS"
+      ]
     },
     {
       "id": "irs-p505-2026",
@@ -166,11 +244,89 @@
       "publisher": "IRS",
       "authority_class": "publication",
       "publication_revision": "2026",
-      "candidate_tax_years": [2026],
+      "candidate_tax_years": [
+        2026
+      ],
       "url": "https://www.irs.gov/publications/p505",
       "status": "inspected_not_rule_approved",
       "snapshot_sha256": null,
-      "locators": ["Estimated Tax", "Estimated Tax Worksheet"]
+      "locators": [
+        "Estimated Tax",
+        "Estimated Tax Worksheet"
+      ]
+    },
+    {
+      "id": "irs-p3112-2025-11",
+      "title": "Publication 3112, IRS e-file Application and Participation",
+      "publisher": "IRS",
+      "authority_class": "program_guidance",
+      "publication_revision": "2025-11",
+      "candidate_tax_years": [
+        2025,
+        2026
+      ],
+      "url": "https://www.irs.gov/pub/irs-pdf/p3112.pdf",
+      "status": "inspected_not_rule_approved",
+      "snapshot_sha256": null,
+      "locators": [
+        "Applying to IRS e-file",
+        "Provider Options"
+      ]
+    },
+    {
+      "id": "irs-p1345-2025-12",
+      "title": "Publication 1345, Authorized IRS e-file Providers of Individual Income Tax Returns",
+      "publisher": "IRS",
+      "authority_class": "program_guidance",
+      "publication_revision": "2025-12",
+      "candidate_tax_years": [
+        2025,
+        2026
+      ],
+      "url": "https://www.irs.gov/pub/irs-pdf/p1345.pdf",
+      "status": "inspected_not_rule_approved",
+      "snapshot_sha256": null,
+      "locators": [
+        "IRS e-file Security, Privacy and Business Standards",
+        "Signing an Electronic Tax Return",
+        "Acknowledgments"
+      ]
+    },
+    {
+      "id": "irs-mef-schemas-and-business-rules",
+      "title": "Modernized e-File schemas and business rules",
+      "publisher": "IRS",
+      "authority_class": "program_guidance",
+      "publication_revision": "live page; archive required",
+      "candidate_tax_years": [
+        2025,
+        2026
+      ],
+      "url": "https://www.irs.gov/e-file-providers/modernized-e-file-mef-schemas-and-business-rules",
+      "status": "inspected_not_rule_approved",
+      "snapshot_sha256": null,
+      "locators": [
+        "Schemas and business rules distribution",
+        "Known issues and solutions"
+      ]
+    },
+    {
+      "id": "irs-mef-ats",
+      "title": "Modernized e-File Assurance Testing System",
+      "publisher": "IRS",
+      "authority_class": "program_guidance",
+      "publication_revision": "live page; archive required",
+      "candidate_tax_years": [
+        2025,
+        2026
+      ],
+      "url": "https://www.irs.gov/e-file-providers/modernized-e-file-mef-assurance-testing-system-ats",
+      "status": "inspected_not_rule_approved",
+      "snapshot_sha256": null,
+      "locators": [
+        "1040 series and extensions",
+        "Assurance Testing System"
+      ]
     }
   ]
 }

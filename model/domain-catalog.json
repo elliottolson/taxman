@@ -1,0 +1,1590 @@
+{
+  "$schema": "../schemas/domain-catalog.schema.json",
+  "catalog_version": "0.2.0",
+  "status": "research_inventory",
+  "exhaustive": false,
+  "jurisdiction": "US-FED",
+  "families": [
+    {
+      "id": "household",
+      "label": "Household and filing status",
+      "concepts": [
+        {
+          "id": "household.filing_status",
+          "label": "Filing status",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "household.dependents",
+          "label": "Dependents",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "household.qualifying_child",
+          "label": "Qualifying child",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "household.qualifying_relative",
+          "label": "Qualifying relative",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "household.age_and_blindness",
+          "label": "Age and blindness",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "household.joint_return",
+          "label": "Joint return",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "household.community_property",
+          "label": "Community property",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "residency",
+      "label": "Residency and tax periods",
+      "concepts": [
+        {
+          "id": "residency.resident_status",
+          "label": "Resident status",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "residency.dual_status",
+          "label": "Dual status",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "residency.tax_year",
+          "label": "Tax year",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "residency.partial_year",
+          "label": "Partial year",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "residency.territories",
+          "label": "Territories",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "income",
+      "label": "Income classifications",
+      "concepts": [
+        {
+          "id": "income.wages",
+          "label": "Wages",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "income.taxable_interest",
+          "label": "Taxable interest",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "income.tax_exempt_interest",
+          "label": "Tax exempt interest",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "income.ordinary_dividends",
+          "label": "Ordinary dividends",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "income.qualified_dividends",
+          "label": "Qualified dividends",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "income.capital_gain_distributions",
+          "label": "Capital gain distributions",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "income.other_income",
+          "label": "Other income",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "income.excluded_income",
+          "label": "Excluded income",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "employment",
+      "label": "Employment and benefits",
+      "concepts": [
+        {
+          "id": "employment.tips",
+          "label": "Tips",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "employment.overtime",
+          "label": "Overtime",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "employment.fringe_benefits",
+          "label": "Fringe benefits",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "employment.dependent_care_benefits",
+          "label": "Dependent care benefits",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "employment.adoption_benefits",
+          "label": "Adoption benefits",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "employment.statutory_employees",
+          "label": "Statutory employees",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "employment.multiple_employers",
+          "label": "Multiple employers",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "investments",
+      "label": "Investment transactions",
+      "concepts": [
+        {
+          "id": "investments.capital_gains_losses",
+          "label": "Capital gains losses",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "investments.basis",
+          "label": "Basis",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "investments.holding_period",
+          "label": "Holding period",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "investments.wash_sales",
+          "label": "Wash sales",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "investments.bond_premium",
+          "label": "Bond premium",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "investments.market_discount",
+          "label": "Market discount",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "investments.original_issue_discount",
+          "label": "Original issue discount",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "investments.nondividend_distributions",
+          "label": "Nondividend distributions",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "investments.special_gains",
+          "label": "Special gains",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "investments.digital_assets",
+          "label": "Digital assets",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "retirement",
+      "label": "Retirement and benefits",
+      "concepts": [
+        {
+          "id": "retirement.ira_distributions",
+          "label": "Ira distributions",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "retirement.pensions",
+          "label": "Pensions",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "retirement.social_security",
+          "label": "Social security",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "retirement.rollovers",
+          "label": "Rollovers",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "retirement.roth_conversions",
+          "label": "Roth conversions",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "retirement.required_distributions",
+          "label": "Required distributions",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "retirement.early_distributions",
+          "label": "Early distributions",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "business",
+      "label": "Business and pass-through income",
+      "concepts": [
+        {
+          "id": "business.self_employment",
+          "label": "Self employment",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "business.business_expenses",
+          "label": "Business expenses",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "business.depreciation",
+          "label": "Depreciation",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "business.qualified_business_income",
+          "label": "Qualified business income",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "business.rental_income",
+          "label": "Rental income",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "business.royalties",
+          "label": "Royalties",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "business.pass_throughs",
+          "label": "Pass throughs",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "business.passive_activity",
+          "label": "Passive activity",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "adjustments",
+      "label": "Adjustments to income",
+      "concepts": [
+        {
+          "id": "adjustments.ira_deduction",
+          "label": "Ira deduction",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "adjustments.hsa_deduction",
+          "label": "Hsa deduction",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "adjustments.student_loan_interest",
+          "label": "Student loan interest",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "adjustments.early_withdrawal_penalty",
+          "label": "Early withdrawal penalty",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "adjustments.educator_expenses",
+          "label": "Educator expenses",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "adjustments.self_employed_adjustments",
+          "label": "Self employed adjustments",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deductions",
+      "label": "Deductions and exceptions",
+      "concepts": [
+        {
+          "id": "deductions.standard_deduction",
+          "label": "Standard deduction",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "deductions.dependent_standard_deduction",
+          "label": "Dependent standard deduction",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "deductions.itemized_deductions",
+          "label": "Itemized deductions",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "deductions.deduction_method",
+          "label": "Deduction method",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "deductions.charitable_contributions",
+          "label": "Charitable contributions",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "deductions.medical_expenses",
+          "label": "Medical expenses",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "deductions.state_local_taxes",
+          "label": "State local taxes",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "deductions.mortgage_interest",
+          "label": "Mortgage interest",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "deductions.casualty_losses",
+          "label": "Casualty losses",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "deductions.additional_deductions",
+          "label": "Additional deductions",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "credits",
+      "label": "Credits and interactions",
+      "concepts": [
+        {
+          "id": "credits.earned_income_credit",
+          "label": "Earned income credit",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "credits.child_tax_credit",
+          "label": "Child tax credit",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "credits.other_dependent_credit",
+          "label": "Other dependent credit",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "credits.child_care_credit",
+          "label": "Child care credit",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "credits.education_credits",
+          "label": "Education credits",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "credits.saver_credit",
+          "label": "Saver credit",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "credits.foreign_tax_credit",
+          "label": "Foreign tax credit",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "credits.premium_tax_credit",
+          "label": "Premium tax credit",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "credits.adoption_credit",
+          "label": "Adoption credit",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "credits.energy_credits",
+          "label": "Energy credits",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "credits.credit_ordering",
+          "label": "Credit ordering",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tax",
+      "label": "Tax computations",
+      "concepts": [
+        {
+          "id": "tax.ordinary_tax",
+          "label": "Ordinary tax",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "tax.preferential_tax",
+          "label": "Preferential tax",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "tax.alternative_minimum_tax",
+          "label": "Alternative minimum tax",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "tax.net_investment_income_tax",
+          "label": "Net investment income tax",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "tax.additional_medicare_tax",
+          "label": "Additional medicare tax",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "tax.self_employment_tax",
+          "label": "Self employment tax",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "tax.kiddie_tax",
+          "label": "Kiddie tax",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "tax.other_taxes",
+          "label": "Other taxes",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "payments",
+      "label": "Payments and reconciliation",
+      "concepts": [
+        {
+          "id": "payments.withholding",
+          "label": "Withholding",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "payments.estimated_payments",
+          "label": "Estimated payments",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "payments.prior_year_overpayment",
+          "label": "Prior year overpayment",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "payments.refundable_credits",
+          "label": "Refundable credits",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "payments.excess_social_security",
+          "label": "Excess social security",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "payments.refund",
+          "label": "Refund",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "payments.balance_due",
+          "label": "Balance due",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "payments.payment_method",
+          "label": "Payment method",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "international",
+      "label": "International and foreign situations",
+      "concepts": [
+        {
+          "id": "international.foreign_accounts",
+          "label": "Foreign accounts",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "international.foreign_assets",
+          "label": "Foreign assets",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "international.foreign_income",
+          "label": "Foreign income",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "international.foreign_exclusions",
+          "label": "Foreign exclusions",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "international.foreign_tax",
+          "label": "Foreign tax",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "international.treaty_positions",
+          "label": "Treaty positions",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "limits",
+      "label": "Shared limits and allocations",
+      "concepts": [
+        {
+          "id": "limits.household_limits",
+          "label": "Household limits",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "limits.per_person_limits",
+          "label": "Per person limits",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "limits.income_phaseouts",
+          "label": "Income phaseouts",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "limits.allocation_methods",
+          "label": "Allocation methods",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "limits.deduction_credit_interactions",
+          "label": "Deduction credit interactions",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "carryovers",
+      "label": "Cross-year amounts",
+      "concepts": [
+        {
+          "id": "carryovers.capital_loss_carryover",
+          "label": "Capital loss carryover",
+          "status": "inventoried",
+          "rule_kinds": [
+            "calculation",
+            "carryover",
+            "reporting"
+          ]
+        },
+        {
+          "id": "carryovers.credit_carryover",
+          "label": "Credit carryover",
+          "status": "inventoried",
+          "rule_kinds": [
+            "calculation",
+            "carryover",
+            "reporting"
+          ]
+        },
+        {
+          "id": "carryovers.charitable_carryover",
+          "label": "Charitable carryover",
+          "status": "inventoried",
+          "rule_kinds": [
+            "calculation",
+            "carryover",
+            "reporting"
+          ]
+        },
+        {
+          "id": "carryovers.basis_history",
+          "label": "Basis history",
+          "status": "inventoried",
+          "rule_kinds": [
+            "calculation",
+            "carryover",
+            "reporting"
+          ]
+        },
+        {
+          "id": "carryovers.passive_loss_carryover",
+          "label": "Passive loss carryover",
+          "status": "inventoried",
+          "rule_kinds": [
+            "calculation",
+            "carryover",
+            "reporting"
+          ]
+        },
+        {
+          "id": "carryovers.net_operating_loss",
+          "label": "Net operating loss",
+          "status": "inventoried",
+          "rule_kinds": [
+            "calculation",
+            "carryover",
+            "reporting"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "elections",
+      "label": "Elections and choices",
+      "concepts": [
+        {
+          "id": "elections.eligibility",
+          "label": "Eligibility",
+          "status": "inventoried",
+          "rule_kinds": [
+            "eligibility",
+            "election",
+            "procedure"
+          ]
+        },
+        {
+          "id": "elections.taxpayer_authorization",
+          "label": "Taxpayer authorization",
+          "status": "inventoried",
+          "rule_kinds": [
+            "eligibility",
+            "election",
+            "procedure"
+          ]
+        },
+        {
+          "id": "elections.deadlines",
+          "label": "Deadlines",
+          "status": "inventoried",
+          "rule_kinds": [
+            "eligibility",
+            "election",
+            "procedure"
+          ]
+        },
+        {
+          "id": "elections.revocation",
+          "label": "Revocation",
+          "status": "inventoried",
+          "rule_kinds": [
+            "eligibility",
+            "election",
+            "procedure"
+          ]
+        },
+        {
+          "id": "elections.future_year_effects",
+          "label": "Future year effects",
+          "status": "inventoried",
+          "rule_kinds": [
+            "eligibility",
+            "election",
+            "procedure"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reporting",
+      "label": "Forms and reporting",
+      "concepts": [
+        {
+          "id": "reporting.form_1040",
+          "label": "Form 1040",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "reporting.schedule_b",
+          "label": "Schedule b",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "reporting.schedule_d",
+          "label": "Schedule d",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "reporting.supporting_schedules",
+          "label": "Supporting schedules",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "reporting.information_returns",
+          "label": "Information returns",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "reporting.attachments",
+          "label": "Attachments",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        },
+        {
+          "id": "reporting.return_reconciliation",
+          "label": "Return reconciliation",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "eligibility",
+            "calculation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "filing",
+      "label": "Preparation and submission",
+      "concepts": [
+        {
+          "id": "filing.return_completeness",
+          "label": "Return completeness",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "filing.identity",
+          "label": "Identity",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "filing.signatures",
+          "label": "Signatures",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "filing.transmission",
+          "label": "Transmission",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "filing.acknowledgments",
+          "label": "Acknowledgments",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "filing.rejections",
+          "label": "Rejections",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "filing.amendments",
+          "label": "Amendments",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "filing.extensions",
+          "label": "Extensions",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "filing.retention",
+          "label": "Retention",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "procedure",
+      "label": "Procedural rules",
+      "concepts": [
+        {
+          "id": "procedure.filing_requirement",
+          "label": "Filing requirement",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "procedure.due_dates",
+          "label": "Due dates",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "procedure.estimated_tax_penalty",
+          "label": "Estimated tax penalty",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "procedure.late_filing",
+          "label": "Late filing",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "procedure.late_payment",
+          "label": "Late payment",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "procedure.relief",
+          "label": "Relief",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "procedure.notices",
+          "label": "Notices",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "evidence",
+      "label": "Interpretation and revisions",
+      "concepts": [
+        {
+          "id": "evidence.authority_hierarchy",
+          "label": "Authority hierarchy",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "evidence.effective_dates",
+          "label": "Effective dates",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "evidence.source_corrections",
+          "label": "Source corrections",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "evidence.review_status",
+          "label": "Review status",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        },
+        {
+          "id": "evidence.coverage_status",
+          "label": "Coverage status",
+          "status": "inventoried",
+          "rule_kinds": [
+            "definition",
+            "reporting",
+            "procedure"
+          ]
+        }
+      ]
+    }
+  ],
+  "future_jurisdictions_and_entities": [
+    "State individual income tax",
+    "Corporate and partnership returns",
+    "Estate, gift, and trust returns",
+    "Other federal tax programs"
+  ],
+  "limitations": [
+    "Authored concept inventory, not an exhaustive statutory catalog.",
+    "An inventoried topic is not a researched or implemented tax rule.",
+    "Prototype rules map to selected topics without claiming complete topic coverage."
+  ]
+}

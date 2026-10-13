@@ -2,11 +2,12 @@
 
 ## Current scope
 
-This repository contains product planning and illustrative tax-rule artifacts. No released calculator exists. Read README.md and docs/README.md first. The backend language is an open decision; do not assume that planning examples establish a production stack.
+This repository contains product planning, a portable tax-domain model, illustrative tax-rule artifacts, and validation tooling. No released calculator exists. Read README.md and docs/README.md first. The backend language is an open decision; do not assume that planning examples establish a production stack.
 
 ## Product requirements
 
-- Consumer calculations and explanations are free.
+- The end goal is a free consumer federal tax preparation and filing product, competing with paid tax-preparation products. Calculations are an early milestone, not the final scope.
+- Design for guided preparation, review, signatures, submission, acknowledgments, and correction workflows from the start.
 - Initial income documents: W-2, 1099-INT, and 1099-DIV.
 - Secure server-side saving and cross-device access are intended.
 - Results must show grounded evidence and calculation reasoning.
@@ -32,5 +33,7 @@ Use synthetic financial data only. Do not inspect unrelated private documents or
 - Product name: Taxman. Repository name: taxman. The existing local directory may remain TaxMan.
 - Keep changes focused and preserve unrelated work.
 - Commit with the user's configured Git identity. Do not add assistant attribution, co-author trailers, or generated-by notices to commit messages or contributor listings.
-- Do not claim software is licensed under an open-source license until the owner has chosen one.
-- Initial verification: git diff --check and JSON syntax validation for examples/ and schemas/. These checks do not establish legal or numerical correctness.
+- The project is licensed under Apache 2.0. Preserve the license and applicable notices when adding or redistributing code.
+- Current work models the tax domain before implementing a narrow return. Keep inventoried topics, draft models, reviewed interpretations, and implemented capabilities distinct.
+- Run tools/model/validate_model.py and its contract tests using tools/model/requirements.txt. Check archive preservation with --baseline-ref HEAD^ when changing existing interactions; never silently rewrite archived snapshots. Python here is tooling only; the production backend language remains undecided.
+- Verification also includes git diff --check and JSON syntax checks. Structural checks do not establish legal or numerical correctness.

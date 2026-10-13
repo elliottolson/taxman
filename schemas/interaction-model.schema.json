@@ -1,0 +1,823 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:taxman:interactions:0.1.0",
+  "title": "Taxman temporal, allocation, and carryover contracts",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "minLength": 1
+    },
+    "contract_version": {
+      "const": "0.1.0"
+    },
+    "status": {
+      "const": "synthetic_model_examples"
+    },
+    "production_enabled": {
+      "const": false
+    },
+    "amount_semantics": {
+      "const": "USD exact cents; synthetic only"
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "subjects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/subject"
+      },
+      "minItems": 1
+    },
+    "definition_snapshots": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/snapshot"
+      },
+      "minItems": 1
+    },
+    "rule_revisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/revision"
+      },
+      "minItems": 1
+    },
+    "package_snapshots": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/package"
+      },
+      "minItems": 1
+    },
+    "shared_limits": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/shared_limit"
+      },
+      "minItems": 1
+    },
+    "allocations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/allocation"
+      },
+      "minItems": 1
+    },
+    "carryovers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/carryover"
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "$schema",
+    "contract_version",
+    "status",
+    "production_enabled",
+    "amount_semantics",
+    "limitations",
+    "subjects",
+    "definition_snapshots",
+    "rule_revisions",
+    "package_snapshots",
+    "shared_limits",
+    "allocations",
+    "carryovers"
+  ],
+  "$defs": {
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "definition": {
+          "type": "object"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "definition",
+        "sha256"
+      ]
+    },
+    "revision": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "rule_ref": {
+          "type": "string",
+          "pattern": "^rule:"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "definition_snapshot": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "tax_years": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "start": {
+              "type": "integer",
+              "minimum": 1900,
+              "maximum": 2200
+            },
+            "end_exclusive": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1900,
+                  "maximum": 2200
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "start",
+            "end_exclusive"
+          ]
+        },
+        "transaction_dates": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "start": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "end_exclusive": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "start",
+                "end_exclusive"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_published_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$"
+        },
+        "recorded_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$"
+        },
+        "superseded_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "Z$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "supersedes": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_.-]*$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "change_kind": {
+          "enum": [
+            "initial",
+            "correction"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "rule_ref",
+        "version",
+        "definition_snapshot",
+        "tax_years",
+        "transaction_dates",
+        "source_published_at",
+        "recorded_at",
+        "superseded_at",
+        "supersedes",
+        "change_kind"
+      ]
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$"
+        },
+        "context": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tax_year": {
+              "type": "integer",
+              "minimum": 1900,
+              "maximum": 2200
+            },
+            "known_at": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "Z$"
+            },
+            "transaction_date": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "tax_year",
+            "known_at",
+            "transaction_date"
+          ]
+        },
+        "rule_pins": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "rule_ref": {
+                "type": "string",
+                "pattern": "^rule:"
+              },
+              "revision_id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.-]*$"
+              },
+              "definition_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "rule_ref",
+              "revision_id",
+              "definition_sha256"
+            ]
+          },
+          "minItems": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "created_at",
+        "context",
+        "rule_pins",
+        "sha256"
+      ]
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "household",
+            "taxpayer",
+            "return"
+          ]
+        },
+        "household_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "taxpayer_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "household_id"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "return"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "taxpayer_ids"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "taxpayer_ids"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "shared_limit": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "concept_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "currency": {
+          "const": "USD"
+        },
+        "tax_year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2200
+        },
+        "owner_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "capacity_binding": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "reference": {
+              "type": "string",
+              "pattern": "^(fact|rule|parameter):[a-z][a-z0-9_.-]*$"
+            },
+            "subject_id": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "reference",
+            "subject_id"
+          ]
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.-]*$"
+              },
+              "demand_binding": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "reference": {
+                    "type": "string",
+                    "pattern": "^(fact|rule|parameter):[a-z][a-z0-9_.-]*$"
+                  },
+                  "subject_id": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "reference",
+                  "subject_id"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "demand_binding"
+            ]
+          },
+          "minItems": 1
+        },
+        "status": {
+          "const": "synthetic_contract"
+        }
+      },
+      "required": [
+        "id",
+        "concept_id",
+        "currency",
+        "tax_year",
+        "owner_id",
+        "capacity_binding",
+        "claims",
+        "status"
+      ]
+    },
+    "allocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "limit_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "method": {
+          "enum": [
+            "explicit",
+            "proportional"
+          ]
+        },
+        "status": {
+          "enum": [
+            "proposal",
+            "confirmed"
+          ]
+        },
+        "capacity": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.-]*$"
+              },
+              "requested": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+              },
+              "weight": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "numerator": {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]*)$"
+                  },
+                  "denominator": {
+                    "type": "string",
+                    "pattern": "^[1-9][0-9]*$"
+                  }
+                },
+                "required": [
+                  "numerator",
+                  "denominator"
+                ]
+              }
+            },
+            "required": [
+              "claim_id",
+              "requested",
+              "weight"
+            ]
+          },
+          "minItems": 1
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "claim_id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.-]*$"
+              },
+              "allocated": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+              }
+            },
+            "required": [
+              "claim_id",
+              "allocated"
+            ]
+          },
+          "minItems": 1
+        },
+        "unallocated": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+        },
+        "remainder_policy": {
+          "enum": [
+            "explicit",
+            "largest_remainder_by_claim_id"
+          ]
+        },
+        "scenario_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        }
+      },
+      "required": [
+        "id",
+        "limit_id",
+        "method",
+        "status",
+        "capacity",
+        "claims",
+        "outputs",
+        "unallocated",
+        "remainder_policy",
+        "scenario_id"
+      ]
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "tax_year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2200
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "recorded_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$"
+        },
+        "kind": {
+          "enum": [
+            "use",
+            "adjustment",
+            "expiration"
+          ]
+        },
+        "amount": {
+          "type": "string",
+          "pattern": "^-?(0|[1-9][0-9]*)\\.[0-9]{2}$"
+        },
+        "calculation_package": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "tax_year",
+        "sequence",
+        "recorded_at",
+        "kind",
+        "amount",
+        "calculation_package",
+        "reason"
+      ]
+    },
+    "year_balance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tax_year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2200
+        },
+        "opening": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+        },
+        "adjustments": {
+          "type": "string",
+          "pattern": "^-?(0|[1-9][0-9]*)\\.[0-9]{2}$"
+        },
+        "used": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+        },
+        "expired": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+        },
+        "closing": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+        }
+      },
+      "required": [
+        "tax_year",
+        "opening",
+        "adjustments",
+        "used",
+        "expired",
+        "closing"
+      ]
+    },
+    "carryover": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "logical_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "previous_revision": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_.-]*$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "recorded_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$"
+        },
+        "owner_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "concept_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "tax_character": {
+          "type": "string",
+          "minLength": 1
+        },
+        "currency": {
+          "const": "USD"
+        },
+        "origin_tax_year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2200
+        },
+        "opening_tax_year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2200
+        },
+        "opening_amount": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+        },
+        "opening_provenance": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expires_after_tax_year": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1900,
+              "maximum": 2200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/event"
+          },
+          "minItems": 0
+        },
+        "year_balances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/year_balance"
+          },
+          "minItems": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "logical_id",
+        "version",
+        "previous_revision",
+        "recorded_at",
+        "owner_id",
+        "concept_id",
+        "tax_character",
+        "currency",
+        "origin_tax_year",
+        "opening_tax_year",
+        "opening_amount",
+        "opening_provenance",
+        "expires_after_tax_year",
+        "events",
+        "year_balances",
+        "sha256"
+      ]
+    }
+  }
+}

@@ -51,6 +51,8 @@ Each rule has:
 - Test references and capability membership.
 - Relationships: prerequisites, supersedes, exception-to, mutually-exclusive-with, and method alternatives.
 
+The product includes complete return preparation and electronic filing. A canonical return model consumes calculation outputs and confirmed facts; year-specific form mappings and submission rules live in separate modules. A calculation may be complete while a return is not ready to file.
+
 Do not make forms the engine's data model. Semantic values such as `income.dividends.qualified` are mapped to year-specific form lines separately. Preserve worksheet step identifiers for inspection.
 
 See [the illustrative package](../examples/dividend-rules.json) and [draft schema](../schemas/rule-package.schema.json). These only demonstrate authoring structure; they are not a complete engine or tax package.
