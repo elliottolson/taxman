@@ -1,9 +1,10 @@
 {
   "$schema": "../schemas/tax-model.schema.json",
-  "model_version": "0.2.0",
+  "model_version": "0.3.0",
   "jurisdiction": "US-FED",
   "candidate_tax_years": [
-    2025
+    2025,
+    2026
   ],
   "status": "draft",
   "production_enabled": false,
@@ -14,7 +15,7 @@
     "Annual values are intentionally unpopulated.",
     "Module interfaces omit full worksheet inputs until detailed research.",
     "Election eligibility and reporting requirement facts are placeholders for reviewed rules.",
-    "Decision overlap checks are partial; subject and temporal semantics need further compiler analysis."
+    "Decision overlap checks are partial; subject/time bindings are validated for the interaction contracts, not a full compiler."
   ],
   "facts": [
     {
@@ -214,6 +215,40 @@
       "shape": "scalar",
       "scope": "return",
       "description": "Normalized fact definition; no private taxpayer value is included.",
+      "value_states": [
+        "confirmed",
+        "provisional",
+        "estimated",
+        "missing",
+        "not_applicable",
+        "invalid"
+      ]
+    },
+    {
+      "id": "design.limit_capacity",
+      "label": "Synthetic shared-limit capacity",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "scalar",
+      "scope": "household",
+      "description": "Synthetic interaction-contract input; not an actual tax allowance.",
+      "value_states": [
+        "confirmed",
+        "provisional",
+        "estimated",
+        "missing",
+        "not_applicable",
+        "invalid"
+      ]
+    },
+    {
+      "id": "design.claim_amount",
+      "label": "Synthetic per-taxpayer demand",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "scalar",
+      "scope": "taxpayer",
+      "description": "Synthetic interaction-contract input; not an actual tax allowance.",
       "value_states": [
         "confirmed",
         "provisional",
@@ -1033,5 +1068,6 @@
         "itemized"
       ]
     }
-  ]
+  ],
+  "interaction_model": "interaction-model.json"
 }

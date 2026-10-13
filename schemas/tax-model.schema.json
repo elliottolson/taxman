@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:taxman:model:0.2.0",
+  "$id": "urn:taxman:model:0.3.0",
   "title": "Taxman tax-domain model prototype",
   "type": "object",
   "additionalProperties": false,
@@ -10,7 +10,7 @@
       "minLength": 1
     },
     "model_version": {
-      "const": "0.2.0"
+      "const": "0.3.0"
     },
     "jurisdiction": {
       "const": "US-FED"
@@ -136,6 +136,9 @@
           }
         }
       }
+    },
+    "interaction_model": {
+      "const": "interaction-model.json"
     }
   },
   "required": [
@@ -157,7 +160,8 @@
     "relationships",
     "form_mappings",
     "capabilities",
-    "enum_domains"
+    "enum_domains",
+    "interaction_model"
   ],
   "$defs": {
     "expression": {

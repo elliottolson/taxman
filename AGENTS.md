@@ -35,5 +35,5 @@ Use synthetic financial data only. Do not inspect unrelated private documents or
 - Commit with the user's configured Git identity. Do not add assistant attribution, co-author trailers, or generated-by notices to commit messages or contributor listings.
 - The project is licensed under Apache 2.0. Preserve the license and applicable notices when adding or redistributing code.
 - Current work models the tax domain before implementing a narrow return. Keep inventoried topics, draft models, reviewed interpretations, and implemented capabilities distinct.
-- Run tools/model/validate_model.py and its contract tests using tools/model/requirements.txt. Python here is tooling only; the production backend language remains undecided.
+- Run tools/model/validate_model.py and its contract tests using tools/model/requirements.txt. Check archive preservation with --baseline-ref HEAD^ when changing existing interactions; never silently rewrite archived snapshots. Python here is tooling only; the production backend language remains undecided.
 - Verification also includes git diff --check and JSON syntax checks. Structural checks do not establish legal or numerical correctness.

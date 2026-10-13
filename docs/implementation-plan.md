@@ -55,7 +55,7 @@ Use a transmission adapter with a fake implementation first. Preserve transport 
 
 Before a narrow return, establish the portable model and tax-domain inventory in model/. JSON Schema and semantic reference/type/dependency checks are development tooling, independent of the production backend choice. Python under tools/model/ validates these artifacts only; it does not select Python for the application or tax engine.
 
-Expand model contracts for allocations, shared limits, carryovers, effective dates, and richer decision analysis before accepting rules for execution. Then use the following calculation prototype to test the reviewed contracts against real computation.
+The model now includes allocation, shared-limit, carryover, and temporal contracts with synthetic validation cases. Next refine legal methods, source claims, and decision analysis before accepting rules for execution. Then use the following calculation prototype to test the reviewed contracts against real computation.
 
 ## Subsequent calculation prototype
 

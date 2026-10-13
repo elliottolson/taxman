@@ -42,9 +42,9 @@
 
 ## Current modeling phase
 
-Start with broad domain modeling before a narrow return. The 0.2 prototype includes a 145-concept research inventory, portable contracts, typed references, representative exceptions/elections/module interfaces, and structural validation. These are drafts with unpopulated annual values, not verified tax rules.
+Start with broad domain modeling before a narrow return. The 0.3 prototype includes a 145-concept research inventory, portable contracts, typed references, representative exceptions/elections/module interfaces, temporal revisions, shared-limit allocations, carryover snapshots, and structural validation. These are drafts with unpopulated annual values, not verified tax rules.
 
-Next expand allocations, shared limits, carryover records, effective dates, source claims, and finite-domain decision analysis. Backend selection and taxpayer-return implementation remain subsequent decisions.
+Next review the interaction contracts against legal methods and expand source claims, finite-domain decision analysis, elections, and exception routing. Allocation, shared-limit, carryover, and time schemas now exist with synthetic verification cases. Backend selection and taxpayer-return implementation remain subsequent decisions.
 
 ## Architecture experiments
 

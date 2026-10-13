@@ -1,0 +1,425 @@
+{
+  "$schema": "../schemas/interaction-model.schema.json",
+  "contract_version": "0.1.0",
+  "status": "synthetic_model_examples",
+  "production_enabled": false,
+  "amount_semantics": "USD exact cents; synthetic only",
+  "limitations": [
+    "All dates, revision history, and amounts are invented contract examples.",
+    "Packages pin one demonstration rule, not a complete tax package.",
+    "Correction snapshots change a label solely to demonstrate distinct immutable content.",
+    "Allocation outcomes are proposals, not authorized taxpayer elections.",
+    "Proportional checks cover an uncapped weighted split with deterministic cent remainder; capped redistribution requires a separate future method.",
+    "Carryover conservation does not determine legal deductibility or eligibility."
+  ],
+  "subjects": [
+    {
+      "id": "household:example",
+      "kind": "household",
+      "household_id": null
+    },
+    {
+      "id": "taxpayer:alice",
+      "kind": "taxpayer",
+      "household_id": "household:example"
+    },
+    {
+      "id": "taxpayer:bob",
+      "kind": "taxpayer",
+      "household_id": "household:example"
+    }
+  ],
+  "definition_snapshots": [
+    {
+      "id": "wages.original",
+      "definition": {
+        "id": "income.wages",
+        "label": "Wage aggregation",
+        "status": "drafted",
+        "value_type": "Money",
+        "shape": "scalar",
+        "scope": "return",
+        "concept_id": "income.wages",
+        "rule_kind": "aggregation",
+        "applicability": {
+          "kind": "ref",
+          "target": "fact:income.documents_complete"
+        },
+        "execution": {
+          "kind": "expression",
+          "expression": {
+            "kind": "apply",
+            "operator": "sum",
+            "arguments": [
+              {
+                "kind": "ref",
+                "target": "fact:wages.amounts"
+              }
+            ],
+            "aggregation_scope": "return"
+          }
+        },
+        "declared_dependencies": [
+          "fact:income.documents_complete",
+          "fact:wages.amounts"
+        ],
+        "unknown_policy": "block",
+        "rounding_policy": "no_rounding",
+        "evidence": [
+          {
+            "source_id": "irs-1040-instructions-2025",
+            "locator": "Line 1a",
+            "interpretation_status": "draft"
+          }
+        ],
+        "explanation_key": "income.wages"
+      },
+      "sha256": "bd8b16083304c2121844648cd3faa841ec357be683013387f7d839ff0e35b5a4"
+    },
+    {
+      "id": "wages.corrected",
+      "definition": {
+        "id": "income.wages",
+        "label": "Synthetic corrected wage aggregation definition",
+        "status": "drafted",
+        "value_type": "Money",
+        "shape": "scalar",
+        "scope": "return",
+        "concept_id": "income.wages",
+        "rule_kind": "aggregation",
+        "applicability": {
+          "kind": "ref",
+          "target": "fact:income.documents_complete"
+        },
+        "execution": {
+          "kind": "expression",
+          "expression": {
+            "kind": "apply",
+            "operator": "sum",
+            "arguments": [
+              {
+                "kind": "ref",
+                "target": "fact:wages.amounts"
+              }
+            ],
+            "aggregation_scope": "return"
+          }
+        },
+        "declared_dependencies": [
+          "fact:income.documents_complete",
+          "fact:wages.amounts"
+        ],
+        "unknown_policy": "block",
+        "rounding_policy": "no_rounding",
+        "evidence": [
+          {
+            "source_id": "irs-1040-instructions-2025",
+            "locator": "Line 1a",
+            "interpretation_status": "draft"
+          }
+        ],
+        "explanation_key": "income.wages"
+      },
+      "sha256": "63dc54575c14b6510a403f7487862103f794b1a8f2fc29926ce7304fb6b87587"
+    }
+  ],
+  "rule_revisions": [
+    {
+      "id": "wages.v1",
+      "rule_ref": "rule:income.wages",
+      "version": "0.1.0",
+      "definition_snapshot": "wages.original",
+      "tax_years": {
+        "start": 2025,
+        "end_exclusive": 2027
+      },
+      "transaction_dates": {
+        "start": "2025-01-01",
+        "end_exclusive": "2027-01-01"
+      },
+      "source_published_at": "2025-01-09T00:00:00Z",
+      "recorded_at": "2025-01-10T00:00:00Z",
+      "superseded_at": "2026-03-01T00:00:00Z",
+      "supersedes": null,
+      "change_kind": "initial"
+    },
+    {
+      "id": "wages.v2",
+      "rule_ref": "rule:income.wages",
+      "version": "0.1.1",
+      "definition_snapshot": "wages.corrected",
+      "tax_years": {
+        "start": 2025,
+        "end_exclusive": 2027
+      },
+      "transaction_dates": {
+        "start": "2025-01-01",
+        "end_exclusive": "2027-01-01"
+      },
+      "source_published_at": "2026-02-28T00:00:00Z",
+      "recorded_at": "2026-03-01T00:00:00Z",
+      "superseded_at": null,
+      "supersedes": "wages.v1",
+      "change_kind": "correction"
+    }
+  ],
+  "package_snapshots": [
+    {
+      "id": "year2025.original",
+      "created_at": "2026-01-10T00:00:00Z",
+      "context": {
+        "tax_year": 2025,
+        "known_at": "2025-12-31T00:00:00Z",
+        "transaction_date": "2025-10-01"
+      },
+      "rule_pins": [
+        {
+          "rule_ref": "rule:income.wages",
+          "revision_id": "wages.v1",
+          "definition_sha256": "bd8b16083304c2121844648cd3faa841ec357be683013387f7d839ff0e35b5a4"
+        }
+      ],
+      "sha256": "bc7f76ebd93c3c986615fad591c4082730fe5df8f6d664d3cb2e99a8afa47f1c"
+    },
+    {
+      "id": "year2025.corrected",
+      "created_at": "2026-03-10T00:00:00Z",
+      "context": {
+        "tax_year": 2025,
+        "known_at": "2026-03-02T00:00:00Z",
+        "transaction_date": "2025-10-01"
+      },
+      "rule_pins": [
+        {
+          "rule_ref": "rule:income.wages",
+          "revision_id": "wages.v2",
+          "definition_sha256": "63dc54575c14b6510a403f7487862103f794b1a8f2fc29926ce7304fb6b87587"
+        }
+      ],
+      "sha256": "8ab9637c57224e9d69216ce15a3d52cdda06a948432e23033b75aff739de5fff"
+    },
+    {
+      "id": "year2026.corrected",
+      "created_at": "2027-01-10T00:00:00Z",
+      "context": {
+        "tax_year": 2026,
+        "known_at": "2026-12-31T00:00:00Z",
+        "transaction_date": "2026-10-01"
+      },
+      "rule_pins": [
+        {
+          "rule_ref": "rule:income.wages",
+          "revision_id": "wages.v2",
+          "definition_sha256": "63dc54575c14b6510a403f7487862103f794b1a8f2fc29926ce7304fb6b87587"
+        }
+      ],
+      "sha256": "898d08d2735b6e997299dde464f8ad5ecb74b93dff16cca6ca278d6c52fc658e"
+    }
+  ],
+  "shared_limits": [
+    {
+      "id": "synthetic.household_limit",
+      "concept_id": "limits.household_limits",
+      "currency": "USD",
+      "tax_year": 2025,
+      "owner_id": "household:example",
+      "capacity_binding": {
+        "reference": "fact:design.limit_capacity",
+        "subject_id": "household:example"
+      },
+      "claims": [
+        {
+          "id": "alice",
+          "demand_binding": {
+            "reference": "fact:design.claim_amount",
+            "subject_id": "taxpayer:alice"
+          }
+        },
+        {
+          "id": "bob",
+          "demand_binding": {
+            "reference": "fact:design.claim_amount",
+            "subject_id": "taxpayer:bob"
+          }
+        }
+      ],
+      "status": "synthetic_contract"
+    }
+  ],
+  "allocations": [
+    {
+      "id": "synthetic.explicit",
+      "limit_id": "synthetic.household_limit",
+      "method": "explicit",
+      "status": "proposal",
+      "capacity": "100.00",
+      "claims": [
+        {
+          "claim_id": "alice",
+          "requested": "80.00",
+          "weight": {
+            "numerator": "1",
+            "denominator": "1"
+          }
+        },
+        {
+          "claim_id": "bob",
+          "requested": "60.00",
+          "weight": {
+            "numerator": "1",
+            "denominator": "1"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "claim_id": "alice",
+          "allocated": "60.00"
+        },
+        {
+          "claim_id": "bob",
+          "allocated": "40.00"
+        }
+      ],
+      "unallocated": "0.00",
+      "remainder_policy": "explicit",
+      "scenario_id": "synthetic.explicit.scenario"
+    },
+    {
+      "id": "synthetic.proportional",
+      "limit_id": "synthetic.household_limit",
+      "method": "proportional",
+      "status": "proposal",
+      "capacity": "100.01",
+      "claims": [
+        {
+          "claim_id": "alice",
+          "requested": "80.00",
+          "weight": {
+            "numerator": "1",
+            "denominator": "1"
+          }
+        },
+        {
+          "claim_id": "bob",
+          "requested": "60.00",
+          "weight": {
+            "numerator": "1",
+            "denominator": "1"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "claim_id": "alice",
+          "allocated": "50.01"
+        },
+        {
+          "claim_id": "bob",
+          "allocated": "50.00"
+        }
+      ],
+      "unallocated": "0.00",
+      "remainder_policy": "largest_remainder_by_claim_id",
+      "scenario_id": "synthetic.proportional.scenario"
+    }
+  ],
+  "carryovers": [
+    {
+      "id": "synthetic.loss.v1",
+      "logical_id": "synthetic.loss",
+      "version": "0.1.0",
+      "previous_revision": null,
+      "recorded_at": "2026-01-10T00:00:00Z",
+      "owner_id": "taxpayer:alice",
+      "concept_id": "carryovers.capital_loss_carryover",
+      "tax_character": "synthetic_short_term_loss",
+      "currency": "USD",
+      "origin_tax_year": 2024,
+      "opening_tax_year": 2025,
+      "opening_amount": "120.00",
+      "opening_provenance": "Synthetic opening balance, not a real tax document.",
+      "expires_after_tax_year": null,
+      "events": [
+        {
+          "id": "use2025",
+          "tax_year": 2025,
+          "sequence": 1,
+          "recorded_at": "2026-01-10T00:00:00Z",
+          "kind": "use",
+          "amount": "50.00",
+          "calculation_package": "year2025.original",
+          "reason": "Synthetic consumption for conservation checks."
+        }
+      ],
+      "year_balances": [
+        {
+          "tax_year": 2025,
+          "opening": "120.00",
+          "adjustments": "0.00",
+          "used": "50.00",
+          "expired": "0.00",
+          "closing": "70.00"
+        }
+      ],
+      "sha256": "9b7f4275472c2e82e13ee367ef40005bc8398e0935c9714e91894e90f4490b7b"
+    },
+    {
+      "id": "synthetic.loss.v2",
+      "logical_id": "synthetic.loss",
+      "version": "0.1.1",
+      "previous_revision": "synthetic.loss.v1",
+      "recorded_at": "2027-01-10T00:00:00Z",
+      "owner_id": "taxpayer:alice",
+      "concept_id": "carryovers.capital_loss_carryover",
+      "tax_character": "synthetic_short_term_loss",
+      "currency": "USD",
+      "origin_tax_year": 2024,
+      "opening_tax_year": 2025,
+      "opening_amount": "120.00",
+      "opening_provenance": "Synthetic opening balance, not a real tax document.",
+      "expires_after_tax_year": null,
+      "events": [
+        {
+          "id": "use2025",
+          "tax_year": 2025,
+          "sequence": 1,
+          "recorded_at": "2026-01-10T00:00:00Z",
+          "kind": "use",
+          "amount": "50.00",
+          "calculation_package": "year2025.original",
+          "reason": "Synthetic consumption for conservation checks."
+        },
+        {
+          "id": "use2026",
+          "tax_year": 2026,
+          "sequence": 1,
+          "recorded_at": "2027-01-10T00:00:00Z",
+          "kind": "use",
+          "amount": "10.00",
+          "calculation_package": "year2026.corrected",
+          "reason": "Synthetic next-year consumption."
+        }
+      ],
+      "year_balances": [
+        {
+          "tax_year": 2025,
+          "opening": "120.00",
+          "adjustments": "0.00",
+          "used": "50.00",
+          "expired": "0.00",
+          "closing": "70.00"
+        },
+        {
+          "tax_year": 2026,
+          "opening": "70.00",
+          "adjustments": "0.00",
+          "used": "10.00",
+          "expired": "0.00",
+          "closing": "60.00"
+        }
+      ],
+      "sha256": "cd81cfcddcf9f380d1007974181d9527900c55fc101be31b498544ade7f79db0"
+    }
+  ]
+}

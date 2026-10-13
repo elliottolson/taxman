@@ -4,6 +4,10 @@ from __future__ import annotations
 import json
 from pathlib import Path
 import sys
+import argparse
+from copy import deepcopy
+import re
+import subprocess
 
 from jsonschema import Draft202012Validator, FormatChecker
 
@@ -218,14 +222,55 @@ def validate(model, catalog, schemas, source_registry):
 def load(root=ROOT):
     def read(name):
         return json.loads((root / name).read_text())
-    return read('model/tax-model.json'), read('model/domain-catalog.json'), {'model': read('schemas/tax-model.schema.json'), 'catalog': read('schemas/domain-catalog.schema.json')}, read('examples/source-registry.json')
+    return read('model/tax-model.json'), read('model/domain-catalog.json'), {'model': read('schemas/tax-model.schema.json'), 'catalog': read('schemas/domain-catalog.schema.json'), 'interactions': read('schemas/interaction-model.schema.json')}, read('examples/source-registry.json')
+
+
+def load_interactions(root=ROOT):
+    model = json.loads((root / 'model/tax-model.json').read_text())
+    require(model['interaction_model'] == 'interaction-model.json', 'Unexpected interaction model path')
+    return json.loads((root / 'model/interaction-model.json').read_text())
+
+
+def check_interactions(model, catalog, schemas, sources, data, previous=None):
+    from validate_interactions import validate_interactions
+
+    def snapshot(definition):
+        candidate = deepcopy(model)
+        found = False
+        for i, rule in enumerate(candidate['rules']):
+            if rule['id'] == definition.get('id'):
+                candidate['rules'][i] = definition
+                found = True
+                break
+        require(found, 'Snapshot refers to unknown semantic rule')
+        validate(candidate, catalog, schemas, sources)
+
+    return validate_interactions(data, schemas['interactions'], model, catalog, snapshot, previous)
+
+
+def previous_interactions(ref, root=ROOT):
+    require(re.fullmatch(r'HEAD\^?|[a-f0-9]{40}', ref) is not None, 'Unsupported baseline Git reference')
+    def read_blob(name):
+        result = subprocess.run(['git', '-C', str(root), 'show', '--no-ext-diff', f'{ref}:{name}'], capture_output=True, text=True)
+        require(result.returncode == 0, 'Cannot read model baseline from Git')
+        return json.loads(result.stdout)
+    model = read_blob('model/tax-model.json')
+    if 'interaction_model' not in model:
+        return None  # The prior 0.2 model predates these contracts.
+    require(model['interaction_model'] == 'interaction-model.json', 'Unexpected baseline interaction path')
+    return read_blob('model/interaction-model.json')
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--baseline-ref', help='Validate archive preservation against HEAD, HEAD^, or a full commit hash')
+    args = parser.parse_args()
     try:
         model, catalog, schemas, sources = load()
         require((ROOT / 'model' / model['source_registry']).resolve() == (ROOT / 'examples/source-registry.json').resolve(), 'Unexpected source registry path')
         summary = validate(model, catalog, schemas, sources)
+        previous = previous_interactions(args.baseline_ref) if args.baseline_ref else None
+        summary['interactions'] = check_interactions(model, catalog, schemas, sources, load_interactions(), previous)
         print('Model contracts validated: ' + json.dumps(summary, sort_keys=True))
         print('All rules remain drafts; this is not tax-law or calculation verification.')
     except (ModelError, OSError, ValueError, KeyError) as error:

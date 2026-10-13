@@ -24,7 +24,7 @@ Model breadth and verified coverage are separate. An inventoried concept is not 
 | Carryover | A prior-year amount with owner, character, origin, and future treatment |
 | Evidence | Source revision, locator, interpretation, and review state |
 
-The draft schema concretely models the first ten objects and capabilities. Carryover value records and full evidence/claim schemas are named next extensions; they are not claimed as implemented merely because the concepts appear in the catalog.
+The draft schemas model the first ten objects, capabilities, temporal revisions/packages, shared limits/allocations, and carryover snapshots. The interaction layer verifies synthetic balances and history. Full evidence/claim schemas and legal review remain separate work.
 
 ## Multiple kinds of links
 
@@ -42,7 +42,7 @@ Money and rates use exact values, not binary floats. Scalar and collection shape
 
 Input value states remain confirmed, provisional, estimated, missing, not-applicable, or invalid. Rule applicability is true, false, unknown, or invalid. The prototype defines missing-input behavior; a future evaluator must implement propagation. A schema alone does not do so.
 
-Tax year, legal effective interval, source publication/correction, software version, and fact revision are distinct. The prototype supports candidate years and a package version; detailed effective-date intervals and cross-year carryover values remain explicitly cataloged extension work.
+Tax year, legal effective interval, source publication/correction, software version, and fact revision are distinct. The 0.3 prototype adds tax-year and transaction-date intervals, publication/observation/supersession timestamps, immutable definition and package pins, and cross-year carryover snapshots. See [Time, limits, and carryovers](time-limits-carryovers.md).
 
 ## Authoring model
 
@@ -75,7 +75,7 @@ Sources to organize the individual-return research include [Form 1040 instructio
 ## Next modeling work, before a return
 
 1. Review the object boundaries and vocabulary against representative IRS worksheets.
-2. Add explicit allocation, shared-limit, carryover, and effective-date contracts.
+2. Review the implemented allocation, shared-limit, carryover, and effective-date contracts against candidate legal methods before populating tax rules.
 3. Add decision-overlap analysis for finite domains and explicit method routing.
 4. Refine module contracts using genuinely interacting worksheet cases.
 5. Expand each catalog concept into draft claims, parameters, rules, and evidence.
