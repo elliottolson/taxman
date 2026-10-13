@@ -22,4 +22,6 @@ Keep pull requests focused. Describe the problem, resulting behavior, sources, a
 
 The production implementation language remains undecided. Do not introduce a runtime scaffold solely to validate planning documents.
 
-Licensing has not been selected yet. A public repository should not be interpreted as a promise of an open-source license.
+## License
+
+Taxman is licensed under the [Apache License 2.0](LICENSE). Contributions submitted for inclusion in the project are under the same license unless explicitly stated otherwise.

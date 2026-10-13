@@ -50,3 +50,7 @@ If you're exploring the repository, the examples are illustrative design artifac
 ## About the name
 
 Taxman takes its name from [“Taxman” by the Beatles](https://www.thebeatles.com/taxman), written by George Harrison and released on *Revolver* in 1966.
+
+## License
+
+Copyright 2026 Elliott Olson. Licensed under the [Apache License 2.0](LICENSE).

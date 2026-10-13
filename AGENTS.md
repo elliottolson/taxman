@@ -32,5 +32,5 @@ Use synthetic financial data only. Do not inspect unrelated private documents or
 - Product name: Taxman. Repository name: taxman. The existing local directory may remain TaxMan.
 - Keep changes focused and preserve unrelated work.
 - Commit with the user's configured Git identity. Do not add assistant attribution, co-author trailers, or generated-by notices to commit messages or contributor listings.
-- Do not claim software is licensed under an open-source license until the owner has chosen one.
+- The project is licensed under Apache 2.0. Preserve the license and applicable notices when adding or redistributing code.
 - Initial verification: git diff --check and JSON syntax validation for examples/ and schemas/. These checks do not establish legal or numerical correctness.
