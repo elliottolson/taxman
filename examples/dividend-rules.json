@@ -1,0 +1,98 @@
+{
+  "$schema": "../schemas/rule-package.schema.json",
+  "schema_version": "0.1.0",
+  "id": "us.federal.dividend-classification.example",
+  "version": "0.0.1",
+  "jurisdiction": "US-FED",
+  "tax_year": 2025,
+  "status": "illustrative",
+  "production_enabled": false,
+  "limitations": [
+    "Demonstrates only aggregate dividend classification, not a tax calculation.",
+    "Qualification is already confirmed upstream; box 1b alone does not establish every eligibility condition.",
+    "Facts represent a complete confirmed document set with exact cents.",
+    "Evidence links have not been approved for production rules."
+  ],
+  "input_contract": {
+    "collection": "facts.dividend_documents",
+    "collection_complete": "facts.dividend_documents_complete",
+    "fields": [
+      {"name": "ordinary_dividends", "type": "Money", "state": "confirmed"},
+      {"name": "eligible_qualified_dividends", "type": "Money", "state": "confirmed"}
+    ],
+    "invariants": [
+      "Every document belongs to this household and tax year.",
+      "Ordinary dividends are nonnegative.",
+      "Eligible qualified dividends are nonnegative and no greater than ordinary dividends for each document.",
+      "Missing or unconfirmed fields are not replaced with zero."
+    ]
+  },
+  "rules": [
+    {
+      "id": "income.dividends.total_ordinary",
+      "version": "0.0.1",
+      "output_type": "Money",
+      "execution": {
+        "op": "sum_field",
+        "collection": "facts.dividend_documents",
+        "field": "ordinary_dividends",
+        "requires_complete": "facts.dividend_documents_complete"
+      },
+      "rounding": "none_exact_cents",
+      "on_unknown": "blocked",
+      "explanation_key": "dividends.total_ordinary",
+      "sources": [
+        {
+          "source_id": "irs-1099-div-instructions-2024-01",
+          "locator": "Box 1a. Total Ordinary Dividends",
+          "claim": "This field identifies total ordinary dividends; aggregation across the confirmed household documents is TaxMan's implementation step."
+        }
+      ]
+    },
+    {
+      "id": "income.dividends.qualified",
+      "version": "0.0.1",
+      "output_type": "Money",
+      "execution": {
+        "op": "sum_field",
+        "collection": "facts.dividend_documents",
+        "field": "eligible_qualified_dividends",
+        "requires_complete": "facts.dividend_documents_complete"
+      },
+      "rounding": "none_exact_cents",
+      "on_unknown": "blocked",
+      "explanation_key": "dividends.qualified",
+      "sources": [
+        {
+          "source_id": "irs-1099-div-instructions-2024-01",
+          "locator": "Box 1b. Qualified Dividends; Qualified Dividends",
+          "claim": "Qualified dividends are a portion of ordinary dividends, with qualification conditions reviewed upstream."
+        }
+      ]
+    },
+    {
+      "id": "income.dividends.nonqualified",
+      "version": "0.0.1",
+      "output_type": "Money",
+      "execution": {
+        "op": "subtract",
+        "left": {"op": "ref", "rule_id": "income.dividends.total_ordinary"},
+        "right": {"op": "ref", "rule_id": "income.dividends.qualified"}
+      },
+      "rounding": "none_exact_cents",
+      "on_unknown": "blocked",
+      "explanation_key": "dividends.nonqualified",
+      "sources": [
+        {
+          "source_id": "irs-1099-div-instructions-2024-01",
+          "locator": "Box 1b. Qualified Dividends",
+          "claim": "The subset relationship supports deriving the remaining ordinary dividends by subtraction; this does not itself calculate their tax."
+        }
+      ]
+    }
+  ],
+  "expected_derived_dependencies": [
+    {"from": "income.dividends.total_ordinary", "to": "income.dividends.nonqualified"},
+    {"from": "income.dividends.qualified", "to": "income.dividends.nonqualified"}
+  ]
+}

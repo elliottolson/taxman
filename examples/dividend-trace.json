@@ -1,0 +1,56 @@
+{
+  "schema_version": "0.1.0",
+  "purpose": "Illustrative expected trace; no implemented evaluator has produced this artifact",
+  "package_id": "us.federal.dividend-classification.example",
+  "package_version": "0.0.1",
+  "tax_year": 2025,
+  "result_completeness": "local_classification_only",
+  "final_tax_balance": null,
+  "facts": {
+    "dividend_documents_complete": true,
+    "dividend_documents": [
+      {
+        "id": "synthetic-div-001",
+        "ordinary_dividends": {"currency": "USD", "cents": "10000", "state": "confirmed"},
+        "eligible_qualified_dividends": {"currency": "USD", "cents": "4000", "state": "confirmed"},
+        "provenance": {
+          "type": "synthetic_fixture",
+          "ordinary_field": "1099-DIV box 1a",
+          "qualified_candidate_field": "1099-DIV box 1b",
+          "qualification": "Assumed confirmed for this synthetic fixture; no holding-period determination is demonstrated."
+        }
+      }
+    ]
+  },
+  "steps": [
+    {
+      "rule_id": "income.dividends.total_ordinary",
+      "input_refs": ["synthetic-div-001.ordinary_dividends"],
+      "output": {"currency": "USD", "cents": "10000"},
+      "decision": "complete confirmed collection",
+      "rounding": "none_exact_cents",
+      "source_ids": ["irs-1099-div-instructions-2024-01"]
+    },
+    {
+      "rule_id": "income.dividends.qualified",
+      "input_refs": ["synthetic-div-001.eligible_qualified_dividends"],
+      "output": {"currency": "USD", "cents": "4000"},
+      "decision": "confirmed upstream classification",
+      "rounding": "none_exact_cents",
+      "source_ids": ["irs-1099-div-instructions-2024-01"]
+    },
+    {
+      "rule_id": "income.dividends.nonqualified",
+      "input_refs": ["income.dividends.total_ordinary", "income.dividends.qualified"],
+      "output": {"currency": "USD", "cents": "6000"},
+      "decision": "subtract qualified subset from total ordinary dividends",
+      "rounding": "none_exact_cents",
+      "source_ids": ["irs-1099-div-instructions-2024-01"],
+      "friendly_explanation": "Your $100 of ordinary dividends includes $40 classified as qualified. The remaining $60 is nonqualified. The $40 is not added to income a second time."
+    }
+  ],
+  "not_demonstrated": [
+    "Income-tax liability, preferential-rate worksheet, tax tables, deductions, payments, or refund.",
+    "Other document fields, qualification exceptions, elections, missing-information propagation, or additional taxes."
+  ]
+}

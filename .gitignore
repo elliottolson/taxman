@@ -1,0 +1,44 @@
+# Local settings and credentials
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+.aws/
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+
+# Real financial documents and private working data belong outside Git.
+# This is an accidental-commit guard, not an access-control mechanism.
+private/
+private-data/
+uploads/
+local-data/
+*.pdf
+*.csv
+*.xls
+*.xlsx
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+
+# Dependencies, builds, and temporary output
+node_modules/
+dist/
+build/
+coverage/
+.next/
+.venv/
+__pycache__/
+*.pyc
+*.log
+.DS_Store
+
+# Public source PDFs and synthetic document fixtures require deliberate review
+# and an explicit force-add; do not blanket-allow document directories.
