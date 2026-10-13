@@ -40,6 +40,12 @@
 5. Decide what identity/payment information is necessary at each stage and how retention changes after filing.
 6. Choose the target filing year and a readiness-based launch plan.
 
+## Current modeling phase
+
+Start with broad domain modeling before a narrow return. The 0.2 prototype includes a 145-concept research inventory, portable contracts, typed references, representative exceptions/elections/module interfaces, and structural validation. These are drafts with unpopulated annual values, not verified tax rules.
+
+Next expand allocations, shared limits, carryover records, effective dates, source claims, and finite-domain decision analysis. Backend selection and taxpayer-return implementation remain subsequent decisions.
+
 ## Architecture experiments
 
 - Can a contributor add a parameter-backed deduction and its exception without kernel changes?

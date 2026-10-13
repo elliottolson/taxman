@@ -2,7 +2,7 @@
 
 ## Current scope
 
-This repository contains product planning and illustrative tax-rule artifacts. No released calculator exists. Read README.md and docs/README.md first. The backend language is an open decision; do not assume that planning examples establish a production stack.
+This repository contains product planning, a portable tax-domain model, illustrative tax-rule artifacts, and validation tooling. No released calculator exists. Read README.md and docs/README.md first. The backend language is an open decision; do not assume that planning examples establish a production stack.
 
 ## Product requirements
 
@@ -34,4 +34,6 @@ Use synthetic financial data only. Do not inspect unrelated private documents or
 - Keep changes focused and preserve unrelated work.
 - Commit with the user's configured Git identity. Do not add assistant attribution, co-author trailers, or generated-by notices to commit messages or contributor listings.
 - The project is licensed under Apache 2.0. Preserve the license and applicable notices when adding or redistributing code.
-- Initial verification: git diff --check and JSON syntax validation for examples/ and schemas/. These checks do not establish legal or numerical correctness.
+- Current work models the tax domain before implementing a narrow return. Keep inventoried topics, draft models, reviewed interpretations, and implemented capabilities distinct.
+- Run tools/model/validate_model.py and its contract tests using tools/model/requirements.txt. Python here is tooling only; the production backend language remains undecided.
+- Verification also includes git diff --check and JSON syntax checks. Structural checks do not establish legal or numerical correctness.

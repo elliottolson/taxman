@@ -1,0 +1,1037 @@
+{
+  "$schema": "../schemas/tax-model.schema.json",
+  "model_version": "0.2.0",
+  "jurisdiction": "US-FED",
+  "candidate_tax_years": [
+    2025
+  ],
+  "status": "draft",
+  "production_enabled": false,
+  "source_registry": "../examples/source-registry.json",
+  "limitations": [
+    "Portable authoring prototype, not an executable or verified tax package.",
+    "Facts represent definitions, not actual taxpayer data.",
+    "Annual values are intentionally unpopulated.",
+    "Module interfaces omit full worksheet inputs until detailed research.",
+    "Election eligibility and reporting requirement facts are placeholders for reviewed rules.",
+    "Decision overlap checks are partial; subject and temporal semantics need further compiler analysis."
+  ],
+  "facts": [
+    {
+      "id": "wages.amounts",
+      "label": "Taxable wage amounts",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "collection",
+      "scope": "taxpayer",
+      "description": "Normalized fact definition; no private taxpayer value is included.",
+      "value_states": [
+        "confirmed",
+        "provisional",
+        "estimated",
+        "missing",
+        "not_applicable",
+        "invalid"
+      ]
+    },
+    {
+      "id": "interest.amounts",
+      "label": "Taxable interest amounts",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "collection",
+      "scope": "taxpayer",
+      "description": "Normalized fact definition; no private taxpayer value is included.",
+      "value_states": [
+        "confirmed",
+        "provisional",
+        "estimated",
+        "missing",
+        "not_applicable",
+        "invalid"
+      ]
+    },
+    {
+      "id": "dividends.ordinary_amounts",
+      "label": "Ordinary dividend amounts",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "collection",
+      "scope": "taxpayer",
+      "description": "Normalized fact definition; no private taxpayer value is included.",
+      "value_states": [
+        "confirmed",
+        "provisional",
+        "estimated",
+        "missing",
+        "not_applicable",
+        "invalid"
+      ]
+    },
+    {
+      "id": "dividends.qualified_amounts",
+      "label": "Confirmed eligible qualified amounts",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "collection",
+      "scope": "taxpayer",
+      "description": "Normalized fact definition; no private taxpayer value is included.",
+      "value_states": [
+        "confirmed",
+        "provisional",
+        "estimated",
+        "missing",
+        "not_applicable",
+        "invalid"
+      ]
+    },
+    {
+      "id": "income.documents_complete",
+      "label": "Income document collection confirmed complete",
+      "status": "drafted",
+      "value_type": "Boolean",
+      "shape": "scalar",
+      "scope": "return",
+      "description": "Normalized fact definition; no private taxpayer value is included.",
+      "value_states": [
+        "confirmed",
+        "provisional",
+        "estimated",
+        "missing",
+        "not_applicable",
+        "invalid"
+      ]
+    },
+    {
+      "id": "filing.status",
+      "label": "Confirmed filing status",
+      "status": "drafted",
+      "value_type": "Enum",
+      "shape": "scalar",
+      "scope": "return",
+      "description": "Normalized fact definition; no private taxpayer value is included.",
+      "value_states": [
+        "confirmed",
+        "provisional",
+        "estimated",
+        "missing",
+        "not_applicable",
+        "invalid"
+      ],
+      "enum_domain": "filing_status"
+    },
+    {
+      "id": "taxpayer.claimable",
+      "label": "Taxpayer claimable as dependent",
+      "status": "drafted",
+      "value_type": "Boolean",
+      "shape": "scalar",
+      "scope": "taxpayer",
+      "description": "Normalized fact definition; no private taxpayer value is included.",
+      "value_states": [
+        "confirmed",
+        "provisional",
+        "estimated",
+        "missing",
+        "not_applicable",
+        "invalid"
+      ]
+    },
+    {
+      "id": "deductions.standard_allowed",
+      "label": "Reviewed eligibility for standard deduction",
+      "status": "drafted",
+      "value_type": "Boolean",
+      "shape": "scalar",
+      "scope": "return",
+      "description": "Normalized fact definition; no private taxpayer value is included.",
+      "value_states": [
+        "confirmed",
+        "provisional",
+        "estimated",
+        "missing",
+        "not_applicable",
+        "invalid"
+      ]
+    },
+    {
+      "id": "deductions.itemized_allowed",
+      "label": "Reviewed eligibility for itemized deduction",
+      "status": "drafted",
+      "value_type": "Boolean",
+      "shape": "scalar",
+      "scope": "return",
+      "description": "Normalized fact definition; no private taxpayer value is included.",
+      "value_states": [
+        "confirmed",
+        "provisional",
+        "estimated",
+        "missing",
+        "not_applicable",
+        "invalid"
+      ]
+    },
+    {
+      "id": "deductions.itemized_total",
+      "label": "Confirmed itemized deduction total",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "scalar",
+      "scope": "return",
+      "description": "Normalized fact definition; no private taxpayer value is included.",
+      "value_states": [
+        "confirmed",
+        "provisional",
+        "estimated",
+        "missing",
+        "not_applicable",
+        "invalid"
+      ]
+    },
+    {
+      "id": "deductions.selected_method",
+      "label": "Confirmed taxpayer deduction choice",
+      "status": "drafted",
+      "value_type": "Enum",
+      "shape": "scalar",
+      "scope": "return",
+      "description": "Normalized fact definition; no private taxpayer value is included.",
+      "value_states": [
+        "confirmed",
+        "provisional",
+        "estimated",
+        "missing",
+        "not_applicable",
+        "invalid"
+      ],
+      "enum_domain": "deduction_method"
+    },
+    {
+      "id": "reporting.schedule_b_required",
+      "label": "Reviewed Schedule B reporting requirement",
+      "status": "drafted",
+      "value_type": "Boolean",
+      "shape": "scalar",
+      "scope": "return",
+      "description": "Normalized fact definition; no private taxpayer value is included.",
+      "value_states": [
+        "confirmed",
+        "provisional",
+        "estimated",
+        "missing",
+        "not_applicable",
+        "invalid"
+      ]
+    }
+  ],
+  "parameters": [
+    {
+      "id": "standard.base",
+      "label": "Base standard deduction by filing status",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "scalar",
+      "scope": "return",
+      "axes": [
+        {
+          "name": "filing_status",
+          "value_type": "Enum",
+          "enum_domain": "filing_status"
+        }
+      ],
+      "value_status": "unpopulated",
+      "value": null,
+      "evidence": [
+        {
+          "source_id": "irs-p501-2025",
+          "locator": "Standard Deduction",
+          "interpretation_status": "draft"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "income.wages",
+      "label": "Wage aggregation",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "scalar",
+      "scope": "return",
+      "concept_id": "income.wages",
+      "rule_kind": "aggregation",
+      "applicability": {
+        "kind": "ref",
+        "target": "fact:income.documents_complete"
+      },
+      "execution": {
+        "kind": "expression",
+        "expression": {
+          "kind": "apply",
+          "operator": "sum",
+          "arguments": [
+            {
+              "kind": "ref",
+              "target": "fact:wages.amounts"
+            }
+          ],
+          "aggregation_scope": "return"
+        }
+      },
+      "declared_dependencies": [
+        "fact:income.documents_complete",
+        "fact:wages.amounts"
+      ],
+      "unknown_policy": "block",
+      "rounding_policy": "no_rounding",
+      "evidence": [
+        {
+          "source_id": "irs-1040-instructions-2025",
+          "locator": "Line 1a",
+          "interpretation_status": "draft"
+        }
+      ],
+      "explanation_key": "income.wages"
+    },
+    {
+      "id": "income.interest",
+      "label": "Taxable interest aggregation",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "scalar",
+      "scope": "return",
+      "concept_id": "income.taxable_interest",
+      "rule_kind": "aggregation",
+      "applicability": {
+        "kind": "ref",
+        "target": "fact:income.documents_complete"
+      },
+      "execution": {
+        "kind": "expression",
+        "expression": {
+          "kind": "apply",
+          "operator": "sum",
+          "arguments": [
+            {
+              "kind": "ref",
+              "target": "fact:interest.amounts"
+            }
+          ],
+          "aggregation_scope": "return"
+        }
+      },
+      "declared_dependencies": [
+        "fact:income.documents_complete",
+        "fact:interest.amounts"
+      ],
+      "unknown_policy": "block",
+      "rounding_policy": "no_rounding",
+      "evidence": [
+        {
+          "source_id": "irs-1040-instructions-2025",
+          "locator": "Line 2b",
+          "interpretation_status": "draft"
+        }
+      ],
+      "explanation_key": "income.interest"
+    },
+    {
+      "id": "income.dividends",
+      "label": "Ordinary dividend aggregation",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "scalar",
+      "scope": "return",
+      "concept_id": "income.ordinary_dividends",
+      "rule_kind": "aggregation",
+      "applicability": {
+        "kind": "ref",
+        "target": "fact:income.documents_complete"
+      },
+      "execution": {
+        "kind": "expression",
+        "expression": {
+          "kind": "apply",
+          "operator": "sum",
+          "arguments": [
+            {
+              "kind": "ref",
+              "target": "fact:dividends.ordinary_amounts"
+            }
+          ],
+          "aggregation_scope": "return"
+        }
+      },
+      "declared_dependencies": [
+        "fact:dividends.ordinary_amounts",
+        "fact:income.documents_complete"
+      ],
+      "unknown_policy": "block",
+      "rounding_policy": "no_rounding",
+      "evidence": [
+        {
+          "source_id": "irs-1099-div-instructions-2024-01",
+          "locator": "Box 1a. Total Ordinary Dividends",
+          "interpretation_status": "draft"
+        }
+      ],
+      "explanation_key": "income.dividends"
+    },
+    {
+      "id": "income.qualified",
+      "label": "Confirmed qualified dividend aggregation",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "scalar",
+      "scope": "return",
+      "concept_id": "income.qualified_dividends",
+      "rule_kind": "aggregation",
+      "applicability": {
+        "kind": "ref",
+        "target": "fact:income.documents_complete"
+      },
+      "execution": {
+        "kind": "expression",
+        "expression": {
+          "kind": "apply",
+          "operator": "sum",
+          "arguments": [
+            {
+              "kind": "ref",
+              "target": "fact:dividends.qualified_amounts"
+            }
+          ],
+          "aggregation_scope": "return"
+        }
+      },
+      "declared_dependencies": [
+        "fact:dividends.qualified_amounts",
+        "fact:income.documents_complete"
+      ],
+      "unknown_policy": "block",
+      "rounding_policy": "no_rounding",
+      "evidence": [
+        {
+          "source_id": "irs-1099-div-instructions-2024-01",
+          "locator": "Box 1b. Qualified Dividends",
+          "interpretation_status": "draft"
+        }
+      ],
+      "explanation_key": "income.qualified"
+    },
+    {
+      "id": "income.nonqualified",
+      "label": "Remaining nonqualified dividends",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "scalar",
+      "scope": "return",
+      "concept_id": "income.ordinary_dividends",
+      "rule_kind": "classification",
+      "applicability": {
+        "kind": "literal",
+        "value_type": "Boolean",
+        "value": true
+      },
+      "execution": {
+        "kind": "expression",
+        "expression": {
+          "kind": "apply",
+          "operator": "subtract",
+          "arguments": [
+            {
+              "kind": "ref",
+              "target": "rule:income.dividends"
+            },
+            {
+              "kind": "ref",
+              "target": "rule:income.qualified"
+            }
+          ]
+        }
+      },
+      "declared_dependencies": [
+        "rule:income.dividends",
+        "rule:income.qualified"
+      ],
+      "unknown_policy": "block",
+      "rounding_policy": "no_rounding",
+      "evidence": [
+        {
+          "source_id": "irs-1099-div-instructions-2024-01",
+          "locator": "Box 1b. Qualified Dividends",
+          "interpretation_status": "draft"
+        }
+      ],
+      "explanation_key": "income.nonqualified"
+    },
+    {
+      "id": "deduction.standard_base",
+      "label": "Base standard deduction candidate",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "scalar",
+      "scope": "return",
+      "concept_id": "deductions.standard_deduction",
+      "rule_kind": "calculation",
+      "applicability": {
+        "kind": "apply",
+        "operator": "not",
+        "arguments": [
+          {
+            "kind": "ref",
+            "target": "fact:taxpayer.claimable"
+          }
+        ]
+      },
+      "execution": {
+        "kind": "expression",
+        "expression": {
+          "kind": "lookup",
+          "parameter": "parameter:standard.base",
+          "keys": [
+            {
+              "name": "filing_status",
+              "value": {
+                "kind": "ref",
+                "target": "fact:filing.status"
+              }
+            }
+          ]
+        }
+      },
+      "declared_dependencies": [
+        "fact:filing.status",
+        "fact:taxpayer.claimable",
+        "parameter:standard.base"
+      ],
+      "unknown_policy": "block",
+      "rounding_policy": "no_rounding",
+      "evidence": [
+        {
+          "source_id": "irs-p501-2025",
+          "locator": "Standard Deduction",
+          "interpretation_status": "draft"
+        }
+      ],
+      "explanation_key": "deduction.standard_base"
+    },
+    {
+      "id": "deduction.dependent",
+      "label": "Dependent exception candidate",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "scalar",
+      "scope": "return",
+      "concept_id": "deductions.dependent_standard_deduction",
+      "rule_kind": "exception",
+      "applicability": {
+        "kind": "ref",
+        "target": "fact:taxpayer.claimable"
+      },
+      "execution": {
+        "kind": "module",
+        "module_id": "standard.dependent_worksheet",
+        "module_version": "0.0.1",
+        "bindings": [
+          {
+            "input": "claimable",
+            "value": {
+              "kind": "ref",
+              "target": "fact:taxpayer.claimable"
+            }
+          }
+        ]
+      },
+      "declared_dependencies": [
+        "fact:taxpayer.claimable"
+      ],
+      "unknown_policy": "block",
+      "rounding_policy": "module_defined",
+      "evidence": [
+        {
+          "source_id": "irs-p501-2025",
+          "locator": "Standard Deduction for Dependents",
+          "interpretation_status": "draft"
+        }
+      ],
+      "explanation_key": "deduction.dependent"
+    },
+    {
+      "id": "deduction.standard",
+      "label": "Selected standard deduction method",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "scalar",
+      "scope": "return",
+      "concept_id": "deductions.standard_deduction",
+      "rule_kind": "calculation",
+      "applicability": {
+        "kind": "literal",
+        "value_type": "Boolean",
+        "value": true
+      },
+      "execution": {
+        "kind": "decision",
+        "decision_id": "deduction.standard_method"
+      },
+      "declared_dependencies": [
+        "decision:deduction.standard_method"
+      ],
+      "unknown_policy": "block",
+      "rounding_policy": "no_rounding",
+      "evidence": [
+        {
+          "source_id": "irs-p501-2025",
+          "locator": "Standard Deduction",
+          "interpretation_status": "draft"
+        }
+      ],
+      "explanation_key": "deduction.standard"
+    },
+    {
+      "id": "deduction.selected",
+      "label": "Taxpayer-selected deduction candidate",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "scalar",
+      "scope": "return",
+      "concept_id": "deductions.deduction_method",
+      "rule_kind": "calculation",
+      "applicability": {
+        "kind": "literal",
+        "value_type": "Boolean",
+        "value": true
+      },
+      "execution": {
+        "kind": "decision",
+        "decision_id": "deduction.choice"
+      },
+      "declared_dependencies": [
+        "decision:deduction.choice"
+      ],
+      "unknown_policy": "block",
+      "rounding_policy": "no_rounding",
+      "evidence": [
+        {
+          "source_id": "irs-p501-2025",
+          "locator": "Standard Deduction",
+          "interpretation_status": "draft"
+        }
+      ],
+      "explanation_key": "deduction.selected"
+    },
+    {
+      "id": "reporting.schedule_b",
+      "label": "Schedule B reporting obligation",
+      "status": "drafted",
+      "value_type": "Boolean",
+      "shape": "scalar",
+      "scope": "return",
+      "concept_id": "reporting.schedule_b",
+      "rule_kind": "reporting",
+      "applicability": {
+        "kind": "literal",
+        "value_type": "Boolean",
+        "value": true
+      },
+      "execution": {
+        "kind": "expression",
+        "expression": {
+          "kind": "ref",
+          "target": "fact:reporting.schedule_b_required"
+        }
+      },
+      "declared_dependencies": [
+        "fact:reporting.schedule_b_required"
+      ],
+      "unknown_policy": "block",
+      "rounding_policy": "no_rounding",
+      "evidence": [
+        {
+          "source_id": "irs-schedule-b-2025",
+          "locator": "Purpose of Schedule",
+          "interpretation_status": "draft"
+        }
+      ],
+      "explanation_key": "reporting.schedule_b"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "deduction.standard_method",
+      "label": "Dependent versus base deduction route",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "scalar",
+      "scope": "return",
+      "hit_policy": "unique",
+      "unknown_policy": "block",
+      "rows": [
+        {
+          "id": "base",
+          "condition": {
+            "kind": "apply",
+            "operator": "not",
+            "arguments": [
+              {
+                "kind": "ref",
+                "target": "fact:taxpayer.claimable"
+              }
+            ]
+          },
+          "result": {
+            "kind": "ref",
+            "target": "rule:deduction.standard_base"
+          }
+        },
+        {
+          "id": "dependent",
+          "condition": {
+            "kind": "ref",
+            "target": "fact:taxpayer.claimable"
+          },
+          "result": {
+            "kind": "ref",
+            "target": "rule:deduction.dependent"
+          }
+        }
+      ],
+      "fallback": "blocked",
+      "evidence": [
+        {
+          "source_id": "irs-p501-2025",
+          "locator": "Standard Deduction",
+          "interpretation_status": "draft"
+        }
+      ]
+    },
+    {
+      "id": "deduction.choice",
+      "label": "Explicit selected deduction route",
+      "status": "drafted",
+      "value_type": "Money",
+      "shape": "scalar",
+      "scope": "return",
+      "hit_policy": "unique",
+      "unknown_policy": "block",
+      "rows": [
+        {
+          "id": "standard",
+          "condition": {
+            "kind": "apply",
+            "operator": "equal",
+            "arguments": [
+              {
+                "kind": "ref",
+                "target": "election:deduction.method"
+              },
+              {
+                "kind": "literal",
+                "value_type": "Enum",
+                "value": "standard",
+                "enum_domain": "deduction_method"
+              }
+            ]
+          },
+          "result": {
+            "kind": "ref",
+            "target": "rule:deduction.standard"
+          }
+        },
+        {
+          "id": "itemized",
+          "condition": {
+            "kind": "apply",
+            "operator": "equal",
+            "arguments": [
+              {
+                "kind": "ref",
+                "target": "election:deduction.method"
+              },
+              {
+                "kind": "literal",
+                "value_type": "Enum",
+                "value": "itemized",
+                "enum_domain": "deduction_method"
+              }
+            ]
+          },
+          "result": {
+            "kind": "ref",
+            "target": "fact:deductions.itemized_total"
+          }
+        }
+      ],
+      "fallback": "blocked",
+      "evidence": [
+        {
+          "source_id": "irs-p501-2025",
+          "locator": "Standard Deduction",
+          "interpretation_status": "draft"
+        }
+      ]
+    }
+  ],
+  "elections": [
+    {
+      "id": "deduction.method",
+      "label": "Confirmed deduction method choice",
+      "status": "drafted",
+      "value_type": "Enum",
+      "shape": "scalar",
+      "scope": "return",
+      "selection_fact": "fact:deductions.selected_method",
+      "requires_confirmation": true,
+      "choices": [
+        {
+          "id": "standard",
+          "eligibility": {
+            "kind": "ref",
+            "target": "fact:deductions.standard_allowed"
+          },
+          "effects": [
+            "rule:deduction.selected"
+          ]
+        },
+        {
+          "id": "itemized",
+          "eligibility": {
+            "kind": "ref",
+            "target": "fact:deductions.itemized_allowed"
+          },
+          "effects": [
+            "rule:deduction.selected"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "irs-p501-2025",
+          "locator": "Standard Deduction",
+          "interpretation_status": "draft"
+        }
+      ],
+      "enum_domain": "deduction_method"
+    }
+  ],
+  "modules": [
+    {
+      "id": "standard.dependent_worksheet",
+      "label": "Dependent standard-deduction worksheet interface",
+      "status": "drafted",
+      "version": "0.0.1",
+      "implementation_status": "interface_only",
+      "inputs": [
+        {
+          "name": "claimable",
+          "value_type": "Boolean",
+          "shape": "scalar"
+        }
+      ],
+      "result_type": "Money",
+      "result_shape": "scalar",
+      "cycle_policy": "acyclic",
+      "evidence": [
+        {
+          "source_id": "irs-p501-2025",
+          "locator": "Standard Deduction for Dependents",
+          "interpretation_status": "draft"
+        }
+      ]
+    },
+    {
+      "id": "tax.preferential_worksheet",
+      "label": "Preferential income-tax worksheet interface",
+      "status": "drafted",
+      "version": "0.0.1",
+      "implementation_status": "interface_only",
+      "inputs": [
+        {
+          "name": "qualified_dividends",
+          "value_type": "Money",
+          "shape": "scalar"
+        }
+      ],
+      "result_type": "Money",
+      "result_shape": "scalar",
+      "cycle_policy": "acyclic",
+      "evidence": [
+        {
+          "source_id": "irs-1040-instructions-2025",
+          "locator": "Qualified Dividends and Capital Gain Tax Worksheet",
+          "interpretation_status": "draft"
+        }
+      ]
+    }
+  ],
+  "constraints": [
+    {
+      "id": "dividends.qualified_subset",
+      "label": "Qualified amounts cannot exceed their ordinary total",
+      "status": "drafted",
+      "predicate": {
+        "kind": "apply",
+        "operator": "less_equal",
+        "arguments": [
+          {
+            "kind": "ref",
+            "target": "rule:income.qualified"
+          },
+          {
+            "kind": "ref",
+            "target": "rule:income.dividends"
+          }
+        ]
+      },
+      "severity": "error",
+      "message_key": "dividends.qualified_exceeds_total",
+      "evidence": [
+        {
+          "source_id": "irs-1099-div-instructions-2024-01",
+          "locator": "Box 1b. Qualified Dividends",
+          "interpretation_status": "draft"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from": "rule:deduction.dependent",
+      "to": "rule:deduction.standard_base",
+      "kind": "exception_of",
+      "interpretation_status": "draft",
+      "note": "Explicit method routing selects the alternative; this relationship itself does not replace a result."
+    },
+    {
+      "from": "rule:deduction.standard_base",
+      "to": "rule:deduction.dependent",
+      "kind": "mutually_exclusive_with",
+      "interpretation_status": "draft",
+      "note": "Candidate applicability is complementary; missing facts remain unresolved."
+    }
+  ],
+  "form_mappings": [
+    {
+      "id": "form1040.wages",
+      "label": "Draft 2025 income mapping",
+      "status": "drafted",
+      "tax_year": 2025,
+      "form": "1040",
+      "field": "1a",
+      "value": {
+        "kind": "ref",
+        "target": "rule:income.wages"
+      },
+      "evidence": [
+        {
+          "source_id": "irs-1040-instructions-2025",
+          "locator": "Line 1a",
+          "interpretation_status": "draft"
+        }
+      ]
+    },
+    {
+      "id": "form1040.interest",
+      "label": "Draft 2025 income mapping",
+      "status": "drafted",
+      "tax_year": 2025,
+      "form": "1040",
+      "field": "2b",
+      "value": {
+        "kind": "ref",
+        "target": "rule:income.interest"
+      },
+      "evidence": [
+        {
+          "source_id": "irs-1040-instructions-2025",
+          "locator": "Line 2b",
+          "interpretation_status": "draft"
+        }
+      ]
+    },
+    {
+      "id": "form1040.dividends",
+      "label": "Draft 2025 income mapping",
+      "status": "drafted",
+      "tax_year": 2025,
+      "form": "1040",
+      "field": "3b",
+      "value": {
+        "kind": "ref",
+        "target": "rule:income.dividends"
+      },
+      "evidence": [
+        {
+          "source_id": "irs-1040-instructions-2025",
+          "locator": "Line 3b",
+          "interpretation_status": "draft"
+        }
+      ]
+    },
+    {
+      "id": "form1040.qualified",
+      "label": "Draft 2025 income mapping",
+      "status": "drafted",
+      "tax_year": 2025,
+      "form": "1040",
+      "field": "3a",
+      "value": {
+        "kind": "ref",
+        "target": "rule:income.qualified"
+      },
+      "evidence": [
+        {
+          "source_id": "irs-1040-instructions-2025",
+          "locator": "Line 3a",
+          "interpretation_status": "draft"
+        }
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "federal.individual.model_prototype",
+      "label": "Representative individual-tax modeling patterns",
+      "status": "modeled_not_implemented",
+      "rule_refs": [
+        "rule:income.wages",
+        "rule:income.interest",
+        "rule:income.dividends",
+        "rule:income.qualified",
+        "rule:income.nonqualified",
+        "rule:deduction.standard_base",
+        "rule:deduction.dependent",
+        "rule:deduction.standard",
+        "rule:deduction.selected",
+        "rule:reporting.schedule_b"
+      ],
+      "missing_work": [
+        "Reviewed tax interpretations and independent calculation fixtures",
+        "Populated sourced annual parameters",
+        "Complete module interfaces and implementations",
+        "Runtime fact-state and election validation",
+        "Complete tax and filing coverage"
+      ]
+    }
+  ],
+  "enum_domains": [
+    {
+      "id": "filing_status",
+      "values": [
+        "single",
+        "married_joint",
+        "married_separate",
+        "head_of_household",
+        "qualifying_surviving_spouse"
+      ]
+    },
+    {
+      "id": "deduction_method",
+      "values": [
+        "standard",
+        "itemized"
+      ]
+    }
+  ]
+}

@@ -55,7 +55,9 @@ New provisions can apply even to standard-deduction households. Keep these in th
 
 ## Roadmap with completion gates
 
-### 0. Research and contracts
+### 0. Domain modeling, research, and contracts
+
+First establish the language-neutral tax model, broad concept catalog, and relationship contracts before implementing a narrow return. Validate representative patterns and document the remaining allocation, carryover, effective-date, and shared-limit work. Model breadth does not imply verified statutory coverage. See [Tax domain model](../model/README.md).
 
 Choose one year's supported calculation and filing envelopes. Inventory document boxes, required forms/schedules, and additional intake questions. Pin authoritative sources. Define fact types, a canonical return model, amount policy, outcomes, rule contracts, evidence, and test expectations. Research authorized transmission options early; do not wait until a calculator is finished.
 

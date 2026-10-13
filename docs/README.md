@@ -34,6 +34,7 @@ The valuable asset is a verified, versioned tax knowledge base with a reliable a
 |---|---|
 | [Product and roadmap](product-roadmap.md) | Audience, boundaries, milestones, and release gates |
 | [Rule system](rule-system.md) | Alternatives, authoring model, dependencies, exceptions, and elections |
+| [Tax domain model](../model/README.md) | Portable contracts, broad concept catalog, examples, and validation |
 | [Sources and imports](sources-and-imports.md) | Grounded evidence, assisted imports, review, and tax-year releases |
 | [Data and security](data-and-security.md) | Saved scenarios, accounts, documents, access, and deletion |
 | [Implementation plan](implementation-plan.md) | Proposed stack, repository layout, APIs, and validation |
@@ -46,7 +47,7 @@ The valuable asset is a verified, versioned tax knowledge base with a reliable a
 
 ## First engineering milestone
 
-Build one vertical slice: confirmed synthetic W-2 and dividend facts → one tax-year package → a coverage decision → reproducible calculation → explanation → draft return line mapping. Include a minimal return lifecycle from the start; live filing remains a later milestone. Prove source traceability, exact arithmetic, unknown handling, and year isolation before growing the rule catalog.
+Model the tax domain and rule authoring system before implementing a narrow return. Establish portable contracts, broad concept coverage, typed relationships, and representative exceptions/elections/worksheet interfaces. Validate these artifacts and preserve explicit research gaps. See [the model](../model/README.md). A calculation and draft return are subsequent milestones. Prove source traceability, exact arithmetic, unknown handling, and year isolation before growing the rule catalog.
 
 Recommended starting sequence: 2025 as the completed-return reference year; add 2026 planning as a separately labeled package. Published annual parameters do not mean every return instruction for a future filing season is final.
 

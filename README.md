@@ -6,7 +6,7 @@ Taxman is a free U.S. federal tax preparation and filing product being built to 
 
 ## Project status
 
-Taxman is in early development. This repository currently contains the product roadmap, architecture plans, and illustrative rule examples. Neither a working calculator nor tax-return filing is available yet.
+Taxman is in early development. This repository currently contains the product roadmap, a machine-readable tax-domain model, architecture plans, illustrative rule examples, and model-validation tooling. Neither a working calculator nor tax-return filing is available yet.
 
 ## What we're building
 
@@ -40,6 +40,7 @@ For participation, see [Contributing](CONTRIBUTING.md). Report sensitive securit
 
 For the technical design, start with the [development plan](docs/README.md):
 
+- [Tax domain model](model/README.md)
 - [Tax rules and calculations](docs/rule-system.md)
 - [Sources and rule updates](docs/sources-and-imports.md)
 - [Data and security](docs/data-and-security.md)

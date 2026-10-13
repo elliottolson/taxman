@@ -18,9 +18,9 @@ The [source and import workflow](docs/sources-and-imports.md) describes how draf
 
 ## Changes and checks
 
-Keep pull requests focused. Describe the problem, resulting behavior, sources, and validation. Update related documentation when changing the design. The initial CI checks whitespace in the committed change and JSON syntax in the planning artifacts; it does not verify tax accuracy or JSON Schema conformance.
+Keep pull requests focused. Describe the problem, resulting behavior, sources, and validation. Update related documentation when changing the design. CI checks whitespace, JSON syntax, model JSON Schema conformance, references/types/dependencies, and contract rejection tests. It does not verify tax accuracy or every decision overlap. See [Model verification](model/README.md).
 
-The production implementation language remains undecided. Do not introduce a runtime scaffold solely to validate planning documents.
+The production implementation language remains undecided. Python under tools/model/ is validation tooling for portable JSON artifacts, not an application scaffold or tax evaluator.
 
 ## License
 

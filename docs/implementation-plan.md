@@ -51,7 +51,13 @@ Proposed endpoints: create/update a prepared return, validate it, finalize a rev
 
 Use a transmission adapter with a fake implementation first. Preserve transport status, provider status, and IRS status separately. Unknown delivery must be reconciled before retrying; retries use idempotency and cannot silently duplicate filing. See [Preparation and filing](filing-product.md).
 
-## First prototype
+## Modeling phase first
+
+Before a narrow return, establish the portable model and tax-domain inventory in model/. JSON Schema and semantic reference/type/dependency checks are development tooling, independent of the production backend choice. Python under tools/model/ validates these artifacts only; it does not select Python for the application or tax engine.
+
+Expand model contracts for allocations, shared limits, carryovers, effective dates, and richer decision analysis before accepting rules for execution. Then use the following calculation prototype to test the reviewed contracts against real computation.
+
+## Subsequent calculation prototype
 
 1. Build exact numeric types and value/status contracts.
 2. Implement the illustrative dividend package with dependency derivation and trace output.

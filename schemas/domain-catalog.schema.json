@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:taxman:catalog:0.2.0",
+  "title": "Taxman concept research inventory",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "minLength": 1
+    },
+    "catalog_version": {
+      "const": "0.2.0"
+    },
+    "status": {
+      "const": "research_inventory"
+    },
+    "exhaustive": {
+      "const": false
+    },
+    "jurisdiction": {
+      "const": "US-FED"
+    },
+    "families": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.-]*$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "concepts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_.-]*$"
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "status": {
+                  "const": "inventoried"
+                },
+                "rule_kinds": {
+                  "type": "array",
+                  "items": {
+                    "enum": [
+                      "definition",
+                      "classification",
+                      "eligibility",
+                      "calculation",
+                      "exception",
+                      "allocation",
+                      "limit",
+                      "phaseout",
+                      "carryover",
+                      "election",
+                      "reporting",
+                      "procedure"
+                    ]
+                  },
+                  "minItems": 1
+                }
+              },
+              "required": [
+                "id",
+                "label",
+                "status",
+                "rule_kinds"
+              ]
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "concepts"
+        ]
+      },
+      "minItems": 1
+    },
+    "future_jurisdictions_and_entities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "$schema",
+    "catalog_version",
+    "status",
+    "exhaustive",
+    "jurisdiction",
+    "families",
+    "future_jurisdictions_and_entities",
+    "limitations"
+  ]
+}

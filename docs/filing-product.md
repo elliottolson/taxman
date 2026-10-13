@@ -75,7 +75,7 @@ Provide copies of the prepared/filed return and relevant acknowledgment records.
 
 ## Revised next-work ranking
 
-1. Define one supported complete return, its calculation facts, reporting fields, form mappings, and independently checked examples.
+1. Establish the tax-domain model and broad concept inventory before a narrow return; validate rule relationships and representative complex patterns. Then define one supported complete return and its independently checked examples.
 2. Implement the calculation slice and minimal canonical return model together.
 3. Build guided entry and draft return review with source-backed explanations.
 4. Establish secure saving, versioning, and filing-identity boundaries.
