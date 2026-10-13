@@ -91,3 +91,7 @@ GitHub checks validate schemas, source references, parameter completeness, depen
 Production traces are sensitive. Monitor error categories, duration, rule/package IDs, and coarse coverage outcomes without collecting financial values. Retain historical versions needed for explanations and reproduce deleted private data only where policy lawfully permits it.
 
 Cost controls: maximum service instances, pooled database connections, bounded document jobs, per-account upload limits, and private-object lifecycle rules. A budget alert is not a hard spending cap.
+
+## Synthetic compiler milestone
+
+The [compilation and verification contracts](compilation-and-verification.md) now connect a small portable model to saved execution plans, exact-cent synthetic comparisons, and validated explanations. This is Python test tooling and does not settle the backend language. The real tax package still requires reviewed interpretations, complete module/table support, independent tax comparisons, and coverage acceptance.

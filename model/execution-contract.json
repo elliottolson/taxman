@@ -1,0 +1,2802 @@
+{
+  "$schema": "../schemas/execution-contract.schema.json",
+  "contract_version": "0.1.0",
+  "status": "synthetic_compiler_demonstration",
+  "production_enabled": false,
+  "programs": [
+    {
+      "parameter_bindings": [
+        {
+          "id": "design.base.2025",
+          "target": "parameter:design.base",
+          "tax_year": 2025,
+          "value": "100.00",
+          "definition_sha256": "d4db542fe97ea9f4a235310cf42d8c0d18d98b82547fe1a066d0602f4c02b559"
+        },
+        {
+          "id": "design.base.2026",
+          "target": "parameter:design.base",
+          "tax_year": 2026,
+          "value": "120.00",
+          "definition_sha256": "d4db542fe97ea9f4a235310cf42d8c0d18d98b82547fe1a066d0602f4c02b559"
+        }
+      ],
+      "id": "design.compiler.v1",
+      "mode": "synthetic",
+      "model": {
+        "$schema": "../schemas/tax-model.schema.json",
+        "model_version": "0.3.0",
+        "jurisdiction": "US-FED",
+        "candidate_tax_years": [
+          2025,
+          2026
+        ],
+        "status": "draft",
+        "production_enabled": false,
+        "source_registry": "inline:synthetic",
+        "limitations": [
+          "Synthetic typed compiler demonstration, not tax law."
+        ],
+        "facts": [
+          {
+            "id": "design.gross",
+            "label": "Synthetic design.gross",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ]
+          },
+          {
+            "id": "design.exception",
+            "label": "Synthetic design.exception",
+            "status": "drafted",
+            "value_type": "Boolean",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ]
+          },
+          {
+            "id": "design.exception_amount",
+            "label": "Synthetic design.exception_amount",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ]
+          },
+          {
+            "id": "design.method",
+            "label": "Synthetic design.method",
+            "status": "drafted",
+            "value_type": "Enum",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ],
+            "enum_domain": "design_method"
+          },
+          {
+            "id": "design.eligible",
+            "label": "Synthetic design.eligible",
+            "status": "drafted",
+            "value_type": "Boolean",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "id": "design.base",
+            "label": "Invented annual amount",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "axes": [],
+            "value_status": "draft",
+            "value": "100.00",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ]
+          }
+        ],
+        "rules": [
+          {
+            "id": "design.base",
+            "label": "Synthetic design.base",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "concept_id": "design.example",
+            "rule_kind": "calculation",
+            "applicability": {
+              "kind": "literal",
+              "value_type": "Boolean",
+              "value": true
+            },
+            "execution": {
+              "kind": "expression",
+              "expression": {
+                "kind": "ref",
+                "target": "parameter:design.base"
+              }
+            },
+            "declared_dependencies": [
+              "parameter:design.base"
+            ],
+            "unknown_policy": "block",
+            "rounding_policy": "no_rounding",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ],
+            "explanation_key": "design.base"
+          },
+          {
+            "id": "design.exception",
+            "label": "Synthetic design.exception",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "concept_id": "design.example",
+            "rule_kind": "calculation",
+            "applicability": {
+              "kind": "ref",
+              "target": "fact:design.exception"
+            },
+            "execution": {
+              "kind": "expression",
+              "expression": {
+                "kind": "ref",
+                "target": "fact:design.exception_amount"
+              }
+            },
+            "declared_dependencies": [
+              "fact:design.exception",
+              "fact:design.exception_amount"
+            ],
+            "unknown_policy": "block",
+            "rounding_policy": "no_rounding",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ],
+            "explanation_key": "design.exception"
+          },
+          {
+            "id": "design.adjusted",
+            "label": "Synthetic design.adjusted",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "concept_id": "design.example",
+            "rule_kind": "calculation",
+            "applicability": {
+              "kind": "literal",
+              "value_type": "Boolean",
+              "value": true
+            },
+            "execution": {
+              "kind": "expression",
+              "expression": {
+                "kind": "apply",
+                "operator": "subtract",
+                "arguments": [
+                  {
+                    "kind": "ref",
+                    "target": "fact:design.gross"
+                  },
+                  {
+                    "kind": "ref",
+                    "target": "decision:design.method"
+                  }
+                ]
+              }
+            },
+            "declared_dependencies": [
+              "fact:design.gross",
+              "decision:design.method"
+            ],
+            "unknown_policy": "block",
+            "rounding_policy": "no_rounding",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ],
+            "explanation_key": "design.adjusted"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "design.exception",
+            "label": "Synthetic design.exception",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "hit_policy": "unique",
+            "unknown_policy": "block",
+            "rows": [
+              {
+                "id": "base",
+                "condition": {
+                  "kind": "apply",
+                  "operator": "not",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "target": "fact:design.exception"
+                    }
+                  ]
+                },
+                "result": {
+                  "kind": "ref",
+                  "target": "rule:design.base"
+                }
+              },
+              {
+                "id": "exception",
+                "condition": {
+                  "kind": "ref",
+                  "target": "fact:design.exception"
+                },
+                "result": {
+                  "kind": "ref",
+                  "target": "rule:design.exception"
+                }
+              }
+            ],
+            "fallback": "blocked",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ]
+          },
+          {
+            "id": "design.method",
+            "label": "Synthetic design.method",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "hit_policy": "unique",
+            "unknown_policy": "block",
+            "rows": [
+              {
+                "id": "base",
+                "condition": {
+                  "kind": "apply",
+                  "operator": "equal",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "target": "election:design.method"
+                    },
+                    {
+                      "kind": "literal",
+                      "value_type": "Enum",
+                      "enum_domain": "design_method",
+                      "value": "base"
+                    }
+                  ]
+                },
+                "result": {
+                  "kind": "ref",
+                  "target": "rule:design.base"
+                }
+              },
+              {
+                "id": "alternative",
+                "condition": {
+                  "kind": "apply",
+                  "operator": "equal",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "target": "election:design.method"
+                    },
+                    {
+                      "kind": "literal",
+                      "value_type": "Enum",
+                      "enum_domain": "design_method",
+                      "value": "alternative"
+                    }
+                  ]
+                },
+                "result": {
+                  "kind": "ref",
+                  "target": "decision:design.exception"
+                }
+              }
+            ],
+            "fallback": "blocked",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ]
+          }
+        ],
+        "elections": [
+          {
+            "id": "design.method",
+            "label": "Synthetic authorized choice",
+            "status": "drafted",
+            "value_type": "Enum",
+            "shape": "scalar",
+            "scope": "return",
+            "enum_domain": "design_method",
+            "selection_fact": "fact:design.method",
+            "requires_confirmation": true,
+            "choices": [
+              {
+                "id": "base",
+                "eligibility": {
+                  "kind": "ref",
+                  "target": "fact:design.eligible"
+                },
+                "effects": [
+                  "rule:design.adjusted"
+                ]
+              },
+              {
+                "id": "alternative",
+                "eligibility": {
+                  "kind": "ref",
+                  "target": "fact:design.eligible"
+                },
+                "effects": [
+                  "rule:design.adjusted"
+                ]
+              }
+            ],
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ]
+          }
+        ],
+        "modules": [],
+        "constraints": [],
+        "relationships": [],
+        "form_mappings": [],
+        "capabilities": [],
+        "enum_domains": [
+          {
+            "id": "design_method",
+            "values": [
+              "base",
+              "alternative"
+            ]
+          }
+        ],
+        "interaction_model": "interaction-model.json"
+      },
+      "catalog": {
+        "$schema": "../schemas/domain-catalog.schema.json",
+        "catalog_version": "0.2.0",
+        "status": "research_inventory",
+        "exhaustive": false,
+        "jurisdiction": "US-FED",
+        "families": [
+          {
+            "id": "design",
+            "label": "Synthetic compiler demonstration",
+            "concepts": [
+              {
+                "id": "design.example",
+                "label": "Invented arithmetic and selection",
+                "status": "inventoried",
+                "rule_kinds": [
+                  "calculation"
+                ]
+              }
+            ]
+          }
+        ],
+        "future_jurisdictions_and_entities": [
+          "State individual income tax",
+          "Corporate and partnership returns",
+          "Estate, gift, and trust returns",
+          "Other federal tax programs"
+        ],
+        "limitations": [
+          "Authored concept inventory, not an exhaustive statutory catalog.",
+          "An inventoried topic is not a researched or implemented tax rule.",
+          "Prototype rules map to selected topics without claiming complete topic coverage."
+        ]
+      },
+      "registry": {
+        "sources": [
+          {
+            "id": "design-spec",
+            "title": "Synthetic compiler example; no legal authority",
+            "status": "draft",
+            "authority_class": "synthetic_specification"
+          }
+        ]
+      },
+      "rule_revisions": [
+        {
+          "id": "design.base.v1",
+          "target": "rule:design.base",
+          "tax_years": {
+            "start": 2025,
+            "end_exclusive": 2027
+          },
+          "recorded_at": "2026-01-01T00:00:00Z",
+          "superseded_at": null,
+          "definition": {
+            "id": "design.base",
+            "label": "Synthetic design.base",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "concept_id": "design.example",
+            "rule_kind": "calculation",
+            "applicability": {
+              "kind": "literal",
+              "value_type": "Boolean",
+              "value": true
+            },
+            "execution": {
+              "kind": "expression",
+              "expression": {
+                "kind": "ref",
+                "target": "parameter:design.base"
+              }
+            },
+            "declared_dependencies": [
+              "parameter:design.base"
+            ],
+            "unknown_policy": "block",
+            "rounding_policy": "no_rounding",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ],
+            "explanation_key": "design.base"
+          },
+          "sha256": "dac1ac7c8b91606420f8156742c46936c7185ce6a838470a24c488005909fa0b"
+        },
+        {
+          "id": "design.exception.v1",
+          "target": "rule:design.exception",
+          "tax_years": {
+            "start": 2025,
+            "end_exclusive": 2027
+          },
+          "recorded_at": "2026-01-01T00:00:00Z",
+          "superseded_at": null,
+          "definition": {
+            "id": "design.exception",
+            "label": "Synthetic design.exception",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "concept_id": "design.example",
+            "rule_kind": "calculation",
+            "applicability": {
+              "kind": "ref",
+              "target": "fact:design.exception"
+            },
+            "execution": {
+              "kind": "expression",
+              "expression": {
+                "kind": "ref",
+                "target": "fact:design.exception_amount"
+              }
+            },
+            "declared_dependencies": [
+              "fact:design.exception",
+              "fact:design.exception_amount"
+            ],
+            "unknown_policy": "block",
+            "rounding_policy": "no_rounding",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ],
+            "explanation_key": "design.exception"
+          },
+          "sha256": "43ab8721baa2f66fcbeae89f73e98eafe0bf0fca560543a355df981228583165"
+        },
+        {
+          "id": "design.adjusted.v1",
+          "target": "rule:design.adjusted",
+          "tax_years": {
+            "start": 2025,
+            "end_exclusive": 2027
+          },
+          "recorded_at": "2026-01-01T00:00:00Z",
+          "superseded_at": "2026-06-01T00:00:00Z",
+          "definition": {
+            "id": "design.adjusted",
+            "label": "Synthetic design.adjusted",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "concept_id": "design.example",
+            "rule_kind": "calculation",
+            "applicability": {
+              "kind": "literal",
+              "value_type": "Boolean",
+              "value": true
+            },
+            "execution": {
+              "kind": "expression",
+              "expression": {
+                "kind": "apply",
+                "operator": "subtract",
+                "arguments": [
+                  {
+                    "kind": "ref",
+                    "target": "fact:design.gross"
+                  },
+                  {
+                    "kind": "ref",
+                    "target": "decision:design.method"
+                  }
+                ]
+              }
+            },
+            "declared_dependencies": [
+              "fact:design.gross",
+              "decision:design.method"
+            ],
+            "unknown_policy": "block",
+            "rounding_policy": "no_rounding",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ],
+            "explanation_key": "design.adjusted"
+          },
+          "sha256": "8de08687d950ed3e4ad92d67a988a3de7ab77134ce041d3a9e1f5ee98d61a747"
+        },
+        {
+          "id": "design.adjusted.v2",
+          "target": "rule:design.adjusted",
+          "tax_years": {
+            "start": 2025,
+            "end_exclusive": 2027
+          },
+          "recorded_at": "2026-06-01T00:00:00Z",
+          "superseded_at": null,
+          "definition": {
+            "id": "design.adjusted",
+            "label": "Synthetic corrected explanation",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "concept_id": "design.example",
+            "rule_kind": "calculation",
+            "applicability": {
+              "kind": "literal",
+              "value_type": "Boolean",
+              "value": true
+            },
+            "execution": {
+              "kind": "expression",
+              "expression": {
+                "kind": "apply",
+                "operator": "subtract",
+                "arguments": [
+                  {
+                    "kind": "ref",
+                    "target": "fact:design.gross"
+                  },
+                  {
+                    "kind": "ref",
+                    "target": "decision:design.method"
+                  }
+                ]
+              }
+            },
+            "declared_dependencies": [
+              "fact:design.gross",
+              "decision:design.method"
+            ],
+            "unknown_policy": "block",
+            "rounding_policy": "no_rounding",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ],
+            "explanation_key": "design.adjusted"
+          },
+          "sha256": "df5717588c8b7de5ff619285daf00cf1cf1f4585450a582e71cc08935f1dc4d9"
+        }
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "id": "design.2025.original",
+      "program_id": "design.compiler.v1",
+      "tax_year": 2025,
+      "known_at": "2026-03-01T00:00:00Z",
+      "outputs": [
+        "rule:design.adjusted"
+      ]
+    },
+    {
+      "id": "design.2025.corrected",
+      "program_id": "design.compiler.v1",
+      "tax_year": 2025,
+      "known_at": "2026-07-01T00:00:00Z",
+      "outputs": [
+        "rule:design.adjusted"
+      ]
+    },
+    {
+      "id": "design.2026.corrected",
+      "program_id": "design.compiler.v1",
+      "tax_year": 2026,
+      "known_at": "2026-07-01T00:00:00Z",
+      "outputs": [
+        "rule:design.adjusted"
+      ]
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "base-unused-missing",
+      "package_ids": [
+        "design.2025.original",
+        "design.2025.corrected"
+      ],
+      "return_revision": "design.return.v1",
+      "inputs": {
+        "fact:design.gross": {
+          "state": "confirmed",
+          "value": "1000.00"
+        },
+        "fact:design.method": {
+          "state": "confirmed",
+          "value": "base"
+        },
+        "fact:design.eligible": {
+          "state": "confirmed",
+          "value": true
+        },
+        "fact:design.exception": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "confirmations": {
+        "election:design.method": {
+          "id": "design.confirmation",
+          "return_revision": "design.return.v1",
+          "choice": "base"
+        }
+      },
+      "expected": {
+        "rule:design.adjusted": {
+          "status": "value",
+          "value": "900.00"
+        }
+      },
+      "oracle": "Manually authored invented expected result; independent of harness execution.",
+      "sha256": "d42d9a8e3ec7a0232872ffd64d4fcb60f2bab958de3af73ca2d68a61ef28f203"
+    },
+    {
+      "id": "alternative-base",
+      "package_ids": [
+        "design.2025.original",
+        "design.2025.corrected"
+      ],
+      "return_revision": "design.return.v1",
+      "inputs": {
+        "fact:design.gross": {
+          "state": "confirmed",
+          "value": "1000.00"
+        },
+        "fact:design.method": {
+          "state": "confirmed",
+          "value": "alternative"
+        },
+        "fact:design.eligible": {
+          "state": "confirmed",
+          "value": true
+        },
+        "fact:design.exception": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "confirmations": {
+        "election:design.method": {
+          "id": "design.confirmation",
+          "return_revision": "design.return.v1",
+          "choice": "alternative"
+        }
+      },
+      "expected": {
+        "rule:design.adjusted": {
+          "status": "value",
+          "value": "900.00"
+        }
+      },
+      "oracle": "Manually authored invented expected result; independent of harness execution.",
+      "sha256": "484bdc3573ebc7e52ff3cc1bc16656d0957e3e312ec15bada8c7da78db85095b"
+    },
+    {
+      "id": "exception",
+      "package_ids": [
+        "design.2025.original",
+        "design.2025.corrected"
+      ],
+      "return_revision": "design.return.v1",
+      "inputs": {
+        "fact:design.gross": {
+          "state": "confirmed",
+          "value": "1000.00"
+        },
+        "fact:design.method": {
+          "state": "confirmed",
+          "value": "alternative"
+        },
+        "fact:design.eligible": {
+          "state": "confirmed",
+          "value": true
+        },
+        "fact:design.exception": {
+          "state": "confirmed",
+          "value": true
+        },
+        "fact:design.exception_amount": {
+          "state": "confirmed",
+          "value": "250.00"
+        }
+      },
+      "confirmations": {
+        "election:design.method": {
+          "id": "design.confirmation",
+          "return_revision": "design.return.v1",
+          "choice": "alternative"
+        }
+      },
+      "expected": {
+        "rule:design.adjusted": {
+          "status": "value",
+          "value": "750.00"
+        }
+      },
+      "oracle": "Manually authored invented expected result; independent of harness execution.",
+      "sha256": "dc2c854e2ebed365211db9461b830ce8d0e217d1d9060e8134eeff2fae728ad8"
+    },
+    {
+      "id": "exception-missing",
+      "package_ids": [
+        "design.2025.original",
+        "design.2025.corrected"
+      ],
+      "return_revision": "design.return.v1",
+      "inputs": {
+        "fact:design.gross": {
+          "state": "confirmed",
+          "value": "1000.00"
+        },
+        "fact:design.method": {
+          "state": "confirmed",
+          "value": "alternative"
+        },
+        "fact:design.eligible": {
+          "state": "confirmed",
+          "value": true
+        },
+        "fact:design.exception": {
+          "state": "confirmed",
+          "value": true
+        }
+      },
+      "confirmations": {
+        "election:design.method": {
+          "id": "design.confirmation",
+          "return_revision": "design.return.v1",
+          "choice": "alternative"
+        }
+      },
+      "expected": {
+        "rule:design.adjusted": {
+          "status": "blocked",
+          "reason": "unresolved_dependency"
+        }
+      },
+      "oracle": "Manually authored invented expected result; independent of harness execution.",
+      "sha256": "736bab87d9ec79e4172227e923d19cd4069a8579cb6398bad97d982783b2b638"
+    },
+    {
+      "id": "unconfirmed",
+      "package_ids": [
+        "design.2025.original",
+        "design.2025.corrected"
+      ],
+      "return_revision": "design.return.v1",
+      "inputs": {
+        "fact:design.gross": {
+          "state": "confirmed",
+          "value": "1000.00"
+        },
+        "fact:design.method": {
+          "state": "confirmed",
+          "value": "base"
+        },
+        "fact:design.eligible": {
+          "state": "confirmed",
+          "value": true
+        },
+        "fact:design.exception": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "confirmations": {},
+      "expected": {
+        "rule:design.adjusted": {
+          "status": "blocked",
+          "reason": "unresolved_dependency"
+        }
+      },
+      "oracle": "Manually authored invented expected result; independent of harness execution.",
+      "sha256": "f0da2834eb580ab71be96634a70955e65b7b4dca3cef08336e6ca9aafab9c9e1"
+    },
+    {
+      "id": "stale-confirmation",
+      "package_ids": [
+        "design.2025.original",
+        "design.2025.corrected"
+      ],
+      "return_revision": "design.return.v2",
+      "inputs": {
+        "fact:design.gross": {
+          "state": "confirmed",
+          "value": "1000.00"
+        },
+        "fact:design.method": {
+          "state": "confirmed",
+          "value": "base"
+        },
+        "fact:design.eligible": {
+          "state": "confirmed",
+          "value": true
+        },
+        "fact:design.exception": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "confirmations": {
+        "election:design.method": {
+          "id": "design.confirmation",
+          "return_revision": "design.return.v1",
+          "choice": "base"
+        }
+      },
+      "expected": {
+        "rule:design.adjusted": {
+          "status": "blocked",
+          "reason": "unresolved_dependency"
+        }
+      },
+      "oracle": "Manually authored invented expected result; independent of harness execution.",
+      "sha256": "f8e65153ee165f0c856dcc5f3a19fea4d9197bd0b7e10c9d317744a8a3b7e19a"
+    },
+    {
+      "id": "unknown-condition",
+      "package_ids": [
+        "design.2025.original",
+        "design.2025.corrected"
+      ],
+      "return_revision": "design.return.v1",
+      "inputs": {
+        "fact:design.gross": {
+          "state": "confirmed",
+          "value": "1000.00"
+        },
+        "fact:design.method": {
+          "state": "confirmed",
+          "value": "alternative"
+        },
+        "fact:design.eligible": {
+          "state": "confirmed",
+          "value": true
+        },
+        "fact:design.exception": {
+          "state": "missing",
+          "value": null
+        }
+      },
+      "confirmations": {
+        "election:design.method": {
+          "id": "design.confirmation",
+          "return_revision": "design.return.v1",
+          "choice": "alternative"
+        }
+      },
+      "expected": {
+        "rule:design.adjusted": {
+          "status": "blocked",
+          "reason": "unresolved_dependency"
+        }
+      },
+      "oracle": "Manually authored invented expected result; independent of harness execution.",
+      "sha256": "7424210fed39c1832f5fdb85523e6b3117d0776e25620052aa4b48575efcbf6a"
+    },
+    {
+      "id": "ineligible",
+      "package_ids": [
+        "design.2025.original",
+        "design.2025.corrected"
+      ],
+      "return_revision": "design.return.v1",
+      "inputs": {
+        "fact:design.gross": {
+          "state": "confirmed",
+          "value": "1000.00"
+        },
+        "fact:design.method": {
+          "state": "confirmed",
+          "value": "base"
+        },
+        "fact:design.eligible": {
+          "state": "confirmed",
+          "value": false
+        },
+        "fact:design.exception": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "confirmations": {
+        "election:design.method": {
+          "id": "design.confirmation",
+          "return_revision": "design.return.v1",
+          "choice": "base"
+        }
+      },
+      "expected": {
+        "rule:design.adjusted": {
+          "status": "blocked",
+          "reason": "unresolved_dependency"
+        }
+      },
+      "oracle": "Manually authored invented expected result; independent of harness execution.",
+      "sha256": "47868f27d5ce955ea240136dbc7aec784470bc4ca4069b120c36623b290b2e0a"
+    },
+    {
+      "id": "2026-base",
+      "package_ids": [
+        "design.2026.corrected"
+      ],
+      "return_revision": "design.return.v1",
+      "inputs": {
+        "fact:design.gross": {
+          "state": "confirmed",
+          "value": "1000.00"
+        },
+        "fact:design.method": {
+          "state": "confirmed",
+          "value": "base"
+        },
+        "fact:design.eligible": {
+          "state": "confirmed",
+          "value": true
+        },
+        "fact:design.exception": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "confirmations": {
+        "election:design.method": {
+          "id": "design.confirmation",
+          "return_revision": "design.return.v1",
+          "choice": "base"
+        }
+      },
+      "expected": {
+        "rule:design.adjusted": {
+          "status": "value",
+          "value": "880.00"
+        }
+      },
+      "oracle": "Manually authored invented expected result; independent of harness execution.",
+      "sha256": "c6d505533e08dc1024cb5fee8974292d0a203db63210e1ef13010aaadb08fe0e"
+    },
+    {
+      "id": "2026-exception",
+      "package_ids": [
+        "design.2026.corrected"
+      ],
+      "return_revision": "design.return.v1",
+      "inputs": {
+        "fact:design.gross": {
+          "state": "confirmed",
+          "value": "1000.00"
+        },
+        "fact:design.method": {
+          "state": "confirmed",
+          "value": "alternative"
+        },
+        "fact:design.eligible": {
+          "state": "confirmed",
+          "value": true
+        },
+        "fact:design.exception": {
+          "state": "confirmed",
+          "value": true
+        },
+        "fact:design.exception_amount": {
+          "state": "confirmed",
+          "value": "250.00"
+        }
+      },
+      "confirmations": {
+        "election:design.method": {
+          "id": "design.confirmation",
+          "return_revision": "design.return.v1",
+          "choice": "alternative"
+        }
+      },
+      "expected": {
+        "rule:design.adjusted": {
+          "status": "value",
+          "value": "750.00"
+        }
+      },
+      "oracle": "Manually authored invented expected result; independent of harness execution.",
+      "sha256": "162cd13662d3a33580eb08f663fa2c8b3f823a2b60025b742468797fabf48aae"
+    }
+  ],
+  "packages": [
+    {
+      "package_id": "design.2025.original",
+      "contract_version": "0.1.0",
+      "compiler_version": "0.1.0",
+      "mode": "synthetic",
+      "production_enabled": false,
+      "tax_year": 2025,
+      "known_at": "2026-03-01T00:00:00Z",
+      "program_sha256": "b585caff1504c115accb1afeb19a02e25a4869e02993cf8f7a516a71a1ea4277",
+      "outputs": [
+        "rule:design.adjusted"
+      ],
+      "enum_domains": [
+        {
+          "id": "design_method",
+          "values": [
+            "base",
+            "alternative"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "id": "design-spec",
+          "title": "Synthetic compiler example; no legal authority",
+          "status": "draft",
+          "authority_class": "synthetic_specification"
+        }
+      ],
+      "nodes": [
+        {
+          "target": "fact:design.exception",
+          "definition": {
+            "id": "design.exception",
+            "label": "Synthetic design.exception",
+            "status": "drafted",
+            "value_type": "Boolean",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ]
+          },
+          "definition_sha256": "157b09ac6ebd378fa7eda095e9431f5da1cf4f5fcc0056bb800e0393606a4ef4",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": []
+        },
+        {
+          "target": "parameter:design.base",
+          "definition": {
+            "id": "design.base",
+            "label": "Invented annual amount",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "axes": [],
+            "value_status": "draft",
+            "value": "100.00",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ]
+          },
+          "definition_sha256": "d4db542fe97ea9f4a235310cf42d8c0d18d98b82547fe1a066d0602f4c02b559",
+          "revision_id": "design.base.2025",
+          "revision_sha256": "088419705e7b9f033521420d3c2cb3216c622f639b937208caab8a37efe20efe",
+          "dependencies": []
+        },
+        {
+          "target": "rule:design.base",
+          "definition": {
+            "id": "design.base",
+            "label": "Synthetic design.base",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "concept_id": "design.example",
+            "rule_kind": "calculation",
+            "applicability": {
+              "kind": "literal",
+              "value_type": "Boolean",
+              "value": true
+            },
+            "execution": {
+              "kind": "expression",
+              "expression": {
+                "kind": "ref",
+                "target": "parameter:design.base"
+              }
+            },
+            "declared_dependencies": [
+              "parameter:design.base"
+            ],
+            "unknown_policy": "block",
+            "rounding_policy": "no_rounding",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ],
+            "explanation_key": "design.base"
+          },
+          "definition_sha256": "8419602d4ecdde6c05cf86190d4165003663abe5f4773dd61eff197918e8e83a",
+          "revision_id": "design.base.v1",
+          "revision_sha256": "dac1ac7c8b91606420f8156742c46936c7185ce6a838470a24c488005909fa0b",
+          "dependencies": [
+            "parameter:design.base"
+          ]
+        },
+        {
+          "target": "fact:design.exception_amount",
+          "definition": {
+            "id": "design.exception_amount",
+            "label": "Synthetic design.exception_amount",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ]
+          },
+          "definition_sha256": "64238c3cb4e6eeae96a13f3284b1db8f750692260aa2f38d590adf2f2755b762",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": []
+        },
+        {
+          "target": "rule:design.exception",
+          "definition": {
+            "id": "design.exception",
+            "label": "Synthetic design.exception",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "concept_id": "design.example",
+            "rule_kind": "calculation",
+            "applicability": {
+              "kind": "ref",
+              "target": "fact:design.exception"
+            },
+            "execution": {
+              "kind": "expression",
+              "expression": {
+                "kind": "ref",
+                "target": "fact:design.exception_amount"
+              }
+            },
+            "declared_dependencies": [
+              "fact:design.exception",
+              "fact:design.exception_amount"
+            ],
+            "unknown_policy": "block",
+            "rounding_policy": "no_rounding",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ],
+            "explanation_key": "design.exception"
+          },
+          "definition_sha256": "592cce3428fc1aa7a8b9955dd4c0341e9579f651b6648079a428991665961b5e",
+          "revision_id": "design.exception.v1",
+          "revision_sha256": "43ab8721baa2f66fcbeae89f73e98eafe0bf0fca560543a355df981228583165",
+          "dependencies": [
+            "fact:design.exception",
+            "fact:design.exception_amount"
+          ]
+        },
+        {
+          "target": "decision:design.exception",
+          "definition": {
+            "id": "design.exception",
+            "label": "Synthetic design.exception",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "hit_policy": "unique",
+            "unknown_policy": "block",
+            "rows": [
+              {
+                "id": "base",
+                "condition": {
+                  "kind": "apply",
+                  "operator": "not",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "target": "fact:design.exception"
+                    }
+                  ]
+                },
+                "result": {
+                  "kind": "ref",
+                  "target": "rule:design.base"
+                }
+              },
+              {
+                "id": "exception",
+                "condition": {
+                  "kind": "ref",
+                  "target": "fact:design.exception"
+                },
+                "result": {
+                  "kind": "ref",
+                  "target": "rule:design.exception"
+                }
+              }
+            ],
+            "fallback": "blocked",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ]
+          },
+          "definition_sha256": "ee54887ead9f1366b5869f3623ad20e4f5dcc78de15a30a155bfb2834908b738",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": [
+            "fact:design.exception",
+            "rule:design.base",
+            "rule:design.exception"
+          ]
+        },
+        {
+          "target": "fact:design.eligible",
+          "definition": {
+            "id": "design.eligible",
+            "label": "Synthetic design.eligible",
+            "status": "drafted",
+            "value_type": "Boolean",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ]
+          },
+          "definition_sha256": "8eeac1a00cf2b9f0a9824f7e9ca318ce96415be82810020b0297614b085c8482",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": []
+        },
+        {
+          "target": "fact:design.method",
+          "definition": {
+            "id": "design.method",
+            "label": "Synthetic design.method",
+            "status": "drafted",
+            "value_type": "Enum",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ],
+            "enum_domain": "design_method"
+          },
+          "definition_sha256": "814f646bc16a555d658972be45c59e9021c753416d30170b6885374de8ca9940",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": []
+        },
+        {
+          "target": "election:design.method",
+          "definition": {
+            "id": "design.method",
+            "label": "Synthetic authorized choice",
+            "status": "drafted",
+            "value_type": "Enum",
+            "shape": "scalar",
+            "scope": "return",
+            "enum_domain": "design_method",
+            "selection_fact": "fact:design.method",
+            "requires_confirmation": true,
+            "choices": [
+              {
+                "id": "base",
+                "eligibility": {
+                  "kind": "ref",
+                  "target": "fact:design.eligible"
+                },
+                "effects": [
+                  "rule:design.adjusted"
+                ]
+              },
+              {
+                "id": "alternative",
+                "eligibility": {
+                  "kind": "ref",
+                  "target": "fact:design.eligible"
+                },
+                "effects": [
+                  "rule:design.adjusted"
+                ]
+              }
+            ],
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ]
+          },
+          "definition_sha256": "1a1dca157eb017bdf24aee4a6db1cb68a7c0ea929e0973717fcf48414b27addc",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": [
+            "fact:design.eligible",
+            "fact:design.method"
+          ]
+        },
+        {
+          "target": "decision:design.method",
+          "definition": {
+            "id": "design.method",
+            "label": "Synthetic design.method",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "hit_policy": "unique",
+            "unknown_policy": "block",
+            "rows": [
+              {
+                "id": "base",
+                "condition": {
+                  "kind": "apply",
+                  "operator": "equal",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "target": "election:design.method"
+                    },
+                    {
+                      "kind": "literal",
+                      "value_type": "Enum",
+                      "enum_domain": "design_method",
+                      "value": "base"
+                    }
+                  ]
+                },
+                "result": {
+                  "kind": "ref",
+                  "target": "rule:design.base"
+                }
+              },
+              {
+                "id": "alternative",
+                "condition": {
+                  "kind": "apply",
+                  "operator": "equal",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "target": "election:design.method"
+                    },
+                    {
+                      "kind": "literal",
+                      "value_type": "Enum",
+                      "enum_domain": "design_method",
+                      "value": "alternative"
+                    }
+                  ]
+                },
+                "result": {
+                  "kind": "ref",
+                  "target": "decision:design.exception"
+                }
+              }
+            ],
+            "fallback": "blocked",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ]
+          },
+          "definition_sha256": "adde6d8b3f8d4af923c9f131a25f1be0204b887ff1367ad0cbf9221d69ee83dd",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": [
+            "decision:design.exception",
+            "election:design.method",
+            "rule:design.base"
+          ]
+        },
+        {
+          "target": "fact:design.gross",
+          "definition": {
+            "id": "design.gross",
+            "label": "Synthetic design.gross",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ]
+          },
+          "definition_sha256": "267d6c755e4f32de3bf87f68650a381f9cc550e659d258d5445cb6d35329ed19",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": []
+        },
+        {
+          "target": "rule:design.adjusted",
+          "definition": {
+            "id": "design.adjusted",
+            "label": "Synthetic design.adjusted",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "concept_id": "design.example",
+            "rule_kind": "calculation",
+            "applicability": {
+              "kind": "literal",
+              "value_type": "Boolean",
+              "value": true
+            },
+            "execution": {
+              "kind": "expression",
+              "expression": {
+                "kind": "apply",
+                "operator": "subtract",
+                "arguments": [
+                  {
+                    "kind": "ref",
+                    "target": "fact:design.gross"
+                  },
+                  {
+                    "kind": "ref",
+                    "target": "decision:design.method"
+                  }
+                ]
+              }
+            },
+            "declared_dependencies": [
+              "fact:design.gross",
+              "decision:design.method"
+            ],
+            "unknown_policy": "block",
+            "rounding_policy": "no_rounding",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ],
+            "explanation_key": "design.adjusted"
+          },
+          "definition_sha256": "cd7cdafdb01d41e0b0cb0893f1ad60bbf63bc3c81251f2643a3543df7f65a3f7",
+          "revision_id": "design.adjusted.v1",
+          "revision_sha256": "8de08687d950ed3e4ad92d67a988a3de7ab77134ce041d3a9e1f5ee98d61a747",
+          "dependencies": [
+            "decision:design.method",
+            "fact:design.gross"
+          ]
+        }
+      ],
+      "input_contracts": [
+        {
+          "target": "fact:design.eligible",
+          "value_type": "Boolean",
+          "shape": "scalar",
+          "scope": "return",
+          "enum_domain": null
+        },
+        {
+          "target": "fact:design.exception",
+          "value_type": "Boolean",
+          "shape": "scalar",
+          "scope": "return",
+          "enum_domain": null
+        },
+        {
+          "target": "fact:design.exception_amount",
+          "value_type": "Money",
+          "shape": "scalar",
+          "scope": "return",
+          "enum_domain": null
+        },
+        {
+          "target": "fact:design.gross",
+          "value_type": "Money",
+          "shape": "scalar",
+          "scope": "return",
+          "enum_domain": null
+        },
+        {
+          "target": "fact:design.method",
+          "value_type": "Enum",
+          "shape": "scalar",
+          "scope": "return",
+          "enum_domain": "design_method"
+        }
+      ],
+      "election_requirements": [
+        "election:design.method"
+      ],
+      "limitations": [
+        "Synthetic harness only; no legal acceptance or released tax support.",
+        "Election lifecycle authorization must be established outside this harness.",
+        "No indexed tables, modules, date-sensitive rules, or rounding methods."
+      ],
+      "sha256": "7e81eb1e92ca9b2acfe419e9b6e77c85d3ba2c3d3bbea2e1b572a23d327fe89c"
+    },
+    {
+      "package_id": "design.2025.corrected",
+      "contract_version": "0.1.0",
+      "compiler_version": "0.1.0",
+      "mode": "synthetic",
+      "production_enabled": false,
+      "tax_year": 2025,
+      "known_at": "2026-07-01T00:00:00Z",
+      "program_sha256": "b585caff1504c115accb1afeb19a02e25a4869e02993cf8f7a516a71a1ea4277",
+      "outputs": [
+        "rule:design.adjusted"
+      ],
+      "enum_domains": [
+        {
+          "id": "design_method",
+          "values": [
+            "base",
+            "alternative"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "id": "design-spec",
+          "title": "Synthetic compiler example; no legal authority",
+          "status": "draft",
+          "authority_class": "synthetic_specification"
+        }
+      ],
+      "nodes": [
+        {
+          "target": "fact:design.exception",
+          "definition": {
+            "id": "design.exception",
+            "label": "Synthetic design.exception",
+            "status": "drafted",
+            "value_type": "Boolean",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ]
+          },
+          "definition_sha256": "157b09ac6ebd378fa7eda095e9431f5da1cf4f5fcc0056bb800e0393606a4ef4",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": []
+        },
+        {
+          "target": "parameter:design.base",
+          "definition": {
+            "id": "design.base",
+            "label": "Invented annual amount",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "axes": [],
+            "value_status": "draft",
+            "value": "100.00",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ]
+          },
+          "definition_sha256": "d4db542fe97ea9f4a235310cf42d8c0d18d98b82547fe1a066d0602f4c02b559",
+          "revision_id": "design.base.2025",
+          "revision_sha256": "088419705e7b9f033521420d3c2cb3216c622f639b937208caab8a37efe20efe",
+          "dependencies": []
+        },
+        {
+          "target": "rule:design.base",
+          "definition": {
+            "id": "design.base",
+            "label": "Synthetic design.base",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "concept_id": "design.example",
+            "rule_kind": "calculation",
+            "applicability": {
+              "kind": "literal",
+              "value_type": "Boolean",
+              "value": true
+            },
+            "execution": {
+              "kind": "expression",
+              "expression": {
+                "kind": "ref",
+                "target": "parameter:design.base"
+              }
+            },
+            "declared_dependencies": [
+              "parameter:design.base"
+            ],
+            "unknown_policy": "block",
+            "rounding_policy": "no_rounding",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ],
+            "explanation_key": "design.base"
+          },
+          "definition_sha256": "8419602d4ecdde6c05cf86190d4165003663abe5f4773dd61eff197918e8e83a",
+          "revision_id": "design.base.v1",
+          "revision_sha256": "dac1ac7c8b91606420f8156742c46936c7185ce6a838470a24c488005909fa0b",
+          "dependencies": [
+            "parameter:design.base"
+          ]
+        },
+        {
+          "target": "fact:design.exception_amount",
+          "definition": {
+            "id": "design.exception_amount",
+            "label": "Synthetic design.exception_amount",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ]
+          },
+          "definition_sha256": "64238c3cb4e6eeae96a13f3284b1db8f750692260aa2f38d590adf2f2755b762",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": []
+        },
+        {
+          "target": "rule:design.exception",
+          "definition": {
+            "id": "design.exception",
+            "label": "Synthetic design.exception",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "concept_id": "design.example",
+            "rule_kind": "calculation",
+            "applicability": {
+              "kind": "ref",
+              "target": "fact:design.exception"
+            },
+            "execution": {
+              "kind": "expression",
+              "expression": {
+                "kind": "ref",
+                "target": "fact:design.exception_amount"
+              }
+            },
+            "declared_dependencies": [
+              "fact:design.exception",
+              "fact:design.exception_amount"
+            ],
+            "unknown_policy": "block",
+            "rounding_policy": "no_rounding",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ],
+            "explanation_key": "design.exception"
+          },
+          "definition_sha256": "592cce3428fc1aa7a8b9955dd4c0341e9579f651b6648079a428991665961b5e",
+          "revision_id": "design.exception.v1",
+          "revision_sha256": "43ab8721baa2f66fcbeae89f73e98eafe0bf0fca560543a355df981228583165",
+          "dependencies": [
+            "fact:design.exception",
+            "fact:design.exception_amount"
+          ]
+        },
+        {
+          "target": "decision:design.exception",
+          "definition": {
+            "id": "design.exception",
+            "label": "Synthetic design.exception",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "hit_policy": "unique",
+            "unknown_policy": "block",
+            "rows": [
+              {
+                "id": "base",
+                "condition": {
+                  "kind": "apply",
+                  "operator": "not",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "target": "fact:design.exception"
+                    }
+                  ]
+                },
+                "result": {
+                  "kind": "ref",
+                  "target": "rule:design.base"
+                }
+              },
+              {
+                "id": "exception",
+                "condition": {
+                  "kind": "ref",
+                  "target": "fact:design.exception"
+                },
+                "result": {
+                  "kind": "ref",
+                  "target": "rule:design.exception"
+                }
+              }
+            ],
+            "fallback": "blocked",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ]
+          },
+          "definition_sha256": "ee54887ead9f1366b5869f3623ad20e4f5dcc78de15a30a155bfb2834908b738",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": [
+            "fact:design.exception",
+            "rule:design.base",
+            "rule:design.exception"
+          ]
+        },
+        {
+          "target": "fact:design.eligible",
+          "definition": {
+            "id": "design.eligible",
+            "label": "Synthetic design.eligible",
+            "status": "drafted",
+            "value_type": "Boolean",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ]
+          },
+          "definition_sha256": "8eeac1a00cf2b9f0a9824f7e9ca318ce96415be82810020b0297614b085c8482",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": []
+        },
+        {
+          "target": "fact:design.method",
+          "definition": {
+            "id": "design.method",
+            "label": "Synthetic design.method",
+            "status": "drafted",
+            "value_type": "Enum",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ],
+            "enum_domain": "design_method"
+          },
+          "definition_sha256": "814f646bc16a555d658972be45c59e9021c753416d30170b6885374de8ca9940",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": []
+        },
+        {
+          "target": "election:design.method",
+          "definition": {
+            "id": "design.method",
+            "label": "Synthetic authorized choice",
+            "status": "drafted",
+            "value_type": "Enum",
+            "shape": "scalar",
+            "scope": "return",
+            "enum_domain": "design_method",
+            "selection_fact": "fact:design.method",
+            "requires_confirmation": true,
+            "choices": [
+              {
+                "id": "base",
+                "eligibility": {
+                  "kind": "ref",
+                  "target": "fact:design.eligible"
+                },
+                "effects": [
+                  "rule:design.adjusted"
+                ]
+              },
+              {
+                "id": "alternative",
+                "eligibility": {
+                  "kind": "ref",
+                  "target": "fact:design.eligible"
+                },
+                "effects": [
+                  "rule:design.adjusted"
+                ]
+              }
+            ],
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ]
+          },
+          "definition_sha256": "1a1dca157eb017bdf24aee4a6db1cb68a7c0ea929e0973717fcf48414b27addc",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": [
+            "fact:design.eligible",
+            "fact:design.method"
+          ]
+        },
+        {
+          "target": "decision:design.method",
+          "definition": {
+            "id": "design.method",
+            "label": "Synthetic design.method",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "hit_policy": "unique",
+            "unknown_policy": "block",
+            "rows": [
+              {
+                "id": "base",
+                "condition": {
+                  "kind": "apply",
+                  "operator": "equal",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "target": "election:design.method"
+                    },
+                    {
+                      "kind": "literal",
+                      "value_type": "Enum",
+                      "enum_domain": "design_method",
+                      "value": "base"
+                    }
+                  ]
+                },
+                "result": {
+                  "kind": "ref",
+                  "target": "rule:design.base"
+                }
+              },
+              {
+                "id": "alternative",
+                "condition": {
+                  "kind": "apply",
+                  "operator": "equal",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "target": "election:design.method"
+                    },
+                    {
+                      "kind": "literal",
+                      "value_type": "Enum",
+                      "enum_domain": "design_method",
+                      "value": "alternative"
+                    }
+                  ]
+                },
+                "result": {
+                  "kind": "ref",
+                  "target": "decision:design.exception"
+                }
+              }
+            ],
+            "fallback": "blocked",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ]
+          },
+          "definition_sha256": "adde6d8b3f8d4af923c9f131a25f1be0204b887ff1367ad0cbf9221d69ee83dd",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": [
+            "decision:design.exception",
+            "election:design.method",
+            "rule:design.base"
+          ]
+        },
+        {
+          "target": "fact:design.gross",
+          "definition": {
+            "id": "design.gross",
+            "label": "Synthetic design.gross",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ]
+          },
+          "definition_sha256": "267d6c755e4f32de3bf87f68650a381f9cc550e659d258d5445cb6d35329ed19",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": []
+        },
+        {
+          "target": "rule:design.adjusted",
+          "definition": {
+            "id": "design.adjusted",
+            "label": "Synthetic corrected explanation",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "concept_id": "design.example",
+            "rule_kind": "calculation",
+            "applicability": {
+              "kind": "literal",
+              "value_type": "Boolean",
+              "value": true
+            },
+            "execution": {
+              "kind": "expression",
+              "expression": {
+                "kind": "apply",
+                "operator": "subtract",
+                "arguments": [
+                  {
+                    "kind": "ref",
+                    "target": "fact:design.gross"
+                  },
+                  {
+                    "kind": "ref",
+                    "target": "decision:design.method"
+                  }
+                ]
+              }
+            },
+            "declared_dependencies": [
+              "fact:design.gross",
+              "decision:design.method"
+            ],
+            "unknown_policy": "block",
+            "rounding_policy": "no_rounding",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ],
+            "explanation_key": "design.adjusted"
+          },
+          "definition_sha256": "382f614193035a6753f8463c8a9d46bc8822490d532057d01a138f76c997ba65",
+          "revision_id": "design.adjusted.v2",
+          "revision_sha256": "df5717588c8b7de5ff619285daf00cf1cf1f4585450a582e71cc08935f1dc4d9",
+          "dependencies": [
+            "decision:design.method",
+            "fact:design.gross"
+          ]
+        }
+      ],
+      "input_contracts": [
+        {
+          "target": "fact:design.eligible",
+          "value_type": "Boolean",
+          "shape": "scalar",
+          "scope": "return",
+          "enum_domain": null
+        },
+        {
+          "target": "fact:design.exception",
+          "value_type": "Boolean",
+          "shape": "scalar",
+          "scope": "return",
+          "enum_domain": null
+        },
+        {
+          "target": "fact:design.exception_amount",
+          "value_type": "Money",
+          "shape": "scalar",
+          "scope": "return",
+          "enum_domain": null
+        },
+        {
+          "target": "fact:design.gross",
+          "value_type": "Money",
+          "shape": "scalar",
+          "scope": "return",
+          "enum_domain": null
+        },
+        {
+          "target": "fact:design.method",
+          "value_type": "Enum",
+          "shape": "scalar",
+          "scope": "return",
+          "enum_domain": "design_method"
+        }
+      ],
+      "election_requirements": [
+        "election:design.method"
+      ],
+      "limitations": [
+        "Synthetic harness only; no legal acceptance or released tax support.",
+        "Election lifecycle authorization must be established outside this harness.",
+        "No indexed tables, modules, date-sensitive rules, or rounding methods."
+      ],
+      "sha256": "f7ab8ce6976596fcc3979266b9c7f59ef66c25998f307064e85984f851074c30"
+    },
+    {
+      "package_id": "design.2026.corrected",
+      "contract_version": "0.1.0",
+      "compiler_version": "0.1.0",
+      "mode": "synthetic",
+      "production_enabled": false,
+      "tax_year": 2026,
+      "known_at": "2026-07-01T00:00:00Z",
+      "program_sha256": "b585caff1504c115accb1afeb19a02e25a4869e02993cf8f7a516a71a1ea4277",
+      "outputs": [
+        "rule:design.adjusted"
+      ],
+      "enum_domains": [
+        {
+          "id": "design_method",
+          "values": [
+            "base",
+            "alternative"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "id": "design-spec",
+          "title": "Synthetic compiler example; no legal authority",
+          "status": "draft",
+          "authority_class": "synthetic_specification"
+        }
+      ],
+      "nodes": [
+        {
+          "target": "fact:design.exception",
+          "definition": {
+            "id": "design.exception",
+            "label": "Synthetic design.exception",
+            "status": "drafted",
+            "value_type": "Boolean",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ]
+          },
+          "definition_sha256": "157b09ac6ebd378fa7eda095e9431f5da1cf4f5fcc0056bb800e0393606a4ef4",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": []
+        },
+        {
+          "target": "parameter:design.base",
+          "definition": {
+            "id": "design.base",
+            "label": "Invented annual amount",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "axes": [],
+            "value_status": "draft",
+            "value": "120.00",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ]
+          },
+          "definition_sha256": "9acfaa3538c2a66a6e4d4cc1b25bc196b0fbc9ca86f5044060653d26c3756f70",
+          "revision_id": "design.base.2026",
+          "revision_sha256": "d4ab8facd8c5750cd37ef2df42fd110cf5c0383d3044f16926d22628527ee989",
+          "dependencies": []
+        },
+        {
+          "target": "rule:design.base",
+          "definition": {
+            "id": "design.base",
+            "label": "Synthetic design.base",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "concept_id": "design.example",
+            "rule_kind": "calculation",
+            "applicability": {
+              "kind": "literal",
+              "value_type": "Boolean",
+              "value": true
+            },
+            "execution": {
+              "kind": "expression",
+              "expression": {
+                "kind": "ref",
+                "target": "parameter:design.base"
+              }
+            },
+            "declared_dependencies": [
+              "parameter:design.base"
+            ],
+            "unknown_policy": "block",
+            "rounding_policy": "no_rounding",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ],
+            "explanation_key": "design.base"
+          },
+          "definition_sha256": "8419602d4ecdde6c05cf86190d4165003663abe5f4773dd61eff197918e8e83a",
+          "revision_id": "design.base.v1",
+          "revision_sha256": "dac1ac7c8b91606420f8156742c46936c7185ce6a838470a24c488005909fa0b",
+          "dependencies": [
+            "parameter:design.base"
+          ]
+        },
+        {
+          "target": "fact:design.exception_amount",
+          "definition": {
+            "id": "design.exception_amount",
+            "label": "Synthetic design.exception_amount",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ]
+          },
+          "definition_sha256": "64238c3cb4e6eeae96a13f3284b1db8f750692260aa2f38d590adf2f2755b762",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": []
+        },
+        {
+          "target": "rule:design.exception",
+          "definition": {
+            "id": "design.exception",
+            "label": "Synthetic design.exception",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "concept_id": "design.example",
+            "rule_kind": "calculation",
+            "applicability": {
+              "kind": "ref",
+              "target": "fact:design.exception"
+            },
+            "execution": {
+              "kind": "expression",
+              "expression": {
+                "kind": "ref",
+                "target": "fact:design.exception_amount"
+              }
+            },
+            "declared_dependencies": [
+              "fact:design.exception",
+              "fact:design.exception_amount"
+            ],
+            "unknown_policy": "block",
+            "rounding_policy": "no_rounding",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ],
+            "explanation_key": "design.exception"
+          },
+          "definition_sha256": "592cce3428fc1aa7a8b9955dd4c0341e9579f651b6648079a428991665961b5e",
+          "revision_id": "design.exception.v1",
+          "revision_sha256": "43ab8721baa2f66fcbeae89f73e98eafe0bf0fca560543a355df981228583165",
+          "dependencies": [
+            "fact:design.exception",
+            "fact:design.exception_amount"
+          ]
+        },
+        {
+          "target": "decision:design.exception",
+          "definition": {
+            "id": "design.exception",
+            "label": "Synthetic design.exception",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "hit_policy": "unique",
+            "unknown_policy": "block",
+            "rows": [
+              {
+                "id": "base",
+                "condition": {
+                  "kind": "apply",
+                  "operator": "not",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "target": "fact:design.exception"
+                    }
+                  ]
+                },
+                "result": {
+                  "kind": "ref",
+                  "target": "rule:design.base"
+                }
+              },
+              {
+                "id": "exception",
+                "condition": {
+                  "kind": "ref",
+                  "target": "fact:design.exception"
+                },
+                "result": {
+                  "kind": "ref",
+                  "target": "rule:design.exception"
+                }
+              }
+            ],
+            "fallback": "blocked",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ]
+          },
+          "definition_sha256": "ee54887ead9f1366b5869f3623ad20e4f5dcc78de15a30a155bfb2834908b738",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": [
+            "fact:design.exception",
+            "rule:design.base",
+            "rule:design.exception"
+          ]
+        },
+        {
+          "target": "fact:design.eligible",
+          "definition": {
+            "id": "design.eligible",
+            "label": "Synthetic design.eligible",
+            "status": "drafted",
+            "value_type": "Boolean",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ]
+          },
+          "definition_sha256": "8eeac1a00cf2b9f0a9824f7e9ca318ce96415be82810020b0297614b085c8482",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": []
+        },
+        {
+          "target": "fact:design.method",
+          "definition": {
+            "id": "design.method",
+            "label": "Synthetic design.method",
+            "status": "drafted",
+            "value_type": "Enum",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ],
+            "enum_domain": "design_method"
+          },
+          "definition_sha256": "814f646bc16a555d658972be45c59e9021c753416d30170b6885374de8ca9940",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": []
+        },
+        {
+          "target": "election:design.method",
+          "definition": {
+            "id": "design.method",
+            "label": "Synthetic authorized choice",
+            "status": "drafted",
+            "value_type": "Enum",
+            "shape": "scalar",
+            "scope": "return",
+            "enum_domain": "design_method",
+            "selection_fact": "fact:design.method",
+            "requires_confirmation": true,
+            "choices": [
+              {
+                "id": "base",
+                "eligibility": {
+                  "kind": "ref",
+                  "target": "fact:design.eligible"
+                },
+                "effects": [
+                  "rule:design.adjusted"
+                ]
+              },
+              {
+                "id": "alternative",
+                "eligibility": {
+                  "kind": "ref",
+                  "target": "fact:design.eligible"
+                },
+                "effects": [
+                  "rule:design.adjusted"
+                ]
+              }
+            ],
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ]
+          },
+          "definition_sha256": "1a1dca157eb017bdf24aee4a6db1cb68a7c0ea929e0973717fcf48414b27addc",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": [
+            "fact:design.eligible",
+            "fact:design.method"
+          ]
+        },
+        {
+          "target": "decision:design.method",
+          "definition": {
+            "id": "design.method",
+            "label": "Synthetic design.method",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "hit_policy": "unique",
+            "unknown_policy": "block",
+            "rows": [
+              {
+                "id": "base",
+                "condition": {
+                  "kind": "apply",
+                  "operator": "equal",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "target": "election:design.method"
+                    },
+                    {
+                      "kind": "literal",
+                      "value_type": "Enum",
+                      "enum_domain": "design_method",
+                      "value": "base"
+                    }
+                  ]
+                },
+                "result": {
+                  "kind": "ref",
+                  "target": "rule:design.base"
+                }
+              },
+              {
+                "id": "alternative",
+                "condition": {
+                  "kind": "apply",
+                  "operator": "equal",
+                  "arguments": [
+                    {
+                      "kind": "ref",
+                      "target": "election:design.method"
+                    },
+                    {
+                      "kind": "literal",
+                      "value_type": "Enum",
+                      "enum_domain": "design_method",
+                      "value": "alternative"
+                    }
+                  ]
+                },
+                "result": {
+                  "kind": "ref",
+                  "target": "decision:design.exception"
+                }
+              }
+            ],
+            "fallback": "blocked",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ]
+          },
+          "definition_sha256": "adde6d8b3f8d4af923c9f131a25f1be0204b887ff1367ad0cbf9221d69ee83dd",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": [
+            "decision:design.exception",
+            "election:design.method",
+            "rule:design.base"
+          ]
+        },
+        {
+          "target": "fact:design.gross",
+          "definition": {
+            "id": "design.gross",
+            "label": "Synthetic design.gross",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "description": "Invented fixture input.",
+            "value_states": [
+              "confirmed",
+              "provisional",
+              "estimated",
+              "missing",
+              "not_applicable",
+              "invalid"
+            ]
+          },
+          "definition_sha256": "267d6c755e4f32de3bf87f68650a381f9cc550e659d258d5445cb6d35329ed19",
+          "revision_id": null,
+          "revision_sha256": null,
+          "dependencies": []
+        },
+        {
+          "target": "rule:design.adjusted",
+          "definition": {
+            "id": "design.adjusted",
+            "label": "Synthetic corrected explanation",
+            "status": "drafted",
+            "value_type": "Money",
+            "shape": "scalar",
+            "scope": "return",
+            "concept_id": "design.example",
+            "rule_kind": "calculation",
+            "applicability": {
+              "kind": "literal",
+              "value_type": "Boolean",
+              "value": true
+            },
+            "execution": {
+              "kind": "expression",
+              "expression": {
+                "kind": "apply",
+                "operator": "subtract",
+                "arguments": [
+                  {
+                    "kind": "ref",
+                    "target": "fact:design.gross"
+                  },
+                  {
+                    "kind": "ref",
+                    "target": "decision:design.method"
+                  }
+                ]
+              }
+            },
+            "declared_dependencies": [
+              "fact:design.gross",
+              "decision:design.method"
+            ],
+            "unknown_policy": "block",
+            "rounding_policy": "no_rounding",
+            "evidence": [
+              {
+                "source_id": "design-spec",
+                "locator": "Synthetic demonstration specification",
+                "interpretation_status": "draft"
+              }
+            ],
+            "explanation_key": "design.adjusted"
+          },
+          "definition_sha256": "382f614193035a6753f8463c8a9d46bc8822490d532057d01a138f76c997ba65",
+          "revision_id": "design.adjusted.v2",
+          "revision_sha256": "df5717588c8b7de5ff619285daf00cf1cf1f4585450a582e71cc08935f1dc4d9",
+          "dependencies": [
+            "decision:design.method",
+            "fact:design.gross"
+          ]
+        }
+      ],
+      "input_contracts": [
+        {
+          "target": "fact:design.eligible",
+          "value_type": "Boolean",
+          "shape": "scalar",
+          "scope": "return",
+          "enum_domain": null
+        },
+        {
+          "target": "fact:design.exception",
+          "value_type": "Boolean",
+          "shape": "scalar",
+          "scope": "return",
+          "enum_domain": null
+        },
+        {
+          "target": "fact:design.exception_amount",
+          "value_type": "Money",
+          "shape": "scalar",
+          "scope": "return",
+          "enum_domain": null
+        },
+        {
+          "target": "fact:design.gross",
+          "value_type": "Money",
+          "shape": "scalar",
+          "scope": "return",
+          "enum_domain": null
+        },
+        {
+          "target": "fact:design.method",
+          "value_type": "Enum",
+          "shape": "scalar",
+          "scope": "return",
+          "enum_domain": "design_method"
+        }
+      ],
+      "election_requirements": [
+        "election:design.method"
+      ],
+      "limitations": [
+        "Synthetic harness only; no legal acceptance or released tax support.",
+        "Election lifecycle authorization must be established outside this harness.",
+        "No indexed tables, modules, date-sensitive rules, or rounding methods."
+      ],
+      "sha256": "4ede547b630765c48cc2488e4411a3104e63b2e0a98de8ca2cb8d9b45bba4f11"
+    }
+  ]
+}

@@ -281,6 +281,11 @@ def main():
         ledger_schema = json.loads((ROOT / 'schemas/claim-ledger.schema.json').read_text())
         prior_ledger = previous_ledger(ROOT, args.baseline_ref) if args.baseline_ref else None
         summary['claims'] = validate_claims(read_ledger(ROOT), ledger_schema, model, sources, ROOT, prior_ledger)
+        from validate_execution import previous_execution, validate_execution
+        execution = json.loads((ROOT / 'model/execution-contract.json').read_text())
+        execution_schema = json.loads((ROOT / 'schemas/execution-contract.schema.json').read_text())
+        prior_execution = previous_execution(ROOT, args.baseline_ref) if args.baseline_ref else None
+        summary['execution'] = validate_execution(execution, execution_schema, schemas, ROOT, prior_execution)
         print('Model contracts validated: ' + json.dumps(summary, sort_keys=True))
         print('All rules remain drafts; this is not tax-law or calculation verification.')
     except (ModelError, OSError, ValueError, KeyError) as error:
