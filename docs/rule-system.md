@@ -4,7 +4,7 @@
 
 The target is easy authorship and safe extension. A graph is useful for execution and impact analysis, but should not dictate how every tax rule is written.
 
-| Approach | Strength | Limitation | Role in TaxMan |
+| Approach | Strength | Limitation | Role in Taxman |
 |---|---|---|---|
 | Application conditionals | Familiar and easy to start | Dependencies, year changes, and explanations become scattered | UI plumbing only; tax logic belongs in reviewed modules |
 | Giant JSON/YAML rules language | Uniform storage | Often recreates an inferior programming language | Small bounded expression vocabulary only |
@@ -139,7 +139,7 @@ A result must contain rule/package versions, actual inputs and their provenance,
 
 The friendly view uses reviewed templates. The detailed view shows a worksheet and expandable dependency trail. Citations support particular claims, not merely the document as a whole. The calculation trace is the source of explanations; an LLM must not invent the rationale after receiving a final number.
 
-Source traceability proves how TaxMan reached an answer, not that its interpretation is correct. Independent review and numerical tests are separate requirements.
+Source traceability proves how Taxman reached an answer, not that its interpretation is correct. Independent review and numerical tests are separate requirements.
 
 ## Extension example: foreign tax paid
 

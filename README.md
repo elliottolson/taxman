@@ -1,52 +1,52 @@
-# TaxMan
+# Taxman
 
-Free, understandable U.S. federal tax estimates, with securely saved information across devices and an explanation for every result.
+**Know what you owe. Understand why.**
 
-Status: product and architecture planning. This directory contains no production calculator, verified tax-year package, deployed service, or filing integration. Rule examples are design artifacts, not tax advice or accepted calculation rules.
+Taxman is a free U.S. federal tax estimator being built to make personal taxes easier to understand. The goal is simple: enter your income, see how your tax is calculated, and explore how a change would affect your estimate.
 
-## Product commitments
+## Project status
 
-- Free consumer calculations and explanations. Monetization is outside the current scope.
-- Start with W-2, 1099-INT, 1099-DIV, filing status, standard deduction, withholding, and estimated payments.
-- Secure accounts and saved scenarios across browsers and computers. Browser-only storage is not a requirement.
-- Show the inputs, reasoning, and grounded sources behind each result.
-- Expand supported situations deliberately; never silently ignore an unsupported fact.
-- Keep estimation, preparation, and electronic filing distinct capabilities.
+Taxman is in early development. This repository currently contains the product roadmap, architecture plans, and illustrative rule examples. A working calculator is not available yet.
 
-## Architecture recommendation
+## What we're building
 
-Use a hybrid tax rule system, not a giant sequence of conditionals and not a requirement to author everything as a graph.
+The first version will focus on:
 
-1. Typed facts describe taxpayers, income, documents, and choices.
-2. Versioned tables hold annual parameters and decision tables express eligibility.
-3. Small declarative expressions handle routine calculations.
-4. Reviewed pure modules implement complex worksheets and bounded iterative calculations.
-5. A compiler derives dependencies, checks completeness and conflicts, and creates a calculation plan.
-6. An evaluator emits values, applicability decisions, missing-information requests, coverage limits, and source-backed traces.
+- **W-2 income:** wages and federal income tax withheld.
+- **1099-INT:** interest income.
+- **1099-DIV:** dividends and straightforward capital-gain distributions.
+- **Filing status and the standard deduction.**
+- **Federal tax estimates:** liability, payments, and an estimated refund or remaining balance.
 
-The dependency graph is a derived implementation detail. Authors work with tax concepts, tables, and worksheets. Legal text is evidence; it is not automatically executable code.
+Support will expand as each tax situation is researched, implemented, and verified. The calculator will identify situations it cannot yet handle so you can understand the limits of an estimate.
 
-The valuable asset is a verified, versioned tax knowledge base with a reliable authoring workflow and explainable execution. Visualizing a graph alone is not a durable advantage.
+## Make the numbers make sense
 
-## Read these next
+You should be able to see where a result came from. Taxman is being designed to show the inputs, calculation steps, assumptions, and official sources behind an estimate.
 
-| Document | Purpose |
-|---|---|
-| [Product and roadmap](docs/product-roadmap.md) | Audience, boundaries, milestones, and release gates |
-| [Rule system](docs/rule-system.md) | Alternatives, authoring model, dependencies, exceptions, and elections |
-| [Sources and imports](docs/sources-and-imports.md) | Grounded evidence, assisted imports, review, and tax-year releases |
-| [Data and security](docs/data-and-security.md) | Saved scenarios, accounts, documents, access, and deletion |
-| [Implementation plan](docs/implementation-plan.md) | Proposed stack, repository layout, APIs, and validation |
-| [Research backlog](docs/research-backlog.md) | Questions to settle before implementation |
-| [Source registry](examples/source-registry.json) | Official resources inspected during planning |
-| [Illustrative rules](examples/dividend-rules.json) | A small example of structured rule authoring |
-| [Illustrative trace](examples/dividend-trace.json) | How a result links back to facts and sources |
-| [Rule schema](schemas/rule-package.schema.json) | A draft contract for the illustrative rule package |
+Scenario comparisons will let you explore questions such as how additional interest income or a change in wages affects your taxes. Saved scenarios will let you continue on another browser or computer.
 
-## First engineering milestone
+## Free, with privacy built in
 
-Build one vertical slice: confirmed synthetic W-2 and dividend facts → one tax-year package → a coverage decision → reproducible calculation → explanation. Prove source traceability, exact arithmetic, unknown handling, and year isolation before growing the rule catalog.
+Calculations and explanations will be free. Your financial information deserves careful handling: the design calls for private accounts, secure storage, clear document-retention choices, and controls to export or delete saved information.
 
-Recommended starting sequence: 2025 as the completed-return reference year; add 2026 planning as a separately labeled package. Published annual parameters do not mean every return instruction for a future filing season is final.
+These are product commitments and design requirements; the account and storage systems have not been implemented yet.
 
-Planning prepared October 13, 2026. See source registry for publication versions and verification limits.
+## Follow the project
+
+See the [roadmap](docs/product-roadmap.md) for the planned milestones and initial supported situations.
+
+For participation, see [Contributing](CONTRIBUTING.md). Report sensitive security issues through the [security policy](SECURITY.md).
+
+For the technical design, start with the [development plan](docs/README.md):
+
+- [Tax rules and calculations](docs/rule-system.md)
+- [Sources and rule updates](docs/sources-and-imports.md)
+- [Data and security](docs/data-and-security.md)
+- [Implementation plan](docs/implementation-plan.md)
+
+If you're exploring the repository, the examples are illustrative design artifacts, not validated tax calculations. Please use synthetic information when discussing examples or reporting issues; keep personal financial documents out of public submissions.
+
+## About the name
+
+Taxman takes its name from [“Taxman” by the Beatles](https://www.thebeatles.com/taxman), written by George Harrison and released on *Revolver* in 1966.

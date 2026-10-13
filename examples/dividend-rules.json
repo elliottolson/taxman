@@ -45,7 +45,7 @@
         {
           "source_id": "irs-1099-div-instructions-2024-01",
           "locator": "Box 1a. Total Ordinary Dividends",
-          "claim": "This field identifies total ordinary dividends; aggregation across the confirmed household documents is TaxMan's implementation step."
+          "claim": "This field identifies total ordinary dividends; aggregation across the confirmed household documents is Taxman's implementation step."
         }
       ]
     },

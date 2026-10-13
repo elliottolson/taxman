@@ -2,7 +2,7 @@
 
 ## Decisions already grounded in the conversation
 
-- TaxMan is free; monetization is not part of this phase.
+- Taxman is free; monetization is not part of this phase.
 - Initial income documents are W-2, 1099-INT, and 1099-DIV, not freelance 1099-NEC.
 - Server-side secure storage and cross-device accounts are wanted.
 - Explanations should show grounded sources.
@@ -13,7 +13,7 @@
 
 - Completed 2025 baseline first; separately labeled 2026 planning afterward.
 - Hybrid rule system with derived dependency graph.
-- TypeScript engine and API, exact arithmetic, managed Postgres, private document storage.
+- Backend language to be decided; compare Go, Rust, Python, and TypeScript. Exact arithmetic, managed Postgres, and private document storage remain proposed defaults.
 - Manual entry before document extraction; one account owner per household initially.
 - No collection of SSNs for estimation.
 - Import pipeline produces drafts for review, not executable rules accepted from prose.

@@ -2,9 +2,9 @@
 
 ## Proposed stack
 
-Provisional recommendation: TypeScript calculation package and API, a web frontend, managed Postgres, private object storage, and a containerized deployment. Select the frontend framework and authentication provider after a short prototype; the tax engine must not depend on either.
+Implementation language is an open decision. Current practical candidate: Go for the backend and tax engine, TypeScript for the web frontend, managed Postgres, private object storage, and a containerized deployment. Compare Go, Rust, Python, and TypeScript against the first calculation slice before committing to a runtime. The engine must not depend on the frontend framework or authentication provider.
 
-One language across frontend/API/engine simplifies schemas and a future SDK. Use an exact decimal library or integer arithmetic, not JavaScript Number for tax money. Verify library behavior and current framework/provider documentation when implementing.
+Share API contracts through explicit schemas and generated client types; frontend and backend do not have to use the same language. Use exact decimal or integer/rational arithmetic for tax money, with documented rounding. Verify library behavior and current framework/provider documentation when implementing.
 
 Initial production deployment candidate: Cloud Run, Postgres, Cloud Storage, Secret Manager, KMS, and GitHub Actions with federated authentication. Decide between Cloud SQL and an external Postgres provider based on actual costs, region, recovery, encryption, and network requirements. The hosting choice is provisional; no cloud resources are created by this plan.
 

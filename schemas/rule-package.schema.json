@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:taxman:planning:rule-package:0.1.0",
-  "title": "TaxMan illustrative rule-package contract",
+  "title": "Taxman illustrative rule-package contract",
   "description": "Deliberately small planning schema, not the complete future tax-rule language. Semantic compiler checks are additional requirements.",
   "type": "object",
   "additionalProperties": false,

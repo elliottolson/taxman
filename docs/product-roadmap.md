@@ -2,7 +2,7 @@
 
 ## The product
 
-TaxMan helps people understand annual federal tax liability and their balance after payments. The initial audience is people with wages and straightforward bank or investment income. It is not initially a complete return-preparation system.
+Taxman helps people understand annual federal tax liability and their balance after payments. The initial audience is people with wages and straightforward bank or investment income. It is not initially a complete return-preparation system.
 
 The home experience should be approachable: choose a year, describe the household, add income, review the estimate, and explore a change. Explain tax concepts where needed. Keep rule IDs and technical execution details out of the normal flow; offer a detailed evidence view for people who want it.
 
@@ -39,7 +39,7 @@ A complete estimate is not a promise that the IRS will issue a particular refund
 | Payments | Confirmed withholding and estimated payments | Carryforward payments, refundable credits, excess withholding |
 | Documents | Manual entry first; retain all relevant field values | Secure upload, extraction, corrected forms, consolidated statements |
 
-A blocker must be specific, actionable, and distinguish a legal condition from a product limitation. Example: “Your document includes foreign tax paid. TaxMan does not yet calculate its treatment.” Do not describe such a case as ineligible for a tax benefit.
+A blocker must be specific, actionable, and distinguish a legal condition from a product limitation. Example: “Your document includes foreign tax paid. Taxman does not yet calculate its treatment.” Do not describe such a case as ineligible for a tax benefit.
 
 ## Tax research findings that change scope
 
