@@ -82,3 +82,7 @@ Sources to organize the individual-return research include [Form 1040 instructio
 6. Review one coherent rule family and its independent references before an evaluator accepts it.
 
 The completion criterion for this modeling phase is a stable, validated authoring system with representative complex patterns and explicit gaps. Researching every individual federal provision remains ongoing; no architecture removes that work.
+
+## Selection contracts
+
+The [selection and elections milestone](selection-and-elections.md) now models explicit overrides, revision-bound confirmations, revocation, future-year effects, and authorized method selection. Validation enumerates Boolean/enum decision conditions, reports intentional blocked gaps, and rejects overlaps and unreachable branches. Numeric/date predicates remain explicitly unanalyzed; all tax interpretations remain drafts.

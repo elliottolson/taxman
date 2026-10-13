@@ -216,7 +216,9 @@ def validate(model, catalog, schemas, source_registry):
 
     for key in sorted(graph):
         visit(key)
-    return {'families': len(catalog['families']), 'concepts': len(concepts), 'rules': len(model['rules']), 'execution_edges': sum(map(len, graph.values()))}
+    from validate_selection import analyze_core_decisions
+    decision_analysis = analyze_core_decisions(model)
+    return {'decision_analysis': decision_analysis, 'families': len(catalog['families']), 'concepts': len(concepts), 'rules': len(model['rules']), 'execution_edges': sum(map(len, graph.values()))}
 
 
 def load(root=ROOT):
@@ -271,6 +273,10 @@ def main():
         summary = validate(model, catalog, schemas, sources)
         previous = previous_interactions(args.baseline_ref) if args.baseline_ref else None
         summary['interactions'] = check_interactions(model, catalog, schemas, sources, load_interactions(), previous)
+        from validate_selection import validate_selection
+        selection = json.loads((ROOT / 'model/selection-model.json').read_text())
+        selection_schema = json.loads((ROOT / 'schemas/selection-model.schema.json').read_text())
+        summary['selection'] = validate_selection(selection, selection_schema, model)
         print('Model contracts validated: ' + json.dumps(summary, sort_keys=True))
         print('All rules remain drafts; this is not tax-law or calculation verification.')
     except (ModelError, OSError, ValueError, KeyError) as error:

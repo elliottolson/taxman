@@ -1,0 +1,943 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "../schemas/selection-model.schema.json"
+    },
+    "contract_version": {
+      "const": "0.1.0"
+    },
+    "status": {
+      "const": "synthetic_model_examples"
+    },
+    "production_enabled": {
+      "const": false
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": [
+                "string",
+                "boolean"
+              ]
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "id",
+          "values"
+        ]
+      },
+      "minItems": 1
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "domain": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "domain"
+        ]
+      },
+      "minItems": 1
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "candidates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "target": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "when": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": [
+                      "string",
+                      "boolean"
+                    ]
+                  }
+                },
+                "overrides": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "minItems": 0
+                },
+                "explanation": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "id",
+                "target",
+                "when",
+                "overrides",
+                "explanation"
+              ]
+            },
+            "minItems": 1
+          },
+          "election_binding": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "policy_id",
+              "input",
+              "choice_values"
+            ],
+            "properties": {
+              "policy_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "input": {
+                "type": "string",
+                "minLength": 1
+              },
+              "choice_values": {
+                "type": "object",
+                "minProperties": 1,
+                "additionalProperties": {
+                  "type": [
+                    "boolean",
+                    "string"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "id",
+          "candidates",
+          "election_binding"
+        ]
+      },
+      "minItems": 1
+    },
+    "tables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "hit_policy": {
+            "enum": [
+              "unique",
+              "first"
+            ]
+          },
+          "coverage": {
+            "enum": [
+              "complete",
+              "blocked_gaps"
+            ]
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "when": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": [
+                      "string",
+                      "boolean"
+                    ]
+                  }
+                },
+                "target": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "id",
+                "when",
+                "target"
+              ]
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "id",
+          "hit_policy",
+          "coverage",
+          "rows"
+        ]
+      },
+      "minItems": 1
+    },
+    "elections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "confirmation_deadline": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "revocation_allowed": {
+            "type": "boolean"
+          },
+          "revocation_deadline": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "effect_years": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "choices": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "eligibility_fact": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "effects": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "minItems": 1
+                }
+              },
+              "required": [
+                "id",
+                "eligibility_fact",
+                "effects"
+              ]
+            },
+            "minItems": 1
+          },
+          "tax_year": {
+            "type": "integer",
+            "minimum": 1900,
+            "maximum": 2200
+          }
+        },
+        "required": [
+          "id",
+          "confirmation_deadline",
+          "revocation_allowed",
+          "revocation_deadline",
+          "effect_years",
+          "choices",
+          "tax_year"
+        ]
+      },
+      "minItems": 1
+    },
+    "route_cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "route_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "facts": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "state": {
+                  "enum": [
+                    "confirmed",
+                    "missing",
+                    "invalid",
+                    "estimated",
+                    "provisional",
+                    "not_applicable"
+                  ]
+                },
+                "value": {
+                  "type": [
+                    "string",
+                    "boolean"
+                  ]
+                }
+              },
+              "required": [
+                "state",
+                "value"
+              ]
+            }
+          },
+          "expected": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "const": "selected"
+                  },
+                  "candidate": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "target": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "explanation": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "suppressed": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "minItems": 0
+                  }
+                },
+                "required": [
+                  "status",
+                  "candidate",
+                  "target",
+                  "explanation",
+                  "suppressed"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "const": "blocked"
+                  },
+                  "reason": {
+                    "const": "unresolved_facts"
+                  },
+                  "facts": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "minItems": 1
+                  }
+                },
+                "required": [
+                  "status",
+                  "reason",
+                  "facts"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "const": "blocked"
+                  },
+                  "reason": {
+                    "enum": [
+                      "conflicting_methods",
+                      "no_method"
+                    ]
+                  },
+                  "candidates": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "minItems": 0
+                  }
+                },
+                "required": [
+                  "status",
+                  "reason",
+                  "candidates"
+                ]
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "route_id",
+          "facts",
+          "expected"
+        ]
+      },
+      "minItems": 1
+    },
+    "election_cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "policy_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "return_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "owner_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tax_year": {
+            "type": "integer",
+            "minimum": 1900,
+            "maximum": 2200
+          },
+          "return_revisions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "current_return_revision": {
+            "type": "string",
+            "minLength": 1
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "action": {
+                      "const": "confirm"
+                    },
+                    "at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$"
+                    },
+                    "return_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "return_revision": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "owner_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "tax_year": {
+                      "type": "integer",
+                      "minimum": 1900,
+                      "maximum": 2200
+                    },
+                    "choice": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "authorized_by": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "eligibility": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "fact": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "state": {
+                          "enum": [
+                            "confirmed",
+                            "missing",
+                            "invalid",
+                            "estimated",
+                            "provisional",
+                            "not_applicable"
+                          ]
+                        },
+                        "value": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "fact",
+                        "state",
+                        "value"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "action",
+                    "at",
+                    "return_id",
+                    "return_revision",
+                    "owner_id",
+                    "tax_year",
+                    "choice",
+                    "authorized_by",
+                    "eligibility"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "action": {
+                      "const": "revoke"
+                    },
+                    "at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$"
+                    },
+                    "return_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "return_revision": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "owner_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "tax_year": {
+                      "type": "integer",
+                      "minimum": 1900,
+                      "maximum": 2200
+                    },
+                    "authorized_by": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "confirmation_id": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "action",
+                    "at",
+                    "return_id",
+                    "return_revision",
+                    "owner_id",
+                    "tax_year",
+                    "authorized_by",
+                    "confirmation_id"
+                  ]
+                }
+              ]
+            },
+            "minItems": 0
+          },
+          "expected": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "const": "confirmed"
+                  },
+                  "choice": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "confirmation_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "effects": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "target": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "start_year": {
+                          "type": "integer",
+                          "minimum": 1900,
+                          "maximum": 2200
+                        },
+                        "end_year_exclusive": {
+                          "type": "integer",
+                          "minimum": 1901,
+                          "maximum": 2300
+                        }
+                      },
+                      "required": [
+                        "target",
+                        "start_year",
+                        "end_year_exclusive"
+                      ]
+                    },
+                    "minItems": 1
+                  }
+                },
+                "required": [
+                  "status",
+                  "choice",
+                  "confirmation_id",
+                  "effects"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "const": "blocked"
+                  },
+                  "reason": {
+                    "const": "confirmation_required"
+                  }
+                },
+                "required": [
+                  "status",
+                  "reason"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "const": "blocked"
+                  },
+                  "reason": {
+                    "const": "stale_return_revision"
+                  },
+                  "confirmation_id": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "status",
+                  "reason",
+                  "confirmation_id"
+                ]
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "policy_id",
+          "return_id",
+          "owner_id",
+          "tax_year",
+          "return_revisions",
+          "current_return_revision",
+          "as_of",
+          "events",
+          "expected"
+        ]
+      },
+      "minItems": 1
+    },
+    "selection_cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "route_id",
+          "election_case_id",
+          "facts",
+          "expected"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "route_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "election_case_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "facts": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "state": {
+                  "enum": [
+                    "confirmed",
+                    "missing",
+                    "invalid",
+                    "estimated",
+                    "provisional",
+                    "not_applicable"
+                  ]
+                },
+                "value": {
+                  "type": [
+                    "string",
+                    "boolean"
+                  ]
+                }
+              },
+              "required": [
+                "state",
+                "value"
+              ]
+            }
+          },
+          "expected": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "const": "selected"
+                  },
+                  "candidate": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "target": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "explanation": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "suppressed": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "minItems": 0
+                  }
+                },
+                "required": [
+                  "status",
+                  "candidate",
+                  "target",
+                  "explanation",
+                  "suppressed"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "const": "blocked"
+                  },
+                  "reason": {
+                    "const": "unresolved_facts"
+                  },
+                  "facts": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "minItems": 1
+                  }
+                },
+                "required": [
+                  "status",
+                  "reason",
+                  "facts"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "const": "blocked"
+                  },
+                  "reason": {
+                    "enum": [
+                      "conflicting_methods",
+                      "no_method"
+                    ]
+                  },
+                  "candidates": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "minItems": 0
+                  }
+                },
+                "required": [
+                  "status",
+                  "reason",
+                  "candidates"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "status",
+                  "reason"
+                ],
+                "properties": {
+                  "status": {
+                    "const": "blocked"
+                  },
+                  "reason": {
+                    "enum": [
+                      "confirmation_required",
+                      "stale_return_revision"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "contract_version",
+    "status",
+    "production_enabled",
+    "limitations",
+    "domains",
+    "inputs",
+    "routes",
+    "tables",
+    "elections",
+    "route_cases",
+    "election_cases",
+    "selection_cases"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:taxman:selection:0.1.0",
+  "title": "Synthetic routing, elections, and finite table contracts"
+}

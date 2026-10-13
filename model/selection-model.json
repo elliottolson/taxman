@@ -1,0 +1,585 @@
+{
+  "$schema": "../schemas/selection-model.schema.json",
+  "contract_version": "0.1.0",
+  "status": "synthetic_model_examples",
+  "production_enabled": false,
+  "limitations": [
+    "Invented decisions and deadlines; no actual tax election or legal precedence is implemented.",
+    "Finite checks cover declared Boolean/enum domains only.",
+    "Revision IDs are contract references, not hashed or finalized taxpayer returns."
+  ],
+  "domains": [
+    {
+      "id": "boolean",
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "method",
+      "values": [
+        "base",
+        "alternative"
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "id": "exception",
+      "domain": "boolean"
+    },
+    {
+      "id": "alternative",
+      "domain": "boolean"
+    },
+    {
+      "id": "eligible",
+      "domain": "boolean"
+    },
+    {
+      "id": "method",
+      "domain": "method"
+    }
+  ],
+  "routes": [
+    {
+      "id": "design.method",
+      "candidates": [
+        {
+          "id": "base",
+          "target": "rule:deduction.standard_base",
+          "when": {},
+          "overrides": [],
+          "explanation": "Synthetic base method applies unless explicitly displaced."
+        },
+        {
+          "id": "exception",
+          "target": "rule:deduction.dependent",
+          "when": {
+            "exception": true
+          },
+          "overrides": [
+            "base"
+          ],
+          "explanation": "Synthetic exception explicitly displaces the base method."
+        },
+        {
+          "id": "alternative",
+          "target": "rule:deduction.standard",
+          "when": {
+            "alternative": true
+          },
+          "overrides": [
+            "base"
+          ],
+          "explanation": "Synthetic alternate method displaces only the base."
+        }
+      ],
+      "election_binding": {
+        "policy_id": "design.optional",
+        "input": "alternative",
+        "choice_values": {
+          "base": false,
+          "alternative": true
+        }
+      }
+    }
+  ],
+  "tables": [
+    {
+      "id": "design.exception",
+      "hit_policy": "unique",
+      "coverage": "complete",
+      "rows": [
+        {
+          "id": "base",
+          "when": {
+            "exception": false
+          },
+          "target": "rule:deduction.standard_base"
+        },
+        {
+          "id": "exception",
+          "when": {
+            "exception": true
+          },
+          "target": "rule:deduction.dependent"
+        }
+      ]
+    },
+    {
+      "id": "design.authorized_method",
+      "hit_policy": "unique",
+      "coverage": "blocked_gaps",
+      "rows": [
+        {
+          "id": "base",
+          "when": {
+            "method": "base"
+          },
+          "target": "rule:deduction.standard_base"
+        },
+        {
+          "id": "alternative",
+          "when": {
+            "method": "alternative",
+            "eligible": true
+          },
+          "target": "rule:deduction.standard"
+        }
+      ]
+    }
+  ],
+  "elections": [
+    {
+      "id": "design.optional",
+      "confirmation_deadline": "2026-04-15T23:59:59Z",
+      "revocation_allowed": true,
+      "revocation_deadline": "2026-05-15T23:59:59Z",
+      "effect_years": 2,
+      "choices": [
+        {
+          "id": "base",
+          "eligibility_fact": "eligible",
+          "effects": [
+            "rule:deduction.standard_base"
+          ]
+        },
+        {
+          "id": "alternative",
+          "eligibility_fact": "eligible",
+          "effects": [
+            "rule:deduction.standard"
+          ]
+        }
+      ],
+      "tax_year": 2025
+    }
+  ],
+  "route_cases": [
+    {
+      "id": "base",
+      "route_id": "design.method",
+      "facts": {
+        "exception": {
+          "state": "confirmed",
+          "value": false
+        },
+        "alternative": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "selected",
+        "candidate": "base",
+        "target": "rule:deduction.standard_base",
+        "explanation": "Synthetic base method applies unless explicitly displaced.",
+        "suppressed": []
+      }
+    },
+    {
+      "id": "exception",
+      "route_id": "design.method",
+      "facts": {
+        "exception": {
+          "state": "confirmed",
+          "value": true
+        },
+        "alternative": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "selected",
+        "candidate": "exception",
+        "target": "rule:deduction.dependent",
+        "explanation": "Synthetic exception explicitly displaces the base method.",
+        "suppressed": [
+          "base"
+        ]
+      }
+    },
+    {
+      "id": "alternative",
+      "route_id": "design.method",
+      "facts": {
+        "exception": {
+          "state": "confirmed",
+          "value": false
+        },
+        "alternative": {
+          "state": "confirmed",
+          "value": true
+        }
+      },
+      "expected": {
+        "status": "selected",
+        "candidate": "alternative",
+        "target": "rule:deduction.standard",
+        "explanation": "Synthetic alternate method displaces only the base.",
+        "suppressed": [
+          "base"
+        ]
+      }
+    },
+    {
+      "id": "conflict",
+      "route_id": "design.method",
+      "facts": {
+        "exception": {
+          "state": "confirmed",
+          "value": true
+        },
+        "alternative": {
+          "state": "confirmed",
+          "value": true
+        }
+      },
+      "expected": {
+        "status": "blocked",
+        "reason": "conflicting_methods",
+        "candidates": [
+          "alternative",
+          "exception"
+        ]
+      }
+    },
+    {
+      "id": "missing",
+      "route_id": "design.method",
+      "facts": {
+        "exception": {
+          "state": "missing",
+          "value": false
+        },
+        "alternative": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "blocked",
+        "reason": "unresolved_facts",
+        "facts": [
+          "exception"
+        ]
+      }
+    },
+    {
+      "id": "invalid",
+      "route_id": "design.method",
+      "facts": {
+        "exception": {
+          "state": "invalid",
+          "value": false
+        },
+        "alternative": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "blocked",
+        "reason": "unresolved_facts",
+        "facts": [
+          "exception"
+        ]
+      }
+    },
+    {
+      "id": "estimated",
+      "route_id": "design.method",
+      "facts": {
+        "exception": {
+          "state": "estimated",
+          "value": false
+        },
+        "alternative": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "blocked",
+        "reason": "unresolved_facts",
+        "facts": [
+          "exception"
+        ]
+      }
+    },
+    {
+      "id": "provisional",
+      "route_id": "design.method",
+      "facts": {
+        "exception": {
+          "state": "provisional",
+          "value": false
+        },
+        "alternative": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "blocked",
+        "reason": "unresolved_facts",
+        "facts": [
+          "exception"
+        ]
+      }
+    },
+    {
+      "id": "not_applicable",
+      "route_id": "design.method",
+      "facts": {
+        "exception": {
+          "state": "not_applicable",
+          "value": false
+        },
+        "alternative": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "blocked",
+        "reason": "unresolved_facts",
+        "facts": [
+          "exception"
+        ]
+      }
+    },
+    {
+      "id": "absent",
+      "route_id": "design.method",
+      "facts": {
+        "exception": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "blocked",
+        "reason": "unresolved_facts",
+        "facts": [
+          "alternative"
+        ]
+      }
+    }
+  ],
+  "election_cases": [
+    {
+      "id": "confirmed",
+      "policy_id": "design.optional",
+      "return_id": "design.return",
+      "owner_id": "design.owner",
+      "tax_year": 2025,
+      "return_revisions": [
+        "revision-1",
+        "revision-2"
+      ],
+      "current_return_revision": "revision-1",
+      "as_of": "2026-04-10T12:00:00Z",
+      "events": [
+        {
+          "id": "confirm-1",
+          "action": "confirm",
+          "at": "2026-04-01T12:00:00Z",
+          "return_id": "design.return",
+          "return_revision": "revision-1",
+          "owner_id": "design.owner",
+          "tax_year": 2025,
+          "choice": "alternative",
+          "authorized_by": "design.owner",
+          "eligibility": {
+            "fact": "eligible",
+            "state": "confirmed",
+            "value": true
+          }
+        }
+      ],
+      "expected": {
+        "status": "confirmed",
+        "choice": "alternative",
+        "confirmation_id": "confirm-1",
+        "effects": [
+          {
+            "target": "rule:deduction.standard",
+            "start_year": 2025,
+            "end_year_exclusive": 2027
+          }
+        ]
+      }
+    },
+    {
+      "id": "unconfirmed",
+      "policy_id": "design.optional",
+      "return_id": "design.return",
+      "owner_id": "design.owner",
+      "tax_year": 2025,
+      "return_revisions": [
+        "revision-1",
+        "revision-2"
+      ],
+      "current_return_revision": "revision-1",
+      "as_of": "2026-04-10T12:00:00Z",
+      "events": [],
+      "expected": {
+        "status": "blocked",
+        "reason": "confirmation_required"
+      }
+    },
+    {
+      "id": "stale",
+      "policy_id": "design.optional",
+      "return_id": "design.return",
+      "owner_id": "design.owner",
+      "tax_year": 2025,
+      "return_revisions": [
+        "revision-1",
+        "revision-2"
+      ],
+      "current_return_revision": "revision-2",
+      "as_of": "2026-04-10T12:00:00Z",
+      "events": [
+        {
+          "id": "confirm-1",
+          "action": "confirm",
+          "at": "2026-04-01T12:00:00Z",
+          "return_id": "design.return",
+          "return_revision": "revision-1",
+          "owner_id": "design.owner",
+          "tax_year": 2025,
+          "choice": "alternative",
+          "authorized_by": "design.owner",
+          "eligibility": {
+            "fact": "eligible",
+            "state": "confirmed",
+            "value": true
+          }
+        }
+      ],
+      "expected": {
+        "status": "blocked",
+        "reason": "stale_return_revision",
+        "confirmation_id": "confirm-1"
+      }
+    },
+    {
+      "id": "revoked",
+      "policy_id": "design.optional",
+      "return_id": "design.return",
+      "owner_id": "design.owner",
+      "tax_year": 2025,
+      "return_revisions": [
+        "revision-1",
+        "revision-2"
+      ],
+      "current_return_revision": "revision-1",
+      "as_of": "2026-04-10T12:00:00Z",
+      "events": [
+        {
+          "id": "confirm-1",
+          "action": "confirm",
+          "at": "2026-04-01T12:00:00Z",
+          "return_id": "design.return",
+          "return_revision": "revision-1",
+          "owner_id": "design.owner",
+          "tax_year": 2025,
+          "choice": "alternative",
+          "authorized_by": "design.owner",
+          "eligibility": {
+            "fact": "eligible",
+            "state": "confirmed",
+            "value": true
+          }
+        },
+        {
+          "id": "revoke-1",
+          "action": "revoke",
+          "at": "2026-04-02T12:00:00Z",
+          "return_id": "design.return",
+          "return_revision": "revision-1",
+          "owner_id": "design.owner",
+          "tax_year": 2025,
+          "authorized_by": "design.owner",
+          "confirmation_id": "confirm-1"
+        }
+      ],
+      "expected": {
+        "status": "blocked",
+        "reason": "confirmation_required"
+      }
+    }
+  ],
+  "selection_cases": [
+    {
+      "id": "confirmed",
+      "route_id": "design.method",
+      "election_case_id": "confirmed",
+      "facts": {
+        "exception": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "selected",
+        "candidate": "alternative",
+        "target": "rule:deduction.standard",
+        "explanation": "Synthetic alternate method displaces only the base.",
+        "suppressed": [
+          "base"
+        ]
+      }
+    },
+    {
+      "id": "unconfirmed",
+      "route_id": "design.method",
+      "election_case_id": "unconfirmed",
+      "facts": {
+        "exception": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "blocked",
+        "reason": "confirmation_required"
+      }
+    },
+    {
+      "id": "stale",
+      "route_id": "design.method",
+      "election_case_id": "stale",
+      "facts": {
+        "exception": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "blocked",
+        "reason": "stale_return_revision"
+      }
+    },
+    {
+      "id": "revoked",
+      "route_id": "design.method",
+      "election_case_id": "revoked",
+      "facts": {
+        "exception": {
+          "state": "confirmed",
+          "value": false
+        }
+      },
+      "expected": {
+        "status": "blocked",
+        "reason": "confirmation_required"
+      }
+    }
+  ]
+}
