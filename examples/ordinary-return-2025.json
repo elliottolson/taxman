@@ -1,0 +1,201 @@
+{
+  "contract_version": "0.1.0",
+  "tax_year": 2025,
+  "deduction_method": {
+    "state": "confirmed",
+    "value": "standard"
+  },
+  "deduction_facts": {
+    "filing_status": {
+      "state": "confirmed",
+      "value": "married_joint"
+    },
+    "entity_kind": {
+      "state": "confirmed",
+      "value": "individual"
+    },
+    "residency": {
+      "state": "confirmed",
+      "value": "full_year_resident"
+    },
+    "short_year_accounting_change": {
+      "state": "confirmed",
+      "value": false
+    },
+    "self_claimable": {
+      "state": "confirmed",
+      "value": false
+    },
+    "spouse_claimable": {
+      "state": "confirmed",
+      "value": false
+    },
+    "self_age_qualified": {
+      "state": "confirmed",
+      "value": false
+    },
+    "self_blind_qualified": {
+      "state": "confirmed",
+      "value": false
+    },
+    "spouse_age_qualified": {
+      "state": "confirmed",
+      "value": false
+    },
+    "spouse_blind_qualified": {
+      "state": "confirmed",
+      "value": false
+    },
+    "spouse_itemizes": {
+      "state": "confirmed",
+      "value": false
+    },
+    "spouse_gross_income_zero": {
+      "state": "confirmed",
+      "value": true
+    },
+    "spouse_files_return": {
+      "state": "confirmed",
+      "value": false
+    },
+    "disaster_loss_adjustment_requested": {
+      "state": "confirmed",
+      "value": false
+    }
+  },
+  "assessments": {
+    "documents_complete": {
+      "state": "confirmed",
+      "value": true
+    },
+    "no_other_income": {
+      "state": "confirmed",
+      "value": true
+    },
+    "no_adjustments": {
+      "state": "confirmed",
+      "value": true
+    },
+    "no_other_deductions": {
+      "state": "confirmed",
+      "value": true
+    },
+    "no_credits": {
+      "state": "confirmed",
+      "value": true
+    },
+    "no_other_taxes": {
+      "state": "confirmed",
+      "value": true
+    },
+    "no_other_payments": {
+      "state": "confirmed",
+      "value": true
+    },
+    "no_amt_preferences": {
+      "state": "confirmed",
+      "value": true
+    },
+    "no_dependents": {
+      "state": "confirmed",
+      "value": true
+    },
+    "adults_25_to_64": {
+      "state": "confirmed",
+      "value": true
+    }
+  },
+  "documents": {
+    "w2": [
+      {
+        "id": "synthetic-w2-1",
+        "boxes": {
+          "box1": {
+            "state": "confirmed",
+            "value": "55000.00"
+          },
+          "box2": {
+            "state": "confirmed",
+            "value": "3000.00"
+          },
+          "box3": {
+            "state": "confirmed",
+            "value": "55000.00"
+          },
+          "box5": {
+            "state": "confirmed",
+            "value": "55000.00"
+          }
+        },
+        "assessments": {
+          "ordinary_wages_only": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_unhandled_fields": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_additional_medicare_withholding": {
+            "state": "confirmed",
+            "value": true
+          }
+        }
+      }
+    ],
+    "int": [
+      {
+        "id": "synthetic-int-1",
+        "boxes": {
+          "box1": {
+            "state": "confirmed",
+            "value": "1200.00"
+          },
+          "box3": {
+            "state": "confirmed",
+            "value": "300.00"
+          },
+          "box4": {
+            "state": "confirmed",
+            "value": "0.00"
+          }
+        },
+        "assessments": {
+          "no_unhandled_fields": {
+            "state": "confirmed",
+            "value": true
+          }
+        }
+      }
+    ],
+    "div": [
+      {
+        "id": "synthetic-div-1",
+        "boxes": {
+          "box1a": {
+            "state": "confirmed",
+            "value": "300.00"
+          },
+          "box1b": {
+            "state": "confirmed",
+            "value": "0.00"
+          },
+          "box2a": {
+            "state": "confirmed",
+            "value": "0.00"
+          },
+          "box4": {
+            "state": "confirmed",
+            "value": "0.00"
+          }
+        },
+        "assessments": {
+          "no_unhandled_fields": {
+            "state": "confirmed",
+            "value": true
+          }
+        }
+      }
+    ]
+  }
+}

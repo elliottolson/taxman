@@ -295,6 +295,8 @@ def main():
         for name, worksheet in worksheets.items():
             prior_worksheet = previous_worksheet(ROOT, args.baseline_ref, name) if args.baseline_ref else None
             summary['worksheets'][name] = validate_worksheet(worksheet, worksheet_schema, read_ledger(ROOT), ROOT, prior_worksheet)
+        from validate_return import validate_return
+        summary['ordinary_return'] = validate_return(ROOT, args.baseline_ref)
         print('Model contracts validated: ' + json.dumps(summary, sort_keys=True))
         print('Tax interpretations remain drafts; worksheet comparisons passed, independent review and production eligibility remain pending.')
     except (ModelError, OSError, ValueError, KeyError) as error:

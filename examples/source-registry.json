@@ -327,6 +327,24 @@
         "1040 series and extensions",
         "Assurance Testing System"
       ]
+    },
+    {
+      "id": "irs-1040-form-2025",
+      "title": "Form 1040 (2025)",
+      "publisher": "IRS",
+      "authority_class": "form",
+      "publication_revision": "2025",
+      "candidate_tax_years": [
+        2025
+      ],
+      "url": "https://www.irs.gov/forms-pubs/about-form-1040",
+      "archive_candidate_url": "https://www.irs.gov/pub/irs-prior/f1040--2025.pdf",
+      "status": "inspected_not_rule_approved",
+      "snapshot_sha256": null,
+      "locators": [
+        "Page 1 income and AGI",
+        "Page 2 deductions, tax, payments and refund"
+      ]
     }
   ]
 }

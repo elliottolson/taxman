@@ -1,0 +1,2941 @@
+{
+  "id": "ordinary-return-reference.2025.v1",
+  "package_path": "ordinary-return-package-v1.json",
+  "package_sha256": "93c0773ed1ee7fb82882c24801076e29fc9eacdb6ee2d40f6c8be7b41480813a",
+  "production_enabled": false,
+  "cases": [
+    {
+      "id": "published-mfj-tax-example-refund",
+      "input": {
+        "contract_version": "0.1.0",
+        "tax_year": 2025,
+        "deduction_method": {
+          "state": "confirmed",
+          "value": "standard"
+        },
+        "deduction_facts": {
+          "filing_status": {
+            "state": "confirmed",
+            "value": "married_joint"
+          },
+          "entity_kind": {
+            "state": "confirmed",
+            "value": "individual"
+          },
+          "residency": {
+            "state": "confirmed",
+            "value": "full_year_resident"
+          },
+          "short_year_accounting_change": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_itemizes": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_gross_income_zero": {
+            "state": "confirmed",
+            "value": true
+          },
+          "spouse_files_return": {
+            "state": "confirmed",
+            "value": false
+          },
+          "disaster_loss_adjustment_requested": {
+            "state": "confirmed",
+            "value": false
+          }
+        },
+        "assessments": {
+          "documents_complete": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_income": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_adjustments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_deductions": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_credits": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_taxes": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_payments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_amt_preferences": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_dependents": {
+            "state": "confirmed",
+            "value": true
+          },
+          "adults_25_to_64": {
+            "state": "confirmed",
+            "value": true
+          }
+        },
+        "documents": {
+          "w2": [
+            {
+              "id": "synthetic-w2-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box2": {
+                  "state": "confirmed",
+                  "value": "3000.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box5": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                }
+              },
+              "assessments": {
+                "ordinary_wages_only": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_additional_medicare_withholding": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "int": [
+            {
+              "id": "synthetic-int-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "1200.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "div": [
+            {
+              "id": "synthetic-div-1",
+              "boxes": {
+                "box1a": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box1b": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box2a": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": "estimate",
+        "lines": {
+          "1a": 55000,
+          "2b": 1500,
+          "3b": 300,
+          "9": 56800,
+          "11a": 56800,
+          "11b": 56800,
+          "12e": 31500,
+          "14": 31500,
+          "15": 25300,
+          "16": 2562,
+          "24": 2562,
+          "25a": 3000,
+          "25b": 0,
+          "25d": 3000,
+          "33": 3000,
+          "34": 438,
+          "35a": 438,
+          "37": 0
+        },
+        "blocker_codes": []
+      },
+      "oracle": {
+        "method": "separately_worked_form_1040_lines",
+        "derivation": "Income 55,000 + 1,500 + 300 = 56,800; minus 31,500 = 25,300. IRS published joint example tax 2,562. Withholding 3,000 minus tax 2,562 = refund 438.",
+        "independent_of_candidate_execution": true,
+        "source_id": "p1040-2025-snapshot",
+        "source_sha256": "d0f7ba91dd146f3079e4bc505f2ed1c47a9ec8bb4311178bac9e81ae3a52c52a",
+        "pdf_page": 2,
+        "locator": "2025 Tax Table; ordinary-income reference, no other schedules"
+      },
+      "sha256": "9f514715a47457329823c55d035ec95ca0c79ce3f9c23e35f4da4b72a35af083"
+    },
+    {
+      "id": "published-mfj-tax-example-balance",
+      "input": {
+        "contract_version": "0.1.0",
+        "tax_year": 2025,
+        "deduction_method": {
+          "state": "confirmed",
+          "value": "standard"
+        },
+        "deduction_facts": {
+          "filing_status": {
+            "state": "confirmed",
+            "value": "married_joint"
+          },
+          "entity_kind": {
+            "state": "confirmed",
+            "value": "individual"
+          },
+          "residency": {
+            "state": "confirmed",
+            "value": "full_year_resident"
+          },
+          "short_year_accounting_change": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_itemizes": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_gross_income_zero": {
+            "state": "confirmed",
+            "value": true
+          },
+          "spouse_files_return": {
+            "state": "confirmed",
+            "value": false
+          },
+          "disaster_loss_adjustment_requested": {
+            "state": "confirmed",
+            "value": false
+          }
+        },
+        "assessments": {
+          "documents_complete": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_income": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_adjustments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_deductions": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_credits": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_taxes": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_payments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_amt_preferences": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_dependents": {
+            "state": "confirmed",
+            "value": true
+          },
+          "adults_25_to_64": {
+            "state": "confirmed",
+            "value": true
+          }
+        },
+        "documents": {
+          "w2": [
+            {
+              "id": "synthetic-w2-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box2": {
+                  "state": "confirmed",
+                  "value": "2000.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box5": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                }
+              },
+              "assessments": {
+                "ordinary_wages_only": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_additional_medicare_withholding": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "int": [
+            {
+              "id": "synthetic-int-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "1200.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "div": [
+            {
+              "id": "synthetic-div-1",
+              "boxes": {
+                "box1a": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box1b": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box2a": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": "estimate",
+        "lines": {
+          "1a": 55000,
+          "2b": 1500,
+          "3b": 300,
+          "9": 56800,
+          "11a": 56800,
+          "11b": 56800,
+          "12e": 31500,
+          "14": 31500,
+          "15": 25300,
+          "16": 2562,
+          "24": 2562,
+          "25a": 2000,
+          "25b": 0,
+          "25d": 2000,
+          "33": 2000,
+          "34": 0,
+          "35a": 0,
+          "37": 562
+        },
+        "blocker_codes": []
+      },
+      "oracle": {
+        "method": "separately_worked_form_1040_lines",
+        "derivation": "Same published tax of 2,562; withholding 2,000 gives balance 562 before penalties.",
+        "independent_of_candidate_execution": true,
+        "source_id": "p1040-2025-snapshot",
+        "source_sha256": "d0f7ba91dd146f3079e4bc505f2ed1c47a9ec8bb4311178bac9e81ae3a52c52a",
+        "pdf_page": 2,
+        "locator": "2025 Tax Table; ordinary-income reference, no other schedules"
+      },
+      "sha256": "42bf593ca4ef59df2b7e70477a8fdfcee918483ad706ff932277750fd22bb765"
+    },
+    {
+      "id": "zero-taxable-income",
+      "input": {
+        "contract_version": "0.1.0",
+        "tax_year": 2025,
+        "deduction_method": {
+          "state": "confirmed",
+          "value": "standard"
+        },
+        "deduction_facts": {
+          "filing_status": {
+            "state": "confirmed",
+            "value": "married_joint"
+          },
+          "entity_kind": {
+            "state": "confirmed",
+            "value": "individual"
+          },
+          "residency": {
+            "state": "confirmed",
+            "value": "full_year_resident"
+          },
+          "short_year_accounting_change": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_itemizes": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_gross_income_zero": {
+            "state": "confirmed",
+            "value": true
+          },
+          "spouse_files_return": {
+            "state": "confirmed",
+            "value": false
+          },
+          "disaster_loss_adjustment_requested": {
+            "state": "confirmed",
+            "value": false
+          }
+        },
+        "assessments": {
+          "documents_complete": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_income": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_adjustments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_deductions": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_credits": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_taxes": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_payments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_amt_preferences": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_dependents": {
+            "state": "confirmed",
+            "value": true
+          },
+          "adults_25_to_64": {
+            "state": "confirmed",
+            "value": true
+          }
+        },
+        "documents": {
+          "w2": [
+            {
+              "id": "synthetic-w2-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "30000.00"
+                },
+                "box2": {
+                  "state": "confirmed",
+                  "value": "100.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box5": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                }
+              },
+              "assessments": {
+                "ordinary_wages_only": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_additional_medicare_withholding": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "int": [],
+          "div": []
+        }
+      },
+      "expected": {
+        "status": "estimate",
+        "lines": {
+          "1a": 30000,
+          "2b": 0,
+          "3b": 0,
+          "9": 30000,
+          "11a": 30000,
+          "11b": 30000,
+          "12e": 31500,
+          "14": 31500,
+          "15": 0,
+          "16": 0,
+          "24": 0,
+          "25a": 100,
+          "25b": 0,
+          "25d": 100,
+          "33": 100,
+          "34": 100,
+          "35a": 100,
+          "37": 0
+        },
+        "blocker_codes": []
+      },
+      "oracle": {
+        "method": "separately_worked_form_1040_lines",
+        "derivation": "30,000 minus 31,500 floors at zero. IRS zero-income row gives zero tax; withholding 100 refunded.",
+        "independent_of_candidate_execution": true,
+        "source_id": "p1040-2025-snapshot",
+        "source_sha256": "d0f7ba91dd146f3079e4bc505f2ed1c47a9ec8bb4311178bac9e81ae3a52c52a",
+        "pdf_page": 2,
+        "locator": "2025 Tax Table; ordinary-income reference, no other schedules"
+      },
+      "sha256": "ad149e0f24f567240e565df08964b7b5c8211ef1c93a352ecef1726fdddf4245"
+    },
+    {
+      "id": "tax-table-boundary-below",
+      "input": {
+        "contract_version": "0.1.0",
+        "tax_year": 2025,
+        "deduction_method": {
+          "state": "confirmed",
+          "value": "standard"
+        },
+        "deduction_facts": {
+          "filing_status": {
+            "state": "confirmed",
+            "value": "married_joint"
+          },
+          "entity_kind": {
+            "state": "confirmed",
+            "value": "individual"
+          },
+          "residency": {
+            "state": "confirmed",
+            "value": "full_year_resident"
+          },
+          "short_year_accounting_change": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_itemizes": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_gross_income_zero": {
+            "state": "confirmed",
+            "value": true
+          },
+          "spouse_files_return": {
+            "state": "confirmed",
+            "value": false
+          },
+          "disaster_loss_adjustment_requested": {
+            "state": "confirmed",
+            "value": false
+          }
+        },
+        "assessments": {
+          "documents_complete": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_income": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_adjustments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_deductions": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_credits": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_taxes": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_payments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_amt_preferences": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_dependents": {
+            "state": "confirmed",
+            "value": true
+          },
+          "adults_25_to_64": {
+            "state": "confirmed",
+            "value": true
+          }
+        },
+        "documents": {
+          "w2": [
+            {
+              "id": "synthetic-w2-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "54999.49"
+                },
+                "box2": {
+                  "state": "confirmed",
+                  "value": "3000.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box5": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                }
+              },
+              "assessments": {
+                "ordinary_wages_only": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_additional_medicare_withholding": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "int": [
+            {
+              "id": "synthetic-int-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "1200.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "div": [
+            {
+              "id": "synthetic-div-1",
+              "boxes": {
+                "box1a": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box1b": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box2a": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": "estimate",
+        "lines": {
+          "1a": 54999,
+          "2b": 1500,
+          "3b": 300,
+          "9": 56799,
+          "11a": 56799,
+          "11b": 56799,
+          "12e": 31500,
+          "14": 31500,
+          "15": 25299,
+          "16": 2556,
+          "24": 2556,
+          "25a": 3000,
+          "25b": 0,
+          "25d": 3000,
+          "33": 3000,
+          "34": 444,
+          "35a": 444,
+          "37": 0
+        },
+        "blocker_codes": []
+      },
+      "oracle": {
+        "method": "separately_worked_form_1040_lines",
+        "derivation": "Round the wages line first. Taxable income 25,299 uses sample row 25,250\u201325,300 (tax 2,556); 25,300 uses row 25,300\u201325,350 (tax 2,562).",
+        "independent_of_candidate_execution": true,
+        "source_id": "p1040-2025-snapshot",
+        "source_sha256": "d0f7ba91dd146f3079e4bc505f2ed1c47a9ec8bb4311178bac9e81ae3a52c52a",
+        "pdf_page": 2,
+        "locator": "2025 Tax Table; ordinary-income reference, no other schedules"
+      },
+      "sha256": "565cadf97ab24fa5ae21c3c7a1e04b878a4a153a7a0dbdee239da7e4824caa45"
+    },
+    {
+      "id": "tax-table-boundary-half-up",
+      "input": {
+        "contract_version": "0.1.0",
+        "tax_year": 2025,
+        "deduction_method": {
+          "state": "confirmed",
+          "value": "standard"
+        },
+        "deduction_facts": {
+          "filing_status": {
+            "state": "confirmed",
+            "value": "married_joint"
+          },
+          "entity_kind": {
+            "state": "confirmed",
+            "value": "individual"
+          },
+          "residency": {
+            "state": "confirmed",
+            "value": "full_year_resident"
+          },
+          "short_year_accounting_change": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_itemizes": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_gross_income_zero": {
+            "state": "confirmed",
+            "value": true
+          },
+          "spouse_files_return": {
+            "state": "confirmed",
+            "value": false
+          },
+          "disaster_loss_adjustment_requested": {
+            "state": "confirmed",
+            "value": false
+          }
+        },
+        "assessments": {
+          "documents_complete": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_income": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_adjustments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_deductions": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_credits": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_taxes": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_payments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_amt_preferences": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_dependents": {
+            "state": "confirmed",
+            "value": true
+          },
+          "adults_25_to_64": {
+            "state": "confirmed",
+            "value": true
+          }
+        },
+        "documents": {
+          "w2": [
+            {
+              "id": "synthetic-w2-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "54999.50"
+                },
+                "box2": {
+                  "state": "confirmed",
+                  "value": "3000.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box5": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                }
+              },
+              "assessments": {
+                "ordinary_wages_only": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_additional_medicare_withholding": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "int": [
+            {
+              "id": "synthetic-int-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "1200.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "div": [
+            {
+              "id": "synthetic-div-1",
+              "boxes": {
+                "box1a": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box1b": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box2a": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": "estimate",
+        "lines": {
+          "1a": 55000,
+          "2b": 1500,
+          "3b": 300,
+          "9": 56800,
+          "11a": 56800,
+          "11b": 56800,
+          "12e": 31500,
+          "14": 31500,
+          "15": 25300,
+          "16": 2562,
+          "24": 2562,
+          "25a": 3000,
+          "25b": 0,
+          "25d": 3000,
+          "33": 3000,
+          "34": 438,
+          "35a": 438,
+          "37": 0
+        },
+        "blocker_codes": []
+      },
+      "oracle": {
+        "method": "separately_worked_form_1040_lines",
+        "derivation": "Round the wages line first. Taxable income 25,299 uses sample row 25,250\u201325,300 (tax 2,556); 25,300 uses row 25,300\u201325,350 (tax 2,562).",
+        "independent_of_candidate_execution": true,
+        "source_id": "p1040-2025-snapshot",
+        "source_sha256": "d0f7ba91dd146f3079e4bc505f2ed1c47a9ec8bb4311178bac9e81ae3a52c52a",
+        "pdf_page": 2,
+        "locator": "2025 Tax Table; ordinary-income reference, no other schedules"
+      },
+      "sha256": "7d7d5f7b6afa0ad99887957e1bb23ac0d6a746a8a43e259cd0d145795559ce52"
+    },
+    {
+      "id": "round-after-combining-boxes",
+      "input": {
+        "contract_version": "0.1.0",
+        "tax_year": 2025,
+        "deduction_method": {
+          "state": "confirmed",
+          "value": "standard"
+        },
+        "deduction_facts": {
+          "filing_status": {
+            "state": "confirmed",
+            "value": "married_joint"
+          },
+          "entity_kind": {
+            "state": "confirmed",
+            "value": "individual"
+          },
+          "residency": {
+            "state": "confirmed",
+            "value": "full_year_resident"
+          },
+          "short_year_accounting_change": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_itemizes": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_gross_income_zero": {
+            "state": "confirmed",
+            "value": true
+          },
+          "spouse_files_return": {
+            "state": "confirmed",
+            "value": false
+          },
+          "disaster_loss_adjustment_requested": {
+            "state": "confirmed",
+            "value": false
+          }
+        },
+        "assessments": {
+          "documents_complete": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_income": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_adjustments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_deductions": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_credits": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_taxes": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_payments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_amt_preferences": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_dependents": {
+            "state": "confirmed",
+            "value": true
+          },
+          "adults_25_to_64": {
+            "state": "confirmed",
+            "value": true
+          }
+        },
+        "documents": {
+          "w2": [
+            {
+              "id": "synthetic-w2-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box2": {
+                  "state": "confirmed",
+                  "value": "3000.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box5": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                }
+              },
+              "assessments": {
+                "ordinary_wages_only": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_additional_medicare_withholding": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "int": [
+            {
+              "id": "synthetic-int-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "1200.49"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "300.49"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.25"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "div": [
+            {
+              "id": "synthetic-div-1",
+              "boxes": {
+                "box1a": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box1b": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box2a": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.25"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": "estimate",
+        "lines": {
+          "1a": 55000,
+          "2b": 1501,
+          "3b": 300,
+          "9": 56801,
+          "11a": 56801,
+          "11b": 56801,
+          "12e": 31500,
+          "14": 31500,
+          "15": 25301,
+          "16": 2562,
+          "24": 2562,
+          "25a": 3000,
+          "25b": 1,
+          "25d": 3001,
+          "33": 3001,
+          "34": 439,
+          "35a": 439,
+          "37": 0
+        },
+        "blocker_codes": []
+      },
+      "oracle": {
+        "method": "separately_worked_form_1040_lines",
+        "derivation": "1,200.49 + 300.49 = 1,500.98, rounds to 1,501; 1099 withholding .25 + .25 rounds to 1. Taxable 25,301 remains in tax 2,562 row.",
+        "independent_of_candidate_execution": true,
+        "source_id": "p1040-2025-snapshot",
+        "source_sha256": "d0f7ba91dd146f3079e4bc505f2ed1c47a9ec8bb4311178bac9e81ae3a52c52a",
+        "pdf_page": 2,
+        "locator": "2025 Tax Table; ordinary-income reference, no other schedules"
+      },
+      "sha256": "e48a15c792efae34010d9b8f7f6f2817b64222f372856bc6d3c8b22fa0d5691e"
+    },
+    {
+      "id": "qualified-dividends",
+      "input": {
+        "contract_version": "0.1.0",
+        "tax_year": 2025,
+        "deduction_method": {
+          "state": "confirmed",
+          "value": "standard"
+        },
+        "deduction_facts": {
+          "filing_status": {
+            "state": "confirmed",
+            "value": "married_joint"
+          },
+          "entity_kind": {
+            "state": "confirmed",
+            "value": "individual"
+          },
+          "residency": {
+            "state": "confirmed",
+            "value": "full_year_resident"
+          },
+          "short_year_accounting_change": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_itemizes": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_gross_income_zero": {
+            "state": "confirmed",
+            "value": true
+          },
+          "spouse_files_return": {
+            "state": "confirmed",
+            "value": false
+          },
+          "disaster_loss_adjustment_requested": {
+            "state": "confirmed",
+            "value": false
+          }
+        },
+        "assessments": {
+          "documents_complete": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_income": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_adjustments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_deductions": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_credits": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_taxes": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_payments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_amt_preferences": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_dependents": {
+            "state": "confirmed",
+            "value": true
+          },
+          "adults_25_to_64": {
+            "state": "confirmed",
+            "value": true
+          }
+        },
+        "documents": {
+          "w2": [
+            {
+              "id": "synthetic-w2-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box2": {
+                  "state": "confirmed",
+                  "value": "3000.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box5": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                }
+              },
+              "assessments": {
+                "ordinary_wages_only": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_additional_medicare_withholding": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "int": [
+            {
+              "id": "synthetic-int-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "1200.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "div": [
+            {
+              "id": "synthetic-div-1",
+              "boxes": {
+                "box1a": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box1b": {
+                  "state": "confirmed",
+                  "value": "100.00"
+                },
+                "box2a": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": "blocked",
+        "lines": {},
+        "blocker_codes": [
+          "preferential_income"
+        ]
+      },
+      "oracle": {
+        "method": "separately_worked_form_1040_lines",
+        "derivation": "Explicit unsupported or unresolved scope; no final financial amounts emitted.",
+        "independent_of_candidate_execution": true,
+        "source_id": "p1040-2025-snapshot",
+        "source_sha256": "d0f7ba91dd146f3079e4bc505f2ed1c47a9ec8bb4311178bac9e81ae3a52c52a",
+        "pdf_page": 2,
+        "locator": "2025 Tax Table; ordinary-income reference, no other schedules"
+      },
+      "sha256": "c95b34c42842dfcec96c44cf55bebd077dcb1377ca19e15ef9fd43c23ae4bc95"
+    },
+    {
+      "id": "missing-documents",
+      "input": {
+        "contract_version": "0.1.0",
+        "tax_year": 2025,
+        "deduction_method": {
+          "state": "confirmed",
+          "value": "standard"
+        },
+        "deduction_facts": {
+          "filing_status": {
+            "state": "confirmed",
+            "value": "married_joint"
+          },
+          "entity_kind": {
+            "state": "confirmed",
+            "value": "individual"
+          },
+          "residency": {
+            "state": "confirmed",
+            "value": "full_year_resident"
+          },
+          "short_year_accounting_change": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_itemizes": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_gross_income_zero": {
+            "state": "confirmed",
+            "value": true
+          },
+          "spouse_files_return": {
+            "state": "confirmed",
+            "value": false
+          },
+          "disaster_loss_adjustment_requested": {
+            "state": "confirmed",
+            "value": false
+          }
+        },
+        "assessments": {
+          "documents_complete": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_income": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_adjustments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_deductions": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_credits": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_taxes": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_payments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_amt_preferences": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_dependents": {
+            "state": "confirmed",
+            "value": true
+          },
+          "adults_25_to_64": {
+            "state": "confirmed",
+            "value": true
+          }
+        },
+        "documents": {
+          "w2": [
+            {
+              "id": "synthetic-w2-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box2": {
+                  "state": "confirmed",
+                  "value": "3000.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box5": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                }
+              },
+              "assessments": {
+                "ordinary_wages_only": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_additional_medicare_withholding": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "div": [
+            {
+              "id": "synthetic-div-1",
+              "boxes": {
+                "box1a": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box1b": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box2a": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": "blocked",
+        "lines": {},
+        "blocker_codes": [
+          "unresolved_documents"
+        ]
+      },
+      "oracle": {
+        "method": "separately_worked_form_1040_lines",
+        "derivation": "Explicit unsupported or unresolved scope; no final financial amounts emitted.",
+        "independent_of_candidate_execution": true,
+        "source_id": "p1040-2025-snapshot",
+        "source_sha256": "d0f7ba91dd146f3079e4bc505f2ed1c47a9ec8bb4311178bac9e81ae3a52c52a",
+        "pdf_page": 2,
+        "locator": "2025 Tax Table; ordinary-income reference, no other schedules"
+      },
+      "sha256": "3d1d47d916331fb2186112ad692436a5fd001c90b44151005b3edfb58774622d"
+    },
+    {
+      "id": "credits-needed",
+      "input": {
+        "contract_version": "0.1.0",
+        "tax_year": 2025,
+        "deduction_method": {
+          "state": "confirmed",
+          "value": "standard"
+        },
+        "deduction_facts": {
+          "filing_status": {
+            "state": "confirmed",
+            "value": "married_joint"
+          },
+          "entity_kind": {
+            "state": "confirmed",
+            "value": "individual"
+          },
+          "residency": {
+            "state": "confirmed",
+            "value": "full_year_resident"
+          },
+          "short_year_accounting_change": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_itemizes": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_gross_income_zero": {
+            "state": "confirmed",
+            "value": true
+          },
+          "spouse_files_return": {
+            "state": "confirmed",
+            "value": false
+          },
+          "disaster_loss_adjustment_requested": {
+            "state": "confirmed",
+            "value": false
+          }
+        },
+        "assessments": {
+          "documents_complete": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_income": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_adjustments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_deductions": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_credits": {
+            "state": "confirmed",
+            "value": false
+          },
+          "no_other_taxes": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_payments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_amt_preferences": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_dependents": {
+            "state": "confirmed",
+            "value": true
+          },
+          "adults_25_to_64": {
+            "state": "confirmed",
+            "value": true
+          }
+        },
+        "documents": {
+          "w2": [
+            {
+              "id": "synthetic-w2-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box2": {
+                  "state": "confirmed",
+                  "value": "3000.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box5": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                }
+              },
+              "assessments": {
+                "ordinary_wages_only": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_additional_medicare_withholding": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "int": [
+            {
+              "id": "synthetic-int-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "1200.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "div": [
+            {
+              "id": "synthetic-div-1",
+              "boxes": {
+                "box1a": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box1b": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box2a": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": "blocked",
+        "lines": {},
+        "blocker_codes": [
+          "unsupported_situation"
+        ]
+      },
+      "oracle": {
+        "method": "separately_worked_form_1040_lines",
+        "derivation": "Explicit unsupported or unresolved scope; no final financial amounts emitted.",
+        "independent_of_candidate_execution": true,
+        "source_id": "p1040-2025-snapshot",
+        "source_sha256": "d0f7ba91dd146f3079e4bc505f2ed1c47a9ec8bb4311178bac9e81ae3a52c52a",
+        "pdf_page": 2,
+        "locator": "2025 Tax Table; ordinary-income reference, no other schedules"
+      },
+      "sha256": "59137e6d5bf9c396ad2dca4493e6369985d345058a0301a8a5e7a976de89af70"
+    },
+    {
+      "id": "possible-earned-income-credit",
+      "input": {
+        "contract_version": "0.1.0",
+        "tax_year": 2025,
+        "deduction_method": {
+          "state": "confirmed",
+          "value": "standard"
+        },
+        "deduction_facts": {
+          "filing_status": {
+            "state": "confirmed",
+            "value": "married_joint"
+          },
+          "entity_kind": {
+            "state": "confirmed",
+            "value": "individual"
+          },
+          "residency": {
+            "state": "confirmed",
+            "value": "full_year_resident"
+          },
+          "short_year_accounting_change": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_itemizes": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_gross_income_zero": {
+            "state": "confirmed",
+            "value": true
+          },
+          "spouse_files_return": {
+            "state": "confirmed",
+            "value": false
+          },
+          "disaster_loss_adjustment_requested": {
+            "state": "confirmed",
+            "value": false
+          }
+        },
+        "assessments": {
+          "documents_complete": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_income": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_adjustments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_deductions": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_credits": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_taxes": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_payments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_amt_preferences": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_dependents": {
+            "state": "confirmed",
+            "value": true
+          },
+          "adults_25_to_64": {
+            "state": "confirmed",
+            "value": true
+          }
+        },
+        "documents": {
+          "w2": [
+            {
+              "id": "synthetic-w2-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "10000.00"
+                },
+                "box2": {
+                  "state": "confirmed",
+                  "value": "3000.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box5": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                }
+              },
+              "assessments": {
+                "ordinary_wages_only": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_additional_medicare_withholding": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "int": [
+            {
+              "id": "synthetic-int-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "1200.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "div": [
+            {
+              "id": "synthetic-div-1",
+              "boxes": {
+                "box1a": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box1b": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box2a": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": "blocked",
+        "lines": {},
+        "blocker_codes": [
+          "possible_eitc"
+        ]
+      },
+      "oracle": {
+        "method": "separately_worked_form_1040_lines",
+        "derivation": "Explicit unsupported or unresolved scope; no final financial amounts emitted.",
+        "independent_of_candidate_execution": true,
+        "source_id": "p1040-2025-snapshot",
+        "source_sha256": "d0f7ba91dd146f3079e4bc505f2ed1c47a9ec8bb4311178bac9e81ae3a52c52a",
+        "pdf_page": 2,
+        "locator": "2025 Tax Table; ordinary-income reference, no other schedules"
+      },
+      "sha256": "5689547427087db0aae2fe0310de755acc06d22913b537e7044379aefd68cf9f"
+    },
+    {
+      "id": "above-income-ceiling",
+      "input": {
+        "contract_version": "0.1.0",
+        "tax_year": 2025,
+        "deduction_method": {
+          "state": "confirmed",
+          "value": "standard"
+        },
+        "deduction_facts": {
+          "filing_status": {
+            "state": "confirmed",
+            "value": "married_joint"
+          },
+          "entity_kind": {
+            "state": "confirmed",
+            "value": "individual"
+          },
+          "residency": {
+            "state": "confirmed",
+            "value": "full_year_resident"
+          },
+          "short_year_accounting_change": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_itemizes": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_gross_income_zero": {
+            "state": "confirmed",
+            "value": true
+          },
+          "spouse_files_return": {
+            "state": "confirmed",
+            "value": false
+          },
+          "disaster_loss_adjustment_requested": {
+            "state": "confirmed",
+            "value": false
+          }
+        },
+        "assessments": {
+          "documents_complete": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_income": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_adjustments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_deductions": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_credits": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_taxes": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_payments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_amt_preferences": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_dependents": {
+            "state": "confirmed",
+            "value": true
+          },
+          "adults_25_to_64": {
+            "state": "confirmed",
+            "value": true
+          }
+        },
+        "documents": {
+          "w2": [
+            {
+              "id": "synthetic-w2-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "100000.00"
+                },
+                "box2": {
+                  "state": "confirmed",
+                  "value": "3000.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box5": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                }
+              },
+              "assessments": {
+                "ordinary_wages_only": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_additional_medicare_withholding": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "int": [
+            {
+              "id": "synthetic-int-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "1200.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "div": [
+            {
+              "id": "synthetic-div-1",
+              "boxes": {
+                "box1a": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box1b": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box2a": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": "blocked",
+        "lines": {},
+        "blocker_codes": [
+          "unsupported_income_range"
+        ]
+      },
+      "oracle": {
+        "method": "separately_worked_form_1040_lines",
+        "derivation": "Explicit unsupported or unresolved scope; no final financial amounts emitted.",
+        "independent_of_candidate_execution": true,
+        "source_id": "p1040-2025-snapshot",
+        "source_sha256": "d0f7ba91dd146f3079e4bc505f2ed1c47a9ec8bb4311178bac9e81ae3a52c52a",
+        "pdf_page": 2,
+        "locator": "2025 Tax Table; ordinary-income reference, no other schedules"
+      },
+      "sha256": "17ffd54415be4424ba5ca7fd5a4048a02fce0b67a8d415f7cbc34e86ca7e4596"
+    },
+    {
+      "id": "ordinary-income-single",
+      "input": {
+        "contract_version": "0.1.0",
+        "tax_year": 2025,
+        "deduction_method": {
+          "state": "confirmed",
+          "value": "standard"
+        },
+        "deduction_facts": {
+          "filing_status": {
+            "state": "confirmed",
+            "value": "single"
+          },
+          "entity_kind": {
+            "state": "confirmed",
+            "value": "individual"
+          },
+          "residency": {
+            "state": "confirmed",
+            "value": "full_year_resident"
+          },
+          "short_year_accounting_change": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_itemizes": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_gross_income_zero": {
+            "state": "confirmed",
+            "value": true
+          },
+          "spouse_files_return": {
+            "state": "confirmed",
+            "value": false
+          },
+          "disaster_loss_adjustment_requested": {
+            "state": "confirmed",
+            "value": false
+          }
+        },
+        "assessments": {
+          "documents_complete": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_income": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_adjustments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_deductions": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_credits": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_taxes": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_payments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_amt_preferences": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_dependents": {
+            "state": "confirmed",
+            "value": true
+          },
+          "adults_25_to_64": {
+            "state": "confirmed",
+            "value": true
+          }
+        },
+        "documents": {
+          "w2": [
+            {
+              "id": "synthetic-w2-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box2": {
+                  "state": "confirmed",
+                  "value": "3000.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box5": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                }
+              },
+              "assessments": {
+                "ordinary_wages_only": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_additional_medicare_withholding": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "int": [
+            {
+              "id": "synthetic-int-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "1200.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "div": [
+            {
+              "id": "synthetic-div-1",
+              "boxes": {
+                "box1a": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box1b": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box2a": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": "estimate",
+        "lines": {
+          "1a": 55000,
+          "2b": 1500,
+          "3b": 300,
+          "9": 56800,
+          "11a": 56800,
+          "11b": 56800,
+          "12e": 15750,
+          "14": 15750,
+          "15": 41050,
+          "16": 4691,
+          "24": 4691,
+          "25a": 3000,
+          "25b": 0,
+          "25d": 3000,
+          "33": 3000,
+          "34": 0,
+          "35a": 0,
+          "37": 1691
+        },
+        "blocker_codes": []
+      },
+      "oracle": {
+        "method": "separately_worked_form_1040_lines",
+        "derivation": "Income 56,800 minus standard deduction 15,750 = taxable 41,050; published table row 41,050\u201341,100 gives tax 4,691 for single and separate. Tax minus withholding 3,000 = balance 1,691.",
+        "independent_of_candidate_execution": true,
+        "source_id": "p1040-2025-snapshot",
+        "source_sha256": "d0f7ba91dd146f3079e4bc505f2ed1c47a9ec8bb4311178bac9e81ae3a52c52a",
+        "pdf_page": 7,
+        "locator": "2025 Tax Table; ordinary-income reference, no other schedules"
+      },
+      "sha256": "deac7ea59e8e55ee88567494befd4a601663785d6b88962c95d05264bd1f80cb"
+    },
+    {
+      "id": "ordinary-income-married_separate",
+      "input": {
+        "contract_version": "0.1.0",
+        "tax_year": 2025,
+        "deduction_method": {
+          "state": "confirmed",
+          "value": "standard"
+        },
+        "deduction_facts": {
+          "filing_status": {
+            "state": "confirmed",
+            "value": "married_separate"
+          },
+          "entity_kind": {
+            "state": "confirmed",
+            "value": "individual"
+          },
+          "residency": {
+            "state": "confirmed",
+            "value": "full_year_resident"
+          },
+          "short_year_accounting_change": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_claimable": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "self_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_age_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_blind_qualified": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_itemizes": {
+            "state": "confirmed",
+            "value": false
+          },
+          "spouse_gross_income_zero": {
+            "state": "confirmed",
+            "value": true
+          },
+          "spouse_files_return": {
+            "state": "confirmed",
+            "value": false
+          },
+          "disaster_loss_adjustment_requested": {
+            "state": "confirmed",
+            "value": false
+          }
+        },
+        "assessments": {
+          "documents_complete": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_income": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_adjustments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_deductions": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_credits": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_taxes": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_other_payments": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_amt_preferences": {
+            "state": "confirmed",
+            "value": true
+          },
+          "no_dependents": {
+            "state": "confirmed",
+            "value": true
+          },
+          "adults_25_to_64": {
+            "state": "confirmed",
+            "value": true
+          }
+        },
+        "documents": {
+          "w2": [
+            {
+              "id": "synthetic-w2-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box2": {
+                  "state": "confirmed",
+                  "value": "3000.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                },
+                "box5": {
+                  "state": "confirmed",
+                  "value": "55000.00"
+                }
+              },
+              "assessments": {
+                "ordinary_wages_only": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                },
+                "no_additional_medicare_withholding": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "int": [
+            {
+              "id": "synthetic-int-1",
+              "boxes": {
+                "box1": {
+                  "state": "confirmed",
+                  "value": "1200.00"
+                },
+                "box3": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ],
+          "div": [
+            {
+              "id": "synthetic-div-1",
+              "boxes": {
+                "box1a": {
+                  "state": "confirmed",
+                  "value": "300.00"
+                },
+                "box1b": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box2a": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                },
+                "box4": {
+                  "state": "confirmed",
+                  "value": "0.00"
+                }
+              },
+              "assessments": {
+                "no_unhandled_fields": {
+                  "state": "confirmed",
+                  "value": true
+                }
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "status": "estimate",
+        "lines": {
+          "1a": 55000,
+          "2b": 1500,
+          "3b": 300,
+          "9": 56800,
+          "11a": 56800,
+          "11b": 56800,
+          "12e": 15750,
+          "14": 15750,
+          "15": 41050,
+          "16": 4691,
+          "24": 4691,
+          "25a": 3000,
+          "25b": 0,
+          "25d": 3000,
+          "33": 3000,
+          "34": 0,
+          "35a": 0,
+          "37": 1691
+        },
+        "blocker_codes": []
+      },
+      "oracle": {
+        "method": "separately_worked_form_1040_lines",
+        "derivation": "Income 56,800 minus standard deduction 15,750 = taxable 41,050; published table row 41,050\u201341,100 gives tax 4,691 for single and separate. Tax minus withholding 3,000 = balance 1,691.",
+        "independent_of_candidate_execution": true,
+        "source_id": "p1040-2025-snapshot",
+        "source_sha256": "d0f7ba91dd146f3079e4bc505f2ed1c47a9ec8bb4311178bac9e81ae3a52c52a",
+        "pdf_page": 7,
+        "locator": "2025 Tax Table; ordinary-income reference, no other schedules"
+      },
+      "sha256": "265f7b3c4480f5a6a7be23e081730b41965e0955120e191a158c4705e61c7a56"
+    }
+  ],
+  "sha256": "49ff8e4e4bb7f606b485135ba105e6fe736fb501fa55910cb221ec44f9f32a96"
+}

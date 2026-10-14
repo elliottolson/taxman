@@ -1,0 +1,906 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "const": "ordinary-return.2025.research.v1"
+    },
+    "contract_version": {
+      "const": "0.1.0"
+    },
+    "tax_year": {
+      "const": 2025
+    },
+    "status": {
+      "const": "draft_research"
+    },
+    "production_enabled": {
+      "const": false
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "supported_statuses": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "single",
+          "married_joint",
+          "married_separate"
+        ]
+      }
+    },
+    "income_ceiling": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "single": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99999
+        },
+        "married_joint": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99999
+        },
+        "married_separate": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99999
+        }
+      },
+      "required": [
+        "single",
+        "married_joint",
+        "married_separate"
+      ]
+    },
+    "ceiling_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "pdf_page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "locator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "relationship": {
+            "const": "supports"
+          }
+        },
+        "required": [
+          "source_id",
+          "source_sha256",
+          "pdf_page",
+          "locator",
+          "relationship"
+        ]
+      }
+    },
+    "eitc_screen": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "single": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99999
+        },
+        "married_joint": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99999
+        },
+        "married_separate": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99999
+        }
+      },
+      "required": [
+        "single",
+        "married_joint",
+        "married_separate"
+      ]
+    },
+    "eitc_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "pdf_page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "locator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "relationship": {
+            "const": "supports"
+          }
+        },
+        "required": [
+          "source_id",
+          "source_sha256",
+          "pdf_page",
+          "locator",
+          "relationship"
+        ]
+      }
+    },
+    "payroll_ceiling": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100000
+    },
+    "required_assessments": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "assessment_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "pdf_page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "locator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "relationship": {
+            "const": "supports"
+          }
+        },
+        "required": [
+          "source_id",
+          "source_sha256",
+          "pdf_page",
+          "locator",
+          "relationship"
+        ]
+      }
+    },
+    "worksheet": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ]
+    },
+    "tax_table": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ]
+    },
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ]
+    },
+    "documents": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "w2": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "money_boxes": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "zero_boxes": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "clear_assessments": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "evidence": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "source_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "source_sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "pdf_page": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "locator": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "relationship": {
+                    "const": "supports"
+                  }
+                },
+                "required": [
+                  "source_id",
+                  "source_sha256",
+                  "pdf_page",
+                  "locator",
+                  "relationship"
+                ]
+              }
+            }
+          },
+          "required": [
+            "money_boxes",
+            "zero_boxes",
+            "clear_assessments",
+            "evidence"
+          ]
+        },
+        "int": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "money_boxes": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "zero_boxes": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "clear_assessments": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "evidence": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "source_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "source_sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "pdf_page": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "locator": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "relationship": {
+                    "const": "supports"
+                  }
+                },
+                "required": [
+                  "source_id",
+                  "source_sha256",
+                  "pdf_page",
+                  "locator",
+                  "relationship"
+                ]
+              }
+            }
+          },
+          "required": [
+            "money_boxes",
+            "zero_boxes",
+            "clear_assessments",
+            "evidence"
+          ]
+        },
+        "div": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "money_boxes": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "zero_boxes": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "clear_assessments": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "evidence": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "source_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "source_sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "pdf_page": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "locator": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "relationship": {
+                    "const": "supports"
+                  }
+                },
+                "required": [
+                  "source_id",
+                  "source_sha256",
+                  "pdf_page",
+                  "locator",
+                  "relationship"
+                ]
+              }
+            }
+          },
+          "required": [
+            "money_boxes",
+            "zero_boxes",
+            "clear_assessments",
+            "evidence"
+          ]
+        }
+      },
+      "required": [
+        "w2",
+        "int",
+        "div"
+      ]
+    },
+    "flow": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "source_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "source_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "pdf_page": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "locator": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "relationship": {
+                      "const": "supports"
+                    }
+                  },
+                  "required": [
+                    "source_id",
+                    "source_sha256",
+                    "pdf_page",
+                    "locator",
+                    "relationship"
+                  ]
+                }
+              },
+              "operation": {
+                "const": "sum_boxes"
+              },
+              "boxes": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "enum": [
+                        "w2",
+                        "int",
+                        "div"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  ],
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              }
+            },
+            "required": [
+              "id",
+              "evidence",
+              "operation",
+              "boxes"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "source_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "source_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "pdf_page": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "locator": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "relationship": {
+                      "const": "supports"
+                    }
+                  },
+                  "required": [
+                    "source_id",
+                    "source_sha256",
+                    "pdf_page",
+                    "locator",
+                    "relationship"
+                  ]
+                }
+              },
+              "operation": {
+                "const": "sum_lines"
+              },
+              "lines": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "required": [
+              "id",
+              "evidence",
+              "operation",
+              "lines"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "source_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "source_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "pdf_page": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "locator": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "relationship": {
+                      "const": "supports"
+                    }
+                  },
+                  "required": [
+                    "source_id",
+                    "source_sha256",
+                    "pdf_page",
+                    "locator",
+                    "relationship"
+                  ]
+                }
+              },
+              "operation": {
+                "const": "copy"
+              },
+              "line": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "evidence",
+              "operation",
+              "line"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "source_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "source_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "pdf_page": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "locator": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "relationship": {
+                      "const": "supports"
+                    }
+                  },
+                  "required": [
+                    "source_id",
+                    "source_sha256",
+                    "pdf_page",
+                    "locator",
+                    "relationship"
+                  ]
+                }
+              },
+              "operation": {
+                "const": "standard_deduction"
+              }
+            },
+            "required": [
+              "id",
+              "evidence",
+              "operation"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "source_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "source_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "pdf_page": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "locator": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "relationship": {
+                      "const": "supports"
+                    }
+                  },
+                  "required": [
+                    "source_id",
+                    "source_sha256",
+                    "pdf_page",
+                    "locator",
+                    "relationship"
+                  ]
+                }
+              },
+              "operation": {
+                "const": "positive_difference"
+              },
+              "left": {
+                "type": "string",
+                "minLength": 1
+              },
+              "right": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "evidence",
+              "operation",
+              "left",
+              "right"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "source_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "source_sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "pdf_page": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "locator": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "relationship": {
+                      "const": "supports"
+                    }
+                  },
+                  "required": [
+                    "source_id",
+                    "source_sha256",
+                    "pdf_page",
+                    "locator",
+                    "relationship"
+                  ]
+                }
+              },
+              "operation": {
+                "const": "tax_table"
+              },
+              "line": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "evidence",
+              "operation",
+              "line"
+            ]
+          }
+        ]
+      }
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "required": [
+    "id",
+    "contract_version",
+    "tax_year",
+    "status",
+    "production_enabled",
+    "scope",
+    "supported_statuses",
+    "income_ceiling",
+    "ceiling_evidence",
+    "eitc_screen",
+    "eitc_evidence",
+    "payroll_ceiling",
+    "required_assessments",
+    "assessment_evidence",
+    "worksheet",
+    "tax_table",
+    "input_schema",
+    "documents",
+    "flow",
+    "sha256"
+  ]
+}

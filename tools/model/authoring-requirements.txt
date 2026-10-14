@@ -1,0 +1,2 @@
+# Used only to reproduce archived PDF imports; not needed for calculations or CI.
+pypdf==6.1.1

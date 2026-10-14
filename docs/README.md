@@ -58,3 +58,7 @@ Model the tax domain and rule authoring system before implementing a narrow retu
 Recommended starting sequence: 2025 as the completed-return reference year; add 2026 planning as a separately labeled package. Published annual parameters do not mean every return instruction for a future filing season is final.
 
 Planning prepared October 13, 2026. See source registry for publication versions and verification limits.
+
+## Runnable calculation prototype
+
+See [2025 ordinary-income calculation](ordinary-return-prototype.md) for the supported scope, source-backed flow, normalized input contract, runnable CLI and verification commands.

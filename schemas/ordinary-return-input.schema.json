@@ -1,0 +1,1397 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract_version": {
+      "const": "0.1.0"
+    },
+    "tax_year": {
+      "type": "integer"
+    },
+    "deduction_method": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "enum": [
+            "confirmed",
+            "missing",
+            "estimated",
+            "invalid",
+            "provisional",
+            "not_applicable"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "enum": [
+                "standard",
+                "itemized"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "state",
+        "value"
+      ]
+    },
+    "deduction_facts": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "filing_status": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "single",
+                    "married_joint",
+                    "married_separate",
+                    "head_of_household",
+                    "qualifying_surviving_spouse"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "residency": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "full_year_resident",
+                    "nonresident",
+                    "dual_status"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "entity_kind": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "individual",
+                    "estate_trust",
+                    "partnership"
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "short_year_accounting_change": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "self_claimable": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "spouse_claimable": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "self_age_qualified": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "self_blind_qualified": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "spouse_age_qualified": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "spouse_blind_qualified": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "spouse_itemizes": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "spouse_gross_income_zero": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "spouse_files_return": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "disaster_loss_adjustment_requested": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        }
+      },
+      "required": []
+    },
+    "assessments": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "documents_complete": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "no_other_income": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "no_adjustments": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "no_other_deductions": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "no_credits": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "no_other_taxes": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "no_other_payments": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "no_amt_preferences": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "no_dependents": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        },
+        "adults_25_to_64": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "confirmed",
+                "missing",
+                "estimated",
+                "invalid",
+                "provisional",
+                "not_applicable"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "value"
+          ]
+        }
+      },
+      "required": []
+    },
+    "documents": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "w2": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "boxes": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "box1": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "state": {
+                        "enum": [
+                          "confirmed",
+                          "missing",
+                          "estimated",
+                          "invalid",
+                          "provisional",
+                          "not_applicable"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ]
+                  },
+                  "box2": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "state": {
+                        "enum": [
+                          "confirmed",
+                          "missing",
+                          "estimated",
+                          "invalid",
+                          "provisional",
+                          "not_applicable"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ]
+                  },
+                  "box3": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "state": {
+                        "enum": [
+                          "confirmed",
+                          "missing",
+                          "estimated",
+                          "invalid",
+                          "provisional",
+                          "not_applicable"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ]
+                  },
+                  "box5": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "state": {
+                        "enum": [
+                          "confirmed",
+                          "missing",
+                          "estimated",
+                          "invalid",
+                          "provisional",
+                          "not_applicable"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "assessments": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "ordinary_wages_only": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "state": {
+                        "enum": [
+                          "confirmed",
+                          "missing",
+                          "estimated",
+                          "invalid",
+                          "provisional",
+                          "not_applicable"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ]
+                  },
+                  "no_unhandled_fields": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "state": {
+                        "enum": [
+                          "confirmed",
+                          "missing",
+                          "estimated",
+                          "invalid",
+                          "provisional",
+                          "not_applicable"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ]
+                  },
+                  "no_additional_medicare_withholding": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "state": {
+                        "enum": [
+                          "confirmed",
+                          "missing",
+                          "estimated",
+                          "invalid",
+                          "provisional",
+                          "not_applicable"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            },
+            "required": [
+              "id",
+              "boxes",
+              "assessments"
+            ]
+          }
+        },
+        "int": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "boxes": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "box1": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "state": {
+                        "enum": [
+                          "confirmed",
+                          "missing",
+                          "estimated",
+                          "invalid",
+                          "provisional",
+                          "not_applicable"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ]
+                  },
+                  "box3": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "state": {
+                        "enum": [
+                          "confirmed",
+                          "missing",
+                          "estimated",
+                          "invalid",
+                          "provisional",
+                          "not_applicable"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ]
+                  },
+                  "box4": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "state": {
+                        "enum": [
+                          "confirmed",
+                          "missing",
+                          "estimated",
+                          "invalid",
+                          "provisional",
+                          "not_applicable"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "assessments": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "no_unhandled_fields": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "state": {
+                        "enum": [
+                          "confirmed",
+                          "missing",
+                          "estimated",
+                          "invalid",
+                          "provisional",
+                          "not_applicable"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            },
+            "required": [
+              "id",
+              "boxes",
+              "assessments"
+            ]
+          }
+        },
+        "div": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "boxes": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "box1a": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "state": {
+                        "enum": [
+                          "confirmed",
+                          "missing",
+                          "estimated",
+                          "invalid",
+                          "provisional",
+                          "not_applicable"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ]
+                  },
+                  "box1b": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "state": {
+                        "enum": [
+                          "confirmed",
+                          "missing",
+                          "estimated",
+                          "invalid",
+                          "provisional",
+                          "not_applicable"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ]
+                  },
+                  "box2a": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "state": {
+                        "enum": [
+                          "confirmed",
+                          "missing",
+                          "estimated",
+                          "invalid",
+                          "provisional",
+                          "not_applicable"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ]
+                  },
+                  "box4": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "state": {
+                        "enum": [
+                          "confirmed",
+                          "missing",
+                          "estimated",
+                          "invalid",
+                          "provisional",
+                          "not_applicable"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^(0|[1-9][0-9]*)\\.[0-9]{2}$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "assessments": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "no_unhandled_fields": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "state": {
+                        "enum": [
+                          "confirmed",
+                          "missing",
+                          "estimated",
+                          "invalid",
+                          "provisional",
+                          "not_applicable"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "state",
+                      "value"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            },
+            "required": [
+              "id",
+              "boxes",
+              "assessments"
+            ]
+          }
+        }
+      },
+      "required": []
+    }
+  },
+  "required": [
+    "contract_version",
+    "tax_year",
+    "deduction_facts",
+    "assessments",
+    "documents"
+  ]
+}

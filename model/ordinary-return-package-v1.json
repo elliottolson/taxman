@@ -1,0 +1,483 @@
+{
+  "id": "ordinary-return.2025.research.v1",
+  "contract_version": "0.1.0",
+  "tax_year": 2025,
+  "status": "draft_research",
+  "production_enabled": false,
+  "scope": "Ordinary-income federal estimate before penalties, interest and offsets; no filing or eligibility certification.",
+  "supported_statuses": [
+    "single",
+    "married_joint",
+    "married_separate"
+  ],
+  "income_ceiling": {
+    "single": 88100,
+    "married_joint": 99999,
+    "married_separate": 68500
+  },
+  "ceiling_evidence": [
+    {
+      "source_id": "i1040-2025-snapshot",
+      "source_sha256": "c7a4fbc484bb14fe55277bfc5b312a0971cdc6524642179fa7fa9d11fa024954",
+      "pdf_page": 112,
+      "locator": "Schedule 2 line 2: AMT exemption amounts; conservative gross-income ceiling, not an AMT eligibility rule",
+      "relationship": "supports"
+    }
+  ],
+  "eitc_screen": {
+    "single": 19104,
+    "married_joint": 26214,
+    "married_separate": 19104
+  },
+  "eitc_evidence": [
+    {
+      "source_id": "i1040-2025-snapshot",
+      "source_sha256": "c7a4fbc484bb14fe55277bfc5b312a0971cdc6524642179fa7fa9d11fa024954",
+      "pdf_page": 40,
+      "locator": "Step 1, AGI limits",
+      "relationship": "supports"
+    },
+    {
+      "source_id": "i1040-2025-snapshot",
+      "source_sha256": "c7a4fbc484bb14fe55277bfc5b312a0971cdc6524642179fa7fa9d11fa024954",
+      "pdf_page": 42,
+      "locator": "Step 5, earned-income limits",
+      "relationship": "supports"
+    }
+  ],
+  "payroll_ceiling": 100000,
+  "required_assessments": {
+    "documents_complete": "Confirm all income documents and all joint-filer documents have been included.",
+    "no_other_income": "Income outside the supported document boxes needs another calculation module.",
+    "no_adjustments": "Schedule 1 income adjustments are not supported.",
+    "no_other_deductions": "Itemized deductions, QBI, Schedule 1-A deductions (including tips, overtime, seniors and car-loan interest), and other deductions need more support.",
+    "no_credits": "Credit eligibility must be assessed; education, retirement savings, child, energy, foreign-tax and other credits are not supported.",
+    "no_other_taxes": "Other taxes, repayments, recaptures and special tax methods need more support.",
+    "no_other_payments": "Estimated payments, prior-year overpayments and other payments are not supported.",
+    "no_amt_preferences": "AMT adjustments, preferences and carryovers need more support.",
+    "no_dependents": "Dependents and their associated filing-status and credit rules need more support.",
+    "adults_25_to_64": "Age-based credits, childless EITC exceptions, kiddie tax and the enhanced senior deduction need more support."
+  },
+  "assessment_evidence": [
+    {
+      "source_id": "f1040-2025-snapshot",
+      "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+      "pdf_page": 2,
+      "locator": "Form 1040 lines 13a\u201313b, 17, 19\u201323, 26\u201332; bounded scope requires upstream eligibility assessments",
+      "relationship": "supports"
+    },
+    {
+      "source_id": "f1040-2025-snapshot",
+      "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+      "pdf_page": 1,
+      "locator": "Form 1040 income lines 1\u201310, residency and filing-status fields; bounded scope requires upstream determinations",
+      "relationship": "supports"
+    }
+  ],
+  "worksheet": {
+    "path": "standard-deduction-package-v2.json",
+    "sha256": "d41800f20c71578c5e8dd2c72a7f46a6c36a6662bbe20f7cb85c2e39f87c6ab3"
+  },
+  "tax_table": {
+    "path": "ordinary-tax-table-2025-v1.json",
+    "sha256": "5a243802469883fade6e13e61ef938f28761186e4eea042ab80b07fe30e0fb5f"
+  },
+  "documents": {
+    "w2": {
+      "money_boxes": [
+        "box1",
+        "box2",
+        "box3",
+        "box5"
+      ],
+      "zero_boxes": [],
+      "clear_assessments": [
+        "ordinary_wages_only",
+        "no_unhandled_fields",
+        "no_additional_medicare_withholding"
+      ],
+      "evidence": [
+        {
+          "source_id": "i1040-2025-snapshot",
+          "source_sha256": "c7a4fbc484bb14fe55277bfc5b312a0971cdc6524642179fa7fa9d11fa024954",
+          "pdf_page": 23,
+          "locator": "Line 1a: Form W-2 box 1",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "i1040-2025-snapshot",
+          "source_sha256": "c7a4fbc484bb14fe55277bfc5b312a0971cdc6524642179fa7fa9d11fa024954",
+          "pdf_page": 39,
+          "locator": "Line 25a: Form W-2 box 2",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "i1040-2025-snapshot",
+          "source_sha256": "c7a4fbc484bb14fe55277bfc5b312a0971cdc6524642179fa7fa9d11fa024954",
+          "pdf_page": 113,
+          "locator": "Schedule 2 line 11: Additional Medicare Tax",
+          "relationship": "supports"
+        }
+      ]
+    },
+    "int": {
+      "money_boxes": [
+        "box1",
+        "box3",
+        "box4"
+      ],
+      "zero_boxes": [],
+      "clear_assessments": [
+        "no_unhandled_fields"
+      ],
+      "evidence": [
+        {
+          "source_id": "i1040-2025-snapshot",
+          "source_sha256": "c7a4fbc484bb14fe55277bfc5b312a0971cdc6524642179fa7fa9d11fa024954",
+          "pdf_page": 25,
+          "locator": "Line 2b: taxable interest; U.S. savings bonds and Treasury obligations",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "i1040-2025-snapshot",
+          "source_sha256": "c7a4fbc484bb14fe55277bfc5b312a0971cdc6524642179fa7fa9d11fa024954",
+          "pdf_page": 39,
+          "locator": "Line 25b: Form 1099 federal withholding",
+          "relationship": "supports"
+        }
+      ]
+    },
+    "div": {
+      "money_boxes": [
+        "box1a",
+        "box1b",
+        "box2a",
+        "box4"
+      ],
+      "zero_boxes": [
+        "box1b",
+        "box2a"
+      ],
+      "clear_assessments": [
+        "no_unhandled_fields"
+      ],
+      "evidence": [
+        {
+          "source_id": "i1040-2025-snapshot",
+          "source_sha256": "c7a4fbc484bb14fe55277bfc5b312a0971cdc6524642179fa7fa9d11fa024954",
+          "pdf_page": 26,
+          "locator": "Lines 3a and 3b: box 1a includes box 1b; ordinary and qualified dividends",
+          "relationship": "supports"
+        },
+        {
+          "source_id": "i1040-2025-snapshot",
+          "source_sha256": "c7a4fbc484bb14fe55277bfc5b312a0971cdc6524642179fa7fa9d11fa024954",
+          "pdf_page": 39,
+          "locator": "Line 25b: Form 1099 federal withholding",
+          "relationship": "supports"
+        }
+      ]
+    }
+  },
+  "flow": [
+    {
+      "id": "1a",
+      "operation": "sum_boxes",
+      "boxes": [
+        [
+          "w2",
+          "box1"
+        ]
+      ],
+      "evidence": [
+        {
+          "source_id": "f1040-2025-snapshot",
+          "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+          "pdf_page": 1,
+          "locator": "Form 1040 line 1a; only supported income, deduction and withholding, before penalties",
+          "relationship": "supports"
+        }
+      ]
+    },
+    {
+      "id": "2b",
+      "operation": "sum_boxes",
+      "boxes": [
+        [
+          "int",
+          "box1"
+        ],
+        [
+          "int",
+          "box3"
+        ]
+      ],
+      "evidence": [
+        {
+          "source_id": "f1040-2025-snapshot",
+          "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+          "pdf_page": 1,
+          "locator": "Form 1040 line 2b; only supported income, deduction and withholding, before penalties",
+          "relationship": "supports"
+        }
+      ]
+    },
+    {
+      "id": "3b",
+      "operation": "sum_boxes",
+      "boxes": [
+        [
+          "div",
+          "box1a"
+        ]
+      ],
+      "evidence": [
+        {
+          "source_id": "f1040-2025-snapshot",
+          "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+          "pdf_page": 1,
+          "locator": "Form 1040 line 3b; only supported income, deduction and withholding, before penalties",
+          "relationship": "supports"
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "operation": "sum_lines",
+      "lines": [
+        "1a",
+        "2b",
+        "3b"
+      ],
+      "evidence": [
+        {
+          "source_id": "f1040-2025-snapshot",
+          "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+          "pdf_page": 1,
+          "locator": "Form 1040 line 9; only supported income, deduction and withholding, before penalties",
+          "relationship": "supports"
+        }
+      ]
+    },
+    {
+      "id": "11a",
+      "operation": "copy",
+      "line": "9",
+      "evidence": [
+        {
+          "source_id": "f1040-2025-snapshot",
+          "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+          "pdf_page": 1,
+          "locator": "Form 1040 line 11a; only supported income, deduction and withholding, before penalties",
+          "relationship": "supports"
+        }
+      ]
+    },
+    {
+      "id": "11b",
+      "operation": "copy",
+      "line": "11a",
+      "evidence": [
+        {
+          "source_id": "f1040-2025-snapshot",
+          "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+          "pdf_page": 2,
+          "locator": "Form 1040 line 11b; no QBI or Schedule 1-A deductions",
+          "relationship": "supports"
+        }
+      ]
+    },
+    {
+      "id": "12e",
+      "operation": "standard_deduction",
+      "evidence": [
+        {
+          "source_id": "f1040-2025-snapshot",
+          "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+          "pdf_page": 2,
+          "locator": "Form 1040 line 12e; only supported income, deduction and withholding, before penalties",
+          "relationship": "supports"
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "operation": "copy",
+      "line": "12e",
+      "evidence": [
+        {
+          "source_id": "f1040-2025-snapshot",
+          "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+          "pdf_page": 2,
+          "locator": "Form 1040 line 14; no QBI or Schedule 1-A deductions",
+          "relationship": "supports"
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "operation": "positive_difference",
+      "left": "11b",
+      "right": "14",
+      "evidence": [
+        {
+          "source_id": "f1040-2025-snapshot",
+          "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+          "pdf_page": 2,
+          "locator": "Form 1040 line 15; only supported income, deduction and withholding, before penalties",
+          "relationship": "supports"
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "operation": "tax_table",
+      "line": "15",
+      "evidence": [
+        {
+          "source_id": "p1040-2025-snapshot",
+          "source_sha256": "d0f7ba91dd146f3079e4bc505f2ed1c47a9ec8bb4311178bac9e81ae3a52c52a",
+          "pdf_page": 2,
+          "locator": "2025 Tax Table; qualifying surviving spouse uses joint column",
+          "relationship": "supports"
+        }
+      ]
+    },
+    {
+      "id": "24",
+      "operation": "copy",
+      "line": "16",
+      "evidence": [
+        {
+          "source_id": "f1040-2025-snapshot",
+          "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+          "pdf_page": 2,
+          "locator": "Form 1040 line 24; only supported income, deduction and withholding, before penalties",
+          "relationship": "supports"
+        }
+      ]
+    },
+    {
+      "id": "25a",
+      "operation": "sum_boxes",
+      "boxes": [
+        [
+          "w2",
+          "box2"
+        ]
+      ],
+      "evidence": [
+        {
+          "source_id": "f1040-2025-snapshot",
+          "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+          "pdf_page": 2,
+          "locator": "Form 1040 line 25a; only supported income, deduction and withholding, before penalties",
+          "relationship": "supports"
+        }
+      ]
+    },
+    {
+      "id": "25b",
+      "operation": "sum_boxes",
+      "boxes": [
+        [
+          "int",
+          "box4"
+        ],
+        [
+          "div",
+          "box4"
+        ]
+      ],
+      "evidence": [
+        {
+          "source_id": "f1040-2025-snapshot",
+          "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+          "pdf_page": 2,
+          "locator": "Form 1040 line 25b; only supported income, deduction and withholding, before penalties",
+          "relationship": "supports"
+        }
+      ]
+    },
+    {
+      "id": "25d",
+      "operation": "sum_lines",
+      "lines": [
+        "25a",
+        "25b"
+      ],
+      "evidence": [
+        {
+          "source_id": "f1040-2025-snapshot",
+          "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+          "pdf_page": 2,
+          "locator": "Form 1040 line 25d; only supported income, deduction and withholding, before penalties",
+          "relationship": "supports"
+        }
+      ]
+    },
+    {
+      "id": "33",
+      "operation": "copy",
+      "line": "25d",
+      "evidence": [
+        {
+          "source_id": "f1040-2025-snapshot",
+          "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+          "pdf_page": 2,
+          "locator": "Form 1040 line 33; only supported income, deduction and withholding, before penalties",
+          "relationship": "supports"
+        }
+      ]
+    },
+    {
+      "id": "34",
+      "operation": "positive_difference",
+      "left": "33",
+      "right": "24",
+      "evidence": [
+        {
+          "source_id": "f1040-2025-snapshot",
+          "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+          "pdf_page": 2,
+          "locator": "Form 1040 line 34; only supported income, deduction and withholding, before penalties",
+          "relationship": "supports"
+        }
+      ]
+    },
+    {
+      "id": "35a",
+      "operation": "copy",
+      "line": "34",
+      "evidence": [
+        {
+          "source_id": "f1040-2025-snapshot",
+          "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+          "pdf_page": 2,
+          "locator": "Form 1040 line 35a; only supported income, deduction and withholding, before penalties",
+          "relationship": "supports"
+        }
+      ]
+    },
+    {
+      "id": "37",
+      "operation": "positive_difference",
+      "left": "24",
+      "right": "33",
+      "evidence": [
+        {
+          "source_id": "f1040-2025-snapshot",
+          "source_sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6",
+          "pdf_page": 2,
+          "locator": "Form 1040 line 37; only supported income, deduction and withholding, before penalties",
+          "relationship": "supports"
+        }
+      ]
+    }
+  ],
+  "sha256": "93c0773ed1ee7fb82882c24801076e29fc9eacdb6ee2d40f6c8be7b41480813a",
+  "input_schema": {
+    "path": "ordinary-return-input.schema.json",
+    "sha256": "41089b6af02c09a3621878371b7255ddf2873413496ba859d559e8a54e82bd89"
+  }
+}

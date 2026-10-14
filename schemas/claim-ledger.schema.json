@@ -72,7 +72,8 @@
               "form_instructions",
               "statute",
               "regulation",
-              "published_guidance"
+              "published_guidance",
+              "form"
             ]
           },
           "publication_revision": {

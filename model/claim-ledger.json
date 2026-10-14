@@ -63,6 +63,42 @@
       "content_sha256": "482e9c487c608f1bbeaceef35bc3c0933e8b35443cfff447e4279d590468364a",
       "author_id": "research-draft",
       "sha256": "c7a4fbc484bb14fe55277bfc5b312a0971cdc6524642179fa7fa9d11fa024954"
+    },
+    {
+      "id": "p1040-2025-snapshot",
+      "registry_id": "irs-tax-tables-2025",
+      "title": "Publication 1040 (2025)",
+      "authority_class": "publication",
+      "publication_revision": "2025; issued 2025-09-17",
+      "published_on": "2025-09-17",
+      "tax_years": [
+        2025
+      ],
+      "url": "https://www.irs.gov/pub/irs-prior/p1040--2025.pdf",
+      "path": "evidence/irs/2025/p1040.pdf",
+      "pdf_pages": 28,
+      "retrieved_at": "2026-10-14T00:21:26.198903Z",
+      "content_sha256": "8ae019bd3b28b07b37e46e18597d8e899222a2224ce7482c015b130033403532",
+      "author_id": "research-draft",
+      "sha256": "d0f7ba91dd146f3079e4bc505f2ed1c47a9ec8bb4311178bac9e81ae3a52c52a"
+    },
+    {
+      "id": "f1040-2025-snapshot",
+      "registry_id": "irs-1040-form-2025",
+      "title": "Form 1040 (2025)",
+      "authority_class": "form",
+      "publication_revision": "2025; archived PDF metadata creation 2026-01-02 (publication-date proxy, not a verified IRS release date)",
+      "published_on": "2026-01-02",
+      "tax_years": [
+        2025
+      ],
+      "url": "https://www.irs.gov/pub/irs-prior/f1040--2025.pdf",
+      "path": "evidence/irs/2025/f1040.pdf",
+      "pdf_pages": 2,
+      "retrieved_at": "2026-10-14T00:23:59.411727Z",
+      "content_sha256": "3d31c226df0d189ced80e039d01cf0f8820c1019681a0f0ca6264de277b7e982",
+      "author_id": "research-draft",
+      "sha256": "402ce3281c068b54f263241682db130ae12e8af17e02426678a568f04983bdd6"
     }
   ],
   "claims": [
