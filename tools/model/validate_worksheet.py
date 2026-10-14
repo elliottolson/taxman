@@ -9,15 +9,48 @@ from validate_interactions import seal, digest, index
 from worksheet_engine import compile_worksheet, evaluate_worksheet
 
 
-def previous_worksheet(root,ref):
+def previous_worksheet(root,ref,name='standard-deduction-package.json'):
     require(re.fullmatch(r'HEAD\^?|[a-f0-9]{40}',ref) is not None,'Unsupported baseline Git reference')
-    name='model/standard-deduction-package.json'
+    require(re.fullmatch(r'standard-deduction-package(?:-v[0-9]+)?\.json',name) is not None,'Invalid worksheet archive path')
+    name='model/'+name
     listing=subprocess.run(['git','-C',str(root),'ls-tree','--name-only',ref,'--',name],capture_output=True,text=True)
     require(listing.returncode==0,'Cannot inspect worksheet baseline')
     if not listing.stdout.strip():return None
     result=subprocess.run(['git','-C',str(root),'show','--no-ext-diff',f'{ref}:{name}'],capture_output=True,text=True)
     require(result.returncode==0,'Cannot read worksheet baseline')
     return json.loads(result.stdout)
+
+
+def load_worksheet_registry(root):
+    data=json.loads((root/'model/worksheet-registry.json').read_text())
+    require(set(data)=={'contract_version','active','archives'} and data['contract_version']=='0.1.0','Invalid worksheet registry')
+    paths=[p['path'] for p in data['archives']]
+    require(len(paths)==len(set(paths)) and data['active'] in paths and paths[0]=='standard-deduction-package.json','Invalid worksheet archive selection')
+    packages={}
+    for pin in data['archives']:
+        require(set(pin)=={'path','id','sha256'} and re.fullmatch(r'standard-deduction-package(?:-v[0-9]+)?\.json',pin['path']),'Invalid worksheet archive pin')
+        package=json.loads((root/'model'/pin['path']).read_text())
+        require(digest(package)==pin['sha256'] and package['context']['id']==pin['id'],'Worksheet registry pin mismatch')
+        packages[pin['path']]=package
+    require(len({p['context']['id'] for p in packages.values()})==len(packages),'Duplicate worksheet package ID')
+    return data,packages
+
+
+def preserve_worksheet_registry(current,previous):
+    pins={pin['path']:pin for pin in current['archives']}
+    require(all(pin['path'] in pins and pins[pin['path']]==pin for pin in previous['archives']),'Worksheet archive pin removed or rewritten')
+
+
+def check_worksheet_registry_history(root,ref,current):
+    require(re.fullmatch(r'HEAD\^?|[a-f0-9]{40}',ref) is not None,'Unsupported baseline Git reference')
+    name='model/worksheet-registry.json'
+    listing=subprocess.run(['git','-C',str(root),'ls-tree','--name-only',ref,'--',name],capture_output=True,text=True)
+    require(listing.returncode==0,'Cannot inspect worksheet registry baseline')
+    if not listing.stdout.strip():return
+    result=subprocess.run(['git','-C',str(root),'show','--no-ext-diff',f'{ref}:{name}'],capture_output=True,text=True)
+    require(result.returncode==0,'Cannot read worksheet registry baseline')
+    previous=json.loads(result.stdout)
+    preserve_worksheet_registry(current,previous)
 
 
 def worksheet_report(data,ledger,root):
@@ -38,7 +71,7 @@ def worksheet_report(data,ledger,root):
     report={'contract_version':'0.1.0','plan_sha256':plan['sha256'],'fixture_set_sha256':digest(data['cases']),
             'runner_sources':runner,'structural_validation':'passed',
             'calculation_comparison':'passed' if results and all(r['result_comparison']==r['step_comparison']=='passed' for r in results) else 'failed',
-            'interpretation_review':'pending','reference_review':'pending','designated_reviewer':'Elliott Olson',
+            'interpretation_review':'pending','reference_review':'pending','designated_reviewer':'not_assigned',
             'production_eligible':False,'results':results}
     report['sha256']=seal(report)
     return report
@@ -105,7 +138,8 @@ def main():
     from validate_model import ROOT
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',required=True)
     args=parser.parse_args()
-    data=json.loads((ROOT/'model/standard-deduction-package.json').read_text())
+    registry,packages=load_worksheet_registry(ROOT)
+    data=packages[registry['active']]
     schema=json.loads((ROOT/'schemas/worksheet-package.schema.json').read_text())
     ledger=json.loads((ROOT/'model/claim-ledger.json').read_text())
     # Run all source/claim/compiler checks before emitting a research report.

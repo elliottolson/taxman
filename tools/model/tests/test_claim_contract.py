@@ -70,7 +70,7 @@ class ClaimContractTests(unittest.TestCase):
 
     def test_real_drafts_validate_and_cannot_release(self):
         r = self.check()
-        self.assertEqual((r['sources'], r['claims'], r['fixtures']), (3,6,61))
+        self.assertEqual((r['sources'], r['claims'], r['fixtures']), (3,7,109))
         self.assertFalse(r['packages']['research.2025']['release_eligible'])
         self.assertTrue(all(s == 'drafted' for s in r['review_states'].values()))
 

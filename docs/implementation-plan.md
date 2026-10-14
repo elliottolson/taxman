@@ -98,4 +98,4 @@ The [compilation and verification contracts](compilation-and-verification.md) no
 
 ## Source-backed worksheet milestone
 
-A [draft 2025 standard-deduction worksheet](standard-deduction-worksheet.md) now exercises exact rational arithmetic, indexed annual tables, intermediate explanations, and IRS-backed reference comparisons. Interpretation and independent reference approval remain pending in [the reviewer packet](standard-deduction-review.md). This offline research implementation does not select a production backend language or clear the broader model's release gates.
+A [draft 2025 standard-deduction worksheet](standard-deduction-worksheet.md) now exercises exact rational arithmetic, indexed annual tables, intermediate explanations, and IRS-backed reference comparisons. The [development review](standard-deduction-review.md) checks source/implementation consistency and records a corrected disaster-adjustment scope guard. Independent acceptance remains distinct, and no tax-review task is assigned to the user. This offline research implementation does not select a production backend language or clear the broader model's release gates.

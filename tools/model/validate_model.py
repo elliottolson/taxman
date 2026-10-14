@@ -286,11 +286,15 @@ def main():
         execution_schema = json.loads((ROOT / 'schemas/execution-contract.schema.json').read_text())
         prior_execution = previous_execution(ROOT, args.baseline_ref) if args.baseline_ref else None
         summary['execution'] = validate_execution(execution, execution_schema, schemas, ROOT, prior_execution)
-        from validate_worksheet import previous_worksheet, validate_worksheet
-        worksheet = json.loads((ROOT / 'model/standard-deduction-package.json').read_text())
+        from validate_worksheet import previous_worksheet, validate_worksheet, load_worksheet_registry, check_worksheet_registry_history
+        worksheet_registry, worksheets = load_worksheet_registry(ROOT)
+        if args.baseline_ref:
+            check_worksheet_registry_history(ROOT, args.baseline_ref, worksheet_registry)
         worksheet_schema = json.loads((ROOT / 'schemas/worksheet-package.schema.json').read_text())
-        prior_worksheet = previous_worksheet(ROOT, args.baseline_ref) if args.baseline_ref else None
-        summary['worksheet'] = validate_worksheet(worksheet, worksheet_schema, read_ledger(ROOT), ROOT, prior_worksheet)
+        summary['worksheets'] = {}
+        for name, worksheet in worksheets.items():
+            prior_worksheet = previous_worksheet(ROOT, args.baseline_ref, name) if args.baseline_ref else None
+            summary['worksheets'][name] = validate_worksheet(worksheet, worksheet_schema, read_ledger(ROOT), ROOT, prior_worksheet)
         print('Model contracts validated: ' + json.dumps(summary, sort_keys=True))
         print('Tax interpretations remain drafts; worksheet comparisons passed, independent review and production eligibility remain pending.')
     except (ModelError, OSError, ValueError, KeyError) as error:

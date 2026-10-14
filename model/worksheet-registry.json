@@ -1,0 +1,16 @@
+{
+  "contract_version": "0.1.0",
+  "active": "standard-deduction-package-v2.json",
+  "archives": [
+    {
+      "path": "standard-deduction-package.json",
+      "id": "standard-deduction.2025.research.v1",
+      "sha256": "fe520a9859f8cf78189abf04cbdc5a28dc28013e0d345fd1eee83e244877cf2c"
+    },
+    {
+      "path": "standard-deduction-package-v2.json",
+      "id": "standard-deduction.2025.research.v2",
+      "sha256": "d41800f20c71578c5e8dd2c72a7f46a6c36a6662bbe20f7cb85c2e39f87c6ab3"
+    }
+  ]
+}

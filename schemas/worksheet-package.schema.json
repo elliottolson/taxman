@@ -1064,7 +1064,7 @@
           "const": "pending"
         },
         "designated_reviewer": {
-          "const": "Elliott Olson"
+          "const": "not_assigned"
         },
         "production_eligible": {
           "const": false

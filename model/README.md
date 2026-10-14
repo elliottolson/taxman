@@ -11,10 +11,11 @@ This phase models the rule system and its relationships before implementing a ta
 | [Modeling guide](../docs/domain-model.md) | Relationships, semantics, and next modeling steps |
 | [Interaction contracts](interaction-model.json) | Synthetic temporal revisions, allocation cases, and carryover snapshots |
 | [Interaction schema](../schemas/interaction-model.schema.json) | Time, ownership, allocation, and ledger contracts |
-| [Standard deduction worksheet](standard-deduction-package.json) | Draft 2025 annual tables, typed worksheet, saved plan, and IRS-backed comparisons |
+| [Standard deduction worksheet](standard-deduction-package-v2.json) | Draft 2025 annual tables, typed worksheet, saved plan, and IRS-backed comparisons |
+| [Worksheet archives](worksheet-registry.json) | Active selection and immutable v1/v2 package pins |
 | [Worksheet schema](../schemas/worksheet-package.schema.json) | Exact numeric, indexed-table, worksheet, case, and report contracts |
 | [Worksheet guide](../docs/standard-deduction-worksheet.md) | Executable research scope and verification boundaries |
-| [Reviewer packet](../docs/standard-deduction-review.md) | Source locators, reference outcomes, and pending decisions |
+| [Development review](../docs/standard-deduction-review.md) | Source audit, corrected coverage guard, and verification results |
 | [Execution contracts](execution-contract.json) | Synthetic authoring program, rule revisions, annual bindings, fixtures, and compiled plans |
 | [Execution schema](../schemas/execution-contract.schema.json) | Portable plan, verification report, and explanation trace contracts |
 | [Compilation guide](../docs/compilation-and-verification.md) | Deterministic compilation, bounded harness, verification, and limits |
